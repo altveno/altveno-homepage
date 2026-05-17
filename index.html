@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altveno — Where Alternative Investments Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0f0a;
+    --bg2: #111611;
+    --bg3: #161c16;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --green: #b8f06a;
+    --green-dark: #1a2e0a;
+    --green-mid: #2d5012;
+    --teal: #5dc9a8;
+    --amber: #e8a84a;
+    --text: #e8e9e4;
+    --muted: #7a7d76;
+    --muted2: #4a4d46;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 64px;
+    background: rgba(10,15,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: linear-gradient(135deg, #1a3a0a, #2d6012);
+    border: 1px solid rgba(184,240,106,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px; color: var(--green);
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px; color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 14px; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    display: flex; gap: 10px; align-items: center;
+  }
+
+  .btn-ghost {
+    padding: 8px 18px; border-radius: 8px;
+    border: 1px solid var(--border2); background: transparent;
+    color: var(--text); font-size: 13px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.25); }
+
+  .btn-primary {
+    padding: 8px 20px; border-radius: 8px;
+    border: none; background: var(--green);
+    color: #0a0f0a; font-size: 13px; font-weight: 600;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #c8ff7a; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative; overflow: hidden;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse at center top, rgba(45,80,18,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 5px 14px; border-radius: 20px;
+    border: 1px solid rgba(184,240,106,0.25);
+    background: rgba(184,240,106,0.06);
+    font-size: 12px; color: var(--green);
+    margin-bottom: 32px; letter-spacing: 0.3px;
+  }
+
+  .hero-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.08;
+    color: var(--text);
+    max-width: 900px;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .hero-sub {
+    font-size: 18px; color: var(--muted);
+    max-width: 560px; line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex; gap: 12px; align-items: center;
+    flex-wrap: wrap; justify-content: center;
+    margin-bottom: 80px;
+  }
+
+  .btn-large {
+    padding: 14px 32px; border-radius: 10px;
+    font-size: 15px; font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-large.primary {
+    background: var(--green); color: #0a0f0a; border: none;
+  }
+  .btn-large.primary:hover { background: #c8ff7a; transform: translateY(-1px); }
+
+  .btn-large.secondary {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border2);
+  }
+  .btn-large.secondary:hover { border-color: rgba(255,255,255,0.25); }
+
+  .hero-stats {
+    display: flex; gap: 48px; align-items: center;
+    flex-wrap: wrap; justify-content: center;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-number {
+    font-family: 'Instrument Serif', serif;
+    font-size: 32px; color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .hero-stat-label {
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  .hero-divider {
+    width: 1px; height: 40px; background: var(--border2);
+  }
+
+  /* PLATFORM PREVIEW */
+  .preview-section {
+    padding: 0 48px 100px;
+    display: flex; justify-content: center;
+  }
+
+  .preview-window {
+    width: 100%; max-width: 1000px;
+    border-radius: 16px;
+    border: 1px solid var(--border2);
+    overflow: hidden;
+    background: var(--bg2);
+    box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+  }
+
+  .preview-bar {
+    background: var(--bg3);
+    padding: 12px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .preview-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+
+  .preview-inner {
+    display: grid; grid-template-columns: 180px 1fr;
+    height: 420px;
+  }
+
+  .preview-sidebar {
+    background: var(--bg3);
+    border-right: 1px solid var(--border);
+    padding: 20px 16px;
+  }
+
+  .preview-nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; border-radius: 8px;
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .preview-nav-item.active {
+    background: rgba(184,240,106,0.08);
+    color: var(--green);
+    border: 1px solid rgba(184,240,106,0.15);
+  }
+
+  .preview-nav-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor; flex-shrink: 0;
+  }
+
+  .preview-main {
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  .preview-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px; color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .preview-sub {
+    font-size: 11px; color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .preview-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 16px;
+  }
+
+  .preview-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px;
+  }
+
+  .preview-card-label {
+    font-size: 10px; color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .preview-card-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px; color: var(--text);
+  }
+
+  .preview-card-change {
+    font-size: 10px; color: var(--green);
+    margin-top: 3px;
+  }
+
+  .preview-chart-bars {
+    display: flex; align-items: flex-end;
+    gap: 6px; height: 80px; margin-top: 12px;
+  }
+
+  .preview-bar-item {
+    flex: 1; border-radius: 3px 3px 0 0;
+    background: rgba(184,240,106,0.2);
+    transition: all 0.3s;
+  }
+
+  /* SECTION STYLES */
+  section {
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--green); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.1; letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .section-body {
+    font-size: 16px; color: var(--muted);
+    max-width: 560px; line-height: 1.7;
+  }
+
+  /* TWO COL */
+  .two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+
+  .feature-cell {
+    background: var(--bg2);
+    padding: 32px 28px;
+    transition: background 0.2s;
+  }
+  .feature-cell:hover { background: var(--bg3); }
+
+  .feature-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(184,240,106,0.1);
+    border: 1px solid rgba(184,240,106,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 16px;
+  }
+
+  .feature-title {
+    font-size: 15px; font-weight: 600;
+    color: var(--text); margin-bottom: 8px;
+  }
+
+  .feature-body {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* AUDIENCE SPLIT */
+  .audience-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .audience-card {
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+    background: var(--bg2);
+    position: relative; overflow: hidden;
+  }
+
+  .audience-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+
+  .audience-card.managers::before { background: var(--green); }
+  .audience-card.allocators::before { background: var(--teal); }
+
+  .audience-tag {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .audience-card.managers .audience-tag {
+    background: rgba(184,240,106,0.1);
+    color: var(--green);
+    border: 1px solid rgba(184,240,106,0.2);
+  }
+
+  .audience-card.allocators .audience-tag {
+    background: rgba(93,201,168,0.1);
+    color: var(--teal);
+    border: 1px solid rgba(93,201,168,0.2);
+  }
+
+  .audience-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px; color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .audience-desc {
+    font-size: 14px; color: var(--muted);
+    margin-bottom: 28px; line-height: 1.7;
+  }
+
+  .audience-features {
+    list-style: none; display: flex;
+    flex-direction: column; gap: 10px;
+  }
+
+  .audience-features li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: var(--muted);
+  }
+
+  .check {
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; flex-shrink: 0; margin-top: 1px;
+  }
+
+  .managers .check { background: rgba(184,240,106,0.15); color: var(--green); }
+  .allocators .check { background: rgba(93,201,168,0.15); color: var(--teal); }
+
+  .audience-cta {
+    margin-top: 32px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: gap 0.2s;
+  }
+
+  .managers .audience-cta { color: var(--green); }
+  .allocators .audience-cta { color: var(--teal); }
+  .audience-cta:hover { gap: 12px; }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 48px;
+  }
+
+  .pricing-card {
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    background: var(--bg2);
+    position: relative;
+  }
+
+  .pricing-card.featured {
+    border-color: rgba(184,240,106,0.3);
+    background: linear-gradient(135deg, rgba(45,80,18,0.2), var(--bg2));
+  }
+
+  .pricing-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    padding: 3px 14px; border-radius: 20px;
+    background: var(--green); color: #0a0f0a;
+    font-size: 11px; font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pricing-tier {
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 16px;
+  }
+
+  .pricing-price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 42px; color: var(--text);
+    line-height: 1; margin-bottom: 4px;
+  }
+
+  .pricing-price span {
+    font-size: 16px; color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .pricing-desc {
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 24px; line-height: 1.6;
+    min-height: 48px;
+  }
+
+  .pricing-divider {
+    height: 1px; background: var(--border);
+    margin-bottom: 24px;
+  }
+
+  .pricing-features {
+    list-style: none; display: flex;
+    flex-direction: column; gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .pricing-features li {
+    display: flex; gap: 10px;
+    font-size: 13px; color: var(--muted);
+    align-items: flex-start;
+  }
+
+  .pricing-check {
+    color: var(--green); font-size: 12px;
+    margin-top: 2px; flex-shrink: 0;
+  }
+
+  .pricing-cta {
+    display: block; width: 100%;
+    padding: 11px; border-radius: 8px;
+    text-align: center; font-size: 13px;
+    font-weight: 600; text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: all 0.2s;
+    border: 1px solid var(--border2);
+    color: var(--text); background: transparent;
+  }
+
+  .pricing-card.featured .pricing-cta {
+    background: var(--green); color: #0a0f0a;
+    border-color: transparent;
+  }
+
+  .pricing-cta:hover { opacity: 0.85; }
+
+  /* AI SECTION */
+  .ai-section {
+    border-radius: 20px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 64px 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .ai-section::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(ellipse, rgba(93,201,168,0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .ai-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 12px; border-radius: 20px;
+    background: rgba(93,201,168,0.1);
+    border: 1px solid rgba(93,201,168,0.2);
+    font-size: 11px; color: var(--teal);
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* GLOBAL SECTION */
+  .globe-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 12px; margin-top: 40px;
+  }
+
+  .globe-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 16px;
+    text-align: center;
+  }
+
+  .globe-flag { font-size: 24px; margin-bottom: 8px; }
+
+  .globe-city {
+    font-size: 13px; color: var(--text);
+    font-weight: 500; margin-bottom: 2px;
+  }
+
+  .globe-desc { font-size: 11px; color: var(--muted); }
+
+  /* WAITLIST */
+  .waitlist-section {
+    text-align: center; padding: 100px 48px;
+    position: relative; overflow: hidden;
+  }
+
+  .waitlist-section::before {
+    content: '';
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse at center bottom, rgba(45,80,18,0.3), transparent 70%);
+    pointer-events: none;
+  }
+
+  .waitlist-form {
+    display: flex; gap: 10px;
+    max-width: 480px; margin: 32px auto 0;
+    flex-wrap: wrap; justify-content: center;
+  }
+
+  .waitlist-input {
+    flex: 1; min-width: 240px;
+    padding: 12px 18px; border-radius: 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    color: var(--text); font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+
+  .waitlist-input:focus { border-color: rgba(184,240,106,0.4); }
+  .waitlist-input::placeholder { color: var(--muted2); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 24px;
+  }
+
+  .footer-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .footer-links {
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 13px; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy {
+    font-size: 12px; color: var(--muted2);
+  }
+
+  /* DIVIDER LINE */
+  .full-divider {
+    height: 1px; background: var(--border);
+    margin: 0 48px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge { animation: fadeUp 0.5s ease forwards; }
+  .hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.5s 0.2s ease both; }
+  .hero-actions { animation: fadeUp 0.5s 0.3s ease both; }
+  .hero-stats { animation: fadeUp 0.5s 0.4s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 60px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .two-col { grid-template-columns: 1fr; gap: 40px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .globe-grid { grid-template-columns: repeat(3, 1fr); }
+    .preview-section { display: none; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+    .full-divider { margin: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-mark">A</div>
+    <span class="logo-text">Altveno</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#managers">For Managers</a></li>
+    <li><a href="#allocators">For Allocators</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://app.altveno.com" class="btn-ghost">Sign in</a>
+    <a href="#waitlist" class="btn-primary">Request access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    Now live — join the waitlist
+  </div>
+  <h1>Where alternative investments <em>connect</em></h1>
+  <p class="hero-sub">The modern platform connecting alternative investment managers with institutional allocators. Built for the world's most sophisticated investors.</p>
+  <div class="hero-actions">
+    <a href="#waitlist" class="btn-large primary">Request early access</a>
+    <a href="#platform" class="btn-large secondary">See the platform</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-number">6+</div>
+      <div class="hero-stat-label">ASSET CLASSES</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">Global</div>
+      <div class="hero-stat-label">FROM DAY ONE</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">AI</div>
+      <div class="hero-stat-label">POWERED DDQ</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">Free</div>
+      <div class="hero-stat-label">FOR ALLOCATORS</div>
+    </div>
+  </div>
+</div>
+
+<!-- PLATFORM PREVIEW -->
+<div class="preview-section" id="platform">
+  <div class="preview-window">
+    <div class="preview-bar">
+      <div class="preview-dot" style="background:#e87060"></div>
+      <div class="preview-dot" style="background:#e8a84a"></div>
+      <div class="preview-dot" style="background:#b8f06a"></div>
+      <span style="font-size:11px; color:var(--muted); margin-left:8px">app.altveno.com/dashboard</span>
+    </div>
+    <div class="preview-inner">
+      <div class="preview-sidebar">
+        <div style="font-size:10px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:12px; padding:0 12px">Platform</div>
+        <div class="preview-nav-item active"><div class="preview-nav-dot"></div>Dashboard</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>AltConnect</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Altveno AI</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>DDQ Manager</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Pipeline</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Messages</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Peer Analysis</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Manage Funds</div>
+      </div>
+      <div class="preview-main">
+        <div class="preview-title">Good morning, <em style="font-style:italic; color:var(--muted)">Shiz</em></div>
+        <div class="preview-sub">EverestQuant Capital · London, United Kingdom</div>
+        <div class="preview-cards">
+          <div class="preview-card">
+            <div class="preview-card-label">Total AUM</div>
+            <div class="preview-card-value">$240mm</div>
+            <div class="preview-card-change">As reported</div>
+          </div>
+          <div class="preview-card">
+            <div class="preview-card-label">Active Connections</div>
+            <div class="preview-card-value">12</div>
+            <div class="preview-card-change" style="color:var(--teal)">↑ 3 this month</div>
+          </div>
+          <div class="preview-card">
+            <div class="preview-card-label">Meetings This Month</div>
+            <div class="preview-card-value">5</div>
+            <div class="preview-card-change">Confirmed</div>
+          </div>
+        </div>
+        <div style="background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:14px;">
+          <div style="font-size:11px; color:var(--muted); margin-bottom:10px">Cumulative Performance · Indexed to 100</div>
+          <div class="preview-chart-bars">
+            <div class="preview-bar-item" style="height:45%"></div>
+            <div class="preview-bar-item" style="height:52%"></div>
+            <div class="preview-bar-item" style="height:48%"></div>
+            <div class="preview-bar-item" style="height:61%"></div>
+            <div class="preview-bar-item" style="height:58%"></div>
+            <div class="preview-bar-item" style="height:67%"></div>
+            <div class="preview-bar-item" style="height:72%"></div>
+            <div class="preview-bar-item" style="height:69%"></div>
+            <div class="preview-bar-item" style="height:78%"></div>
+            <div class="preview-bar-item" style="height:82%"></div>
+            <div class="preview-bar-item" style="height:79%"></div>
+            <div class="preview-bar-item" style="height:88%"></div>
+            <div class="preview-bar-item" style="height:85%"></div>
+            <div class="preview-bar-item" style="height:92%"></div>
+            <div class="preview-bar-item" style="height:100%; background:rgba(184,240,106,0.4)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- FOR MANAGERS + ALLOCATORS -->
+<section id="managers" style="max-width:1200px; margin:0 auto">
+  <div style="text-align:center; margin-bottom:60px">
+    <div class="section-label">Who it's for</div>
+    <h2 class="section-title">Built for both sides of the table</h2>
+    <p class="section-body" style="margin:0 auto">Whether you're raising capital or deploying it, Altveno gives you the tools to work faster, smarter, and more professionally.</p>
+  </div>
+  <div class="audience-grid">
+    <div class="audience-card managers">
+      <div class="audience-tag">Fund Managers</div>
+      <h3 class="audience-title">Raise capital more efficiently</h3>
+      <p class="audience-desc">Everything you need to present your fund professionally, manage investor relationships, and streamline the due diligence process — in one place.</p>
+      <ul class="audience-features">
+        <li><div class="check">✓</div>Professional fund profile and firm page</li>
+        <li><div class="check">✓</div>AI-powered DDQ with automatic pre-fill</li>
+        <li><div class="check">✓</div>Investor pipeline and relationship management</li>
+        <li><div class="check">✓</div>Anonymous peer benchmarking and analysis</li>
+        <li><div class="check">✓</div>Performance reporting and market intelligence</li>
+        <li><div class="check">✓</div>Secure messaging and meeting scheduling</li>
+      </ul>
+      <a href="#pricing" class="audience-cta">View manager pricing →</a>
+    </div>
+    <div class="audience-card allocators" id="allocators">
+      <div class="audience-tag">Allocators</div>
+      <h3 class="audience-title">Discover and diligence smarter</h3>
+      <p class="audience-desc">Find, compare, and diligence alternative investment managers across every asset class — with all the tools you need from first introduction to investment decision.</p>
+      <ul class="audience-features">
+        <li><div class="check">✓</div>Discover managers across 6+ asset classes globally</li>
+        <li><div class="check">✓</div>AI-powered fund discovery and matching</li>
+        <li><div class="check">✓</div>DDQ library with Q&A threads</li>
+        <li><div class="check">✓</div>Side-by-side fund comparison tools</li>
+        <li><div class="check">✓</div>Pipeline and deal flow management</li>
+        <li><div class="check">✓</div>Always free for qualified allocators</li>
+      </ul>
+      <a href="#waitlist" class="audience-cta" style="color:var(--teal)">Get free access →</a>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- FEATURES -->
+<section style="max-width:1200px; margin:0 auto">
+  <div style="text-align:center; margin-bottom:48px">
+    <div class="section-label">Platform features</div>
+    <h2 class="section-title">Every tool you need, nothing you don't</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-cell">
+      <div class="feature-icon">⬡</div>
+      <div class="feature-title">AltConnect</div>
+      <p class="feature-body">Discover and connect with managers and allocators. Filter by asset class, strategy, AUM, geography and more.</p>
+    </div>
+    <div class="feature-cell">
+      <div class="feature-icon">✦</div>
+      <div class="feature-title">AI-Powered DDQ</div>
+      <p class="feature-body">Upload your existing DDQ and our AI pre-fills your answers automatically. The fastest DDQ process in the industry.</p>
+    </div>
+    <div class="feature-cell">
+      <div class="feature-icon">◈</div>
+      <div class="feature-title">Peer Analysis</div>
+      <p class="feature-body">Anonymous benchmarking against peer funds. See how your performance, fees, and terms compare to the market.</p>
+    </div>
+    <div class="feature-cell">
+      <div class="feature-icon">◎</div>
+      <div class="feature-title">Market Intelligence</div>
+      <p class="feature-body">Live aggregated performance data across all asset classes. Understand market context and position your fund effectively.</p>
+    </div>
+    <div class="feature-cell">
+      <div class="feature-icon">⊞</div>
+      <div class="feature-title">Fund Comparison</div>
+      <p class="feature-body">Side-by-side comparison of any funds on the platform. Performance, fees, terms, and strategy — all in one view.</p>
+    </div>
+    <div class="feature-cell">
+      <div class="feature-icon">◱</div>
+      <div class="feature-title">Pipeline Management</div>
+      <p class="feature-body">Kanban-style deal flow management. Track every relationship from first intro through ODD to invested.</p>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- AI SECTION -->
+<section style="max-width:1200px; margin:0 auto">
+  <div class="ai-section">
+    <div class="two-col">
+      <div>
+        <div class="ai-pill">✦ Altveno AI</div>
+        <h2 class="section-title">Intelligence built into every workflow</h2>
+        <p class="section-body" style="margin-bottom:28px">From AI-powered fund discovery for allocators to automated DDQ pre-fill for managers — artificial intelligence is embedded throughout the platform, not bolted on as an afterthought.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div style="display:flex; gap:14px; align-items:flex-start">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; color:var(--teal)">✦</div>
+            <div>
+              <div style="font-size:14px; font-weight:500; color:var(--text); margin-bottom:3px">DDQ pre-fill from your existing documents</div>
+              <div style="font-size:13px; color:var(--muted)">Upload a PDF or Word doc and we extract and map answers to our standardised format automatically.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:flex-start">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; color:var(--teal)">✦</div>
+            <div>
+              <div style="font-size:14px; font-weight:500; color:var(--text); margin-bottom:3px">Natural language fund discovery</div>
+              <div style="font-size:13px; color:var(--muted)">Allocators describe what they're looking for in plain English and our AI surfaces the most relevant managers.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:flex-start">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; color:var(--teal)">✦</div>
+            <div>
+              <div style="font-size:14px; font-weight:500; color:var(--text); margin-bottom:3px">Market benchmarking and peer insights</div>
+              <div style="font-size:13px; color:var(--muted)">Ask questions about market performance, peer positioning, and fund terms in natural language.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--bg); border:1px solid var(--border); border-radius:14px; padding:24px; font-size:13px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--border)">
+          <div style="width:28px; height:28px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--teal)">✦</div>
+          <span style="font-weight:500; color:var(--text)">Altveno AI</span>
+          <span style="margin-left:auto; font-size:10px; color:var(--muted)">Fund Discovery</span>
+        </div>
+        <div style="background:var(--bg2); border-radius:10px; padding:12px 14px; margin-bottom:12px; color:var(--muted)">
+          Show me global macro hedge funds with AUM between $200mm-$1bn, launched after 2018, with strong risk-adjusted returns
+        </div>
+        <div style="color:var(--text); line-height:1.7; margin-bottom:12px">
+          I found <span style="color:var(--green); font-weight:500">8 managers</span> matching your criteria across London, New York and Singapore...
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center">
+            <div>
+              <div style="font-size:12px; font-weight:500; color:var(--text)">Meridian Capital Partners</div>
+              <div style="font-size:11px; color:var(--muted)">Global Macro · $450mm AUM</div>
+            </div>
+            <div style="font-size:11px; color:var(--green)">+14.2% YTD</div>
+          </div>
+          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center">
+            <div>
+              <div style="font-size:12px; font-weight:500; color:var(--text)">Stonegate Alpha Fund</div>
+              <div style="font-size:11px; color:var(--muted)">Global Macro · $280mm AUM</div>
+            </div>
+            <div style="font-size:11px; color:var(--green)">+11.8% YTD</div>
+          </div>
+          <div style="background:var(--bg2); border:1px solid rgba(184,240,106,0.15); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center">
+            <div>
+              <div style="font-size:12px; font-weight:500; color:var(--text)">Nordic Alpha Management</div>
+              <div style="font-size:11px; color:var(--muted)">Global Macro · $620mm AUM</div>
+            </div>
+            <div style="font-size:11px; color:var(--green)">+16.5% YTD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- GLOBAL -->
+<section style="max-width:1200px; margin:0 auto">
+  <div style="text-align:center; margin-bottom:16px">
+    <div class="section-label">Global from day one</div>
+    <h2 class="section-title">The platform the industry has been waiting for</h2>
+    <p class="section-body" style="margin:0 auto">Built for managers and allocators across every major financial centre. One platform, one network, everywhere.</p>
+  </div>
+  <div class="globe-grid">
+    <div class="globe-item">
+      <div class="globe-flag">🇬🇧</div>
+      <div class="globe-city">London</div>
+      <div class="globe-desc">HQ · European hub</div>
+    </div>
+    <div class="globe-item">
+      <div class="globe-flag">🇺🇸</div>
+      <div class="globe-city">New York</div>
+      <div class="globe-desc">Largest HF market</div>
+    </div>
+    <div class="globe-item">
+      <div class="globe-flag">🇸🇬</div>
+      <div class="globe-city">Singapore</div>
+      <div class="globe-desc">Asia-Pacific hub</div>
+    </div>
+    <div class="globe-item">
+      <div class="globe-flag">🇦🇪</div>
+      <div class="globe-city">Dubai</div>
+      <div class="globe-desc">MENA capital</div>
+    </div>
+    <div class="globe-item">
+      <div class="globe-flag">🇨🇭</div>
+      <div class="globe-city">Zurich</div>
+      <div class="globe-desc">Private wealth</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- PRICING -->
+<section id="pricing" style="max-width:1200px; margin:0 auto">
+  <div style="text-align:center; margin-bottom:16px">
+    <div class="section-label">Transparent pricing</div>
+    <h2 class="section-title">Simple, predictable SaaS pricing</h2>
+    <p class="section-body" style="margin:0 auto">No success fees. No hidden charges. Just straightforward annual pricing that scales with your business.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Allocators</div>
+      <div class="pricing-price">Free <span>forever</span></div>
+      <p class="pricing-desc">Full platform access for qualified institutional allocators, family offices and fund of funds.</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="pricing-check">✓</span>Unlimited manager discovery</li>
+        <li><span class="pricing-check">✓</span>AI-powered fund matching</li>
+        <li><span class="pricing-check">✓</span>DDQ library and Q&A</li>
+        <li><span class="pricing-check">✓</span>Fund comparison tools</li>
+        <li><span class="pricing-check">✓</span>Pipeline management</span></li>
+        <li><span class="pricing-check">✓</span>Messaging and meetings</li>
+      </ul>
+      <a href="#waitlist" class="pricing-cta">Request access</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most popular</div>
+      <div class="pricing-tier">Fund Managers</div>
+      <div class="pricing-price">$5,000 <span>/ year</span></div>
+      <p class="pricing-desc">Full platform access with one fund included. Add more funds at $2,000/year each.</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="pricing-check">✓</span>1 fund profile included</li>
+        <li><span class="pricing-check">✓</span>AI-powered DDQ tools</li>
+        <li><span class="pricing-check">✓</span>Investor pipeline management</li>
+        <li><span class="pricing-check">✓</span>Peer benchmarking and analysis</li>
+        <li><span class="pricing-check">✓</span>Market intelligence dashboard</li>
+        <li><span class="pricing-check">✓</span>Additional funds $2,000/year each</li>
+      </ul>
+      <a href="#waitlist" class="pricing-cta">Request access</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Emerging Managers</div>
+      <div class="pricing-price">$2,500 <span>/ year</span></div>
+      <p class="pricing-desc">50% discount for managers with sub-$100mm AUM launched within the last 2 years.</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="pricing-check">✓</span>Everything in standard plan</li>
+        <li><span class="pricing-check">✓</span>50% off — sub $100mm AUM</li>
+        <li><span class="pricing-check">✓</span>Launched within last 2 years</li>
+        <li><span class="pricing-check">✓</span>Additional funds $1,000/year each</li>
+        <li><span class="pricing-check">✓</span>Auto-verified at signup</li>
+        <li><span class="pricing-check">✓</span>Full platform access</li>
+      </ul>
+      <a href="#waitlist" class="pricing-cta">Apply for discount</a>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- WAITLIST -->
+<div class="waitlist-section" id="waitlist">
+  <div class="section-label">Early access</div>
+  <h2 class="section-title" style="max-width:600px; margin:0 auto 16px">Join the platform shaping the future of alternative investments</h2>
+  <p style="font-size:16px; color:var(--muted); max-width:480px; margin:0 auto">Request early access. We're onboarding managers and allocators now across London, New York and beyond.</p>
+  <div class="waitlist-form">
+    <input type="email" class="waitlist-input" placeholder="your@firm.com">
+    <a href="https://app.altveno.com/signup" class="btn-large primary" style="white-space:nowrap">Request access</a>
+  </div>
+  <p style="font-size:12px; color:var(--muted2); margin-top:16px">No commitment required. Allocators are always free.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-mark">A</div>
+    <span class="logo-text">Altveno</span>
+    <span style="font-size:12px; color:var(--muted2); margin-left:16px">Where alternative investments connect</span>
+  </div>
+  <div class="footer-links">
+    <a href="#platform">Platform</a>
+    <a href="#pricing">Pricing</a>
+    <a href="mailto:hello@altveno.com">Contact</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
+  </div>
+  <div class="footer-copy">© 2026 Altveno Ltd. All rights reserved.</div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+
+</body>
+</html>
