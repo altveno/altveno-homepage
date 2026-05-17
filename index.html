@@ -1102,21 +1102,23 @@ async function loadPerformanceData() {
 
     if (!funds || funds.length === 0) return;
 
-    const fundIds = funds.map(f => f.id).join(',');
-
-    // Fetch performance in pages
+    // Fetch performance in pages without fund ID filter — then filter client side
     let allPerf = [];
     let page = 0;
     const pageSize = 1000;
     while (true) {
       const data = await fetchJSON(
-        `${SUPABASE_URL}/rest/v1/fund_performance?select=fund_id,year,month,return_pct&fund_id=in.(${fundIds})&order=year.asc,month.asc&limit=${pageSize}&offset=${page * pageSize}`
+        `${SUPABASE_URL}/rest/v1/fund_performance?select=fund_id,year,month,return_pct&order=year.asc,month.asc&limit=${pageSize}&offset=${page * pageSize}`
       );
       if (!data || data.length === 0) break;
       allPerf = [...allPerf, ...data];
       if (data.length < pageSize) break;
       page++;
     }
+
+    // Filter to only open funds
+    const fundIdSet = new Set(funds.map(f => f.id));
+    allPerf = allPerf.filter(p => fundIdSet.has(p.fund_id));
 
     if (allPerf.length === 0) return;
 
