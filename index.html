@@ -638,73 +638,42 @@
   </div>
 </div>
 
-<!-- PLATFORM PREVIEW -->
-<div class="preview-section" id="platform">
-  <div class="preview-window">
-    <div class="preview-bar">
-      <div class="preview-dot" style="background:#e87060"></div>
-      <div class="preview-dot" style="background:#e8a84a"></div>
-      <div class="preview-dot" style="background:#b8f06a"></div>
-      <span style="font-size:11px; color:var(--muted); margin-left:8px">app.altveno.com/dashboard</span>
-    </div>
-    <div class="preview-inner">
-      <div class="preview-sidebar">
-        <div style="font-size:10px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:12px; padding:0 12px">Platform</div>
-        <div class="preview-nav-item active"><div class="preview-nav-dot"></div>Dashboard</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>AltConnect</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Altveno AI</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>DDQ Manager</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Pipeline</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Messages</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Peer Analysis</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Manage Funds</div>
+<!-- LIVE MARKET DATA -->
+<div style="padding: 0 48px 100px; display:flex; justify-content:center;" id="platform">
+  <div style="width:100%; max-width:1100px;">
+
+    <div style="text-align:center; margin-bottom:40px">
+      <div style="display:inline-flex; align-items:center; gap:8px; padding:5px 14px; border-radius:20px; border:1px solid rgba(184,240,106,0.25); background:rgba(184,240,106,0.06); font-size:12px; color:var(--green); margin-bottom:16px;">
+        <div style="width:6px; height:6px; border-radius:50%; background:var(--green); animation:pulse 2s infinite;"></div>
+        Live market data — updated monthly
       </div>
-      <div class="preview-main">
-        <div class="preview-title">Good morning, <em style="font-style:italic; color:var(--muted)">Shiz</em></div>
-        <div class="preview-sub">EverestQuant Capital · London, United Kingdom</div>
-        <div class="preview-cards">
-          <div class="preview-card">
-            <div class="preview-card-label">Total AUM</div>
-            <div class="preview-card-value">$240mm</div>
-            <div class="preview-card-change">As reported</div>
-          </div>
-          <div class="preview-card">
-            <div class="preview-card-label">Active Connections</div>
-            <div class="preview-card-value">12</div>
-            <div class="preview-card-change" style="color:var(--teal)">↑ 3 this month</div>
-          </div>
-          <div class="preview-card">
-            <div class="preview-card-label">Meetings This Month</div>
-            <div class="preview-card-value">5</div>
-            <div class="preview-card-change">Confirmed</div>
-          </div>
+      <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,42px); color:var(--text); margin-bottom:8px; letter-spacing:-0.5px;">Real performance data, anonymously aggregated</h2>
+      <p style="font-size:15px; color:var(--muted); max-width:500px; margin:0 auto;">Live returns across all alternative asset classes on the platform. No estimates — real fund data, anonymised and aggregated.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; background:var(--bg2); border:1px solid var(--border2); border-radius:16px; overflow:hidden; box-shadow:0 40px 120px rgba(0,0,0,0.6);">
+
+      <!-- Chart side -->
+      <div style="padding:28px; border-right:1px solid var(--border);">
+        <div style="font-family:'Instrument Serif',serif; font-size:18px; color:var(--text); margin-bottom:4px;">Cumulative Performance</div>
+        <div style="font-size:11px; color:var(--muted); margin-bottom:16px;">Indexed to 100 · Anonymous aggregated returns</div>
+        <div id="legend" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;"></div>
+        <canvas id="perfChart" style="width:100%; height:220px;"></canvas>
+        <div style="font-size:11px; color:var(--muted2); margin-top:12px;">All returns anonymous and aggregated · Updated monthly</div>
+      </div>
+
+      <!-- Table side -->
+      <div style="padding:28px;">
+        <div style="font-family:'Instrument Serif',serif; font-size:18px; color:var(--text); margin-bottom:4px;">Market Performance</div>
+        <div style="font-size:11px; color:var(--muted); margin-bottom:16px;" id="tableSubtitle">Loading...</div>
+        <div id="perfTable" style="font-size:13px;">
+          <div style="color:var(--muted); text-align:center; padding:40px;">Loading live data...</div>
         </div>
-        <div style="background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:14px;">
-          <div style="font-size:11px; color:var(--muted); margin-bottom:10px">Cumulative Performance · Indexed to 100</div>
-          <div class="preview-chart-bars">
-            <div class="preview-bar-item" style="height:45%"></div>
-            <div class="preview-bar-item" style="height:52%"></div>
-            <div class="preview-bar-item" style="height:48%"></div>
-            <div class="preview-bar-item" style="height:61%"></div>
-            <div class="preview-bar-item" style="height:58%"></div>
-            <div class="preview-bar-item" style="height:67%"></div>
-            <div class="preview-bar-item" style="height:72%"></div>
-            <div class="preview-bar-item" style="height:69%"></div>
-            <div class="preview-bar-item" style="height:78%"></div>
-            <div class="preview-bar-item" style="height:82%"></div>
-            <div class="preview-bar-item" style="height:79%"></div>
-            <div class="preview-bar-item" style="height:88%"></div>
-            <div class="preview-bar-item" style="height:85%"></div>
-            <div class="preview-bar-item" style="height:92%"></div>
-            <div class="preview-bar-item" style="height:100%; background:rgba(184,240,106,0.4)"></div>
-          </div>
-        </div>
+        <div style="font-size:11px; color:var(--muted2); margin-top:12px;">All returns anonymous and aggregated · Updated monthly</div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="full-divider"></div>
 
 <!-- FOR MANAGERS + ALLOCATORS -->
 <section id="managers" style="max-width:1200px; margin:0 auto">
@@ -1023,6 +992,244 @@
     });
   });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+const SUPABASE_URL = 'https://vsoomqfayfmtbnulnugn.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Sobu_lIQ1Hu-KGmgmZJXAg_TcX61RGG';
 
+const classColors = {
+  hedge_fund: '#5dc9a8',
+  pe: '#e8a84a',
+  vc: '#b8f06a',
+  real_estate: '#e87060',
+  credit: '#6fa8dc',
+  infrastructure: '#a48fe8',
+};
+
+const classLabels = {
+  hedge_fund: 'Hedge Fund',
+  pe: 'Private Equity',
+  vc: 'Venture Capital',
+  real_estate: 'Real Estate',
+  credit: 'Credit',
+  infrastructure: 'Infrastructure',
+};
+
+const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const fullMonthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+async function fetchJSON(url) {
+  const res = await fetch(url, {
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+    }
+  });
+  return res.json();
+}
+
+async function loadPerformanceData() {
+  try {
+    // Fetch all open funds
+    const funds = await fetchJSON(`${SUPABASE_URL}/rest/v1/funds?select=id,asset_class,strategy&status=eq.open&limit=500`);
+
+    if (!funds || funds.length === 0) return;
+
+    const fundIds = funds.map(f => f.id).join(',');
+
+    // Fetch performance in pages
+    let allPerf = [];
+    let page = 0;
+    const pageSize = 1000;
+    while (true) {
+      const data = await fetchJSON(
+        `${SUPABASE_URL}/rest/v1/fund_performance?select=fund_id,year,month,return_pct&fund_id=in.(${fundIds})&order=year.asc,month.asc&limit=${pageSize}&offset=${page * pageSize}`
+      );
+      if (!data || data.length === 0) break;
+      allPerf = [...allPerf, ...data];
+      if (data.length < pageSize) break;
+      page++;
+    }
+
+    if (allPerf.length === 0) return;
+
+    // Group perf by fund
+    const perfByFund = {};
+    allPerf.forEach(p => {
+      if (!perfByFund[p.fund_id]) perfByFund[p.fund_id] = [];
+      perfByFund[p.fund_id].push(p);
+    });
+
+    // Find latest year/month
+    const latestYM = allPerf.reduce((max, p) => Math.max(max, p.year * 100 + p.month), 0);
+    const latestYear = Math.floor(latestYM / 100);
+    const latestMonth = latestYM % 100;
+
+    // Group funds by asset class
+    const byAssetClass = {};
+    funds.forEach(f => {
+      if (!byAssetClass[f.asset_class]) byAssetClass[f.asset_class] = [];
+      byAssetClass[f.asset_class].push(f.id);
+    });
+
+    // Group by strategy for table
+    const byStrategy = {};
+    funds.forEach(f => {
+      const key = `${f.asset_class}__${f.strategy}`;
+      if (!byStrategy[key]) byStrategy[key] = { asset_class: f.asset_class, strategy: f.strategy, fund_ids: [] };
+      byStrategy[key].fund_ids.push(f.id);
+    });
+
+    // Build table rows
+    const rows = [];
+    for (const [, group] of Object.entries(byStrategy)) {
+      const fundPerfs = group.fund_ids.map(id => perfByFund[id] || []);
+      const lastMonthReturns = fundPerfs
+        .map(perfs => perfs.find(p => p.year === latestYear && p.month === latestMonth)?.return_pct)
+        .filter(v => v !== undefined);
+      const ytdReturns = fundPerfs.map(perfs => {
+        const yp = perfs.filter(p => p.year === latestYear && p.month <= latestMonth);
+        if (!yp.length) return null;
+        return (yp.reduce((acc, p) => acc * (1 + p.return_pct / 100), 1) - 1) * 100;
+      }).filter(v => v !== null);
+
+      rows.push({
+        asset_class: group.asset_class,
+        strategy: group.strategy,
+        fund_count: group.fund_ids.length,
+        last_month: lastMonthReturns.length ? lastMonthReturns.reduce((a,b) => a+b,0) / lastMonthReturns.length : null,
+        ytd: ytdReturns.length ? ytdReturns.reduce((a,b) => a+b,0) / ytdReturns.length : null,
+      });
+    }
+    rows.sort((a, b) => a.asset_class.localeCompare(b.asset_class) || a.strategy.localeCompare(b.strategy));
+
+    // Update subtitle
+    const subtitle = `${fullMonthNames[latestMonth-1]} ${latestYear} + YTD by strategy`;
+    document.getElementById('tableSubtitle').textContent = subtitle;
+
+    // Render table
+    const monthLabel = `${monthNames[latestMonth-1]} ${latestYear}`.toUpperCase();
+    let tableHTML = `
+      <div style="overflow-y:auto; max-height:280px;">
+        <table style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border);">
+              <th style="text-align:left; padding:6px 8px; font-size:10px; color:var(--muted); font-weight:500; letter-spacing:0.5px;">STRATEGY</th>
+              <th style="text-align:right; padding:6px 8px; font-size:10px; color:var(--muted); font-weight:500; letter-spacing:0.5px;">${monthLabel}</th>
+              <th style="text-align:right; padding:6px 8px; font-size:10px; color:var(--muted); font-weight:500; letter-spacing:0.5px;">YTD ${latestYear}</th>
+            </tr>
+          </thead>
+          <tbody>
+    `;
+
+    rows.slice(0, 12).forEach(row => {
+      const color = classColors[row.asset_class] || '#7a7d76';
+      const fmt = v => v === null ? '—' : `${v > 0 ? '+' : ''}${v.toFixed(2)}%`;
+      const rc = v => v === null ? '#7a7d76' : v > 0 ? '#b8f06a' : '#e87060';
+      tableHTML += `
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+          <td style="padding:8px 8px;">
+            <div style="font-size:12px; color:#e8e9e4; margin-bottom:2px;">${row.strategy}</div>
+            <div style="font-size:10px; color:${color};">${classLabels[row.asset_class]} · ${row.fund_count} funds</div>
+          </td>
+          <td style="padding:8px 8px; text-align:right; font-size:13px; font-weight:500; color:${rc(row.last_month)};">${fmt(row.last_month)}</td>
+          <td style="padding:8px 8px; text-align:right; font-size:13px; font-weight:500; color:${rc(row.ytd)};">${fmt(row.ytd)}</td>
+        </tr>
+      `;
+    });
+
+    tableHTML += `</tbody></table></div>`;
+    document.getElementById('perfTable').innerHTML = tableHTML;
+
+    // Build chart data
+    const allMonths = [...new Set(allPerf.map(p => `${p.year}-${String(p.month).padStart(2,'0')}`))]
+      .sort()
+      .filter(ym => {
+        const [y] = ym.split('-').map(Number);
+        return y >= 2023;
+      });
+
+    const chartLabels = allMonths.map(ym => {
+      const [year, month] = ym.split('-').map(Number);
+      return `${monthNames[month-1]} ${year}`;
+    });
+
+    // Build cumulative lines per asset class
+    const datasets = [];
+    const legend = document.getElementById('legend');
+
+    for (const [ac, fundIds] of Object.entries(byAssetClass)) {
+      const runningIndex = { val: 100 };
+      const data = allMonths.map(ym => {
+        const [year, month] = ym.split('-').map(Number);
+        const returns = fundIds
+          .map(id => perfByFund[id]?.find(p => p.year === year && p.month === month)?.return_pct)
+          .filter(v => v !== undefined);
+        if (returns.length > 0) {
+          const avg = returns.reduce((a,b) => a+b,0) / returns.length;
+          runningIndex.val = runningIndex.val * (1 + avg / 100);
+        }
+        return parseFloat(runningIndex.val.toFixed(2));
+      });
+
+      datasets.push({
+        label: classLabels[ac],
+        data,
+        borderColor: classColors[ac],
+        backgroundColor: 'transparent',
+        borderWidth: 1.5,
+        pointRadius: 0,
+        tension: 0.3,
+      });
+
+      // Legend item
+      const pill = document.createElement('div');
+      pill.style.cssText = `display:flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:11px; cursor:pointer; border:1px solid ${classColors[ac]}60; background:${classColors[ac]}15; color:${classColors[ac]};`;
+      pill.innerHTML = `<div style="width:6px;height:6px;border-radius:50%;background:${classColors[ac]};"></div>${classLabels[ac]}`;
+      legend.appendChild(pill);
+    }
+
+    // Render chart
+    const ctx = document.getElementById('perfChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: { labels: chartLabels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d1a',
+            borderColor: 'rgba(255,255,255,0.1)',
+            borderWidth: 1,
+            titleColor: '#7a7d76',
+            bodyColor: '#e8e9e4',
+            padding: 10,
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#7a7d76', font: { size: 10 }, maxTicksLimit: 8 },
+            grid: { color: 'rgba(255,255,255,0.04)' },
+            border: { display: false },
+          },
+          y: {
+            ticks: { color: '#7a7d76', font: { size: 10 } },
+            grid: { color: 'rgba(255,255,255,0.04)' },
+            border: { display: false },
+          }
+        }
+      }
+    });
+
+  } catch(err) {
+    console.error('Failed to load performance data:', err);
+  }
+}
+
+loadPerformanceData();
+</script>
 </body>
 </html>
