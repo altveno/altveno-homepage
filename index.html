@@ -1050,11 +1050,17 @@
   <div class="section-label">Early access</div>
   <h2 class="section-title" style="max-width:600px; margin:0 auto 16px">Join the platform shaping the future of alternative investments</h2>
   <p style="font-size:16px; color:var(--muted); max-width:480px; margin:0 auto">Request early access. We're onboarding managers and allocators now across London, New York and beyond.</p>
-  <div class="waitlist-form">
-    <input type="email" class="waitlist-input" placeholder="your@firm.com">
-    <a href="https://app.altveno.com/signup" class="btn-large primary" style="white-space:nowrap">Request access</a>
-  </div>
-  <p style="font-size:12px; color:var(--muted2); margin-top:16px">No commitment required. Allocators are always free.</p>
+  <form class="waitlist-form" id="waitlistForm" onsubmit="return submitWaitlist(event)">
+    <input type="email" class="waitlist-input" id="waitlistEmail" placeholder="your@firm.com" required>
+    <select class="waitlist-input" id="waitlistRole" style="max-width:180px">
+      <option value="">I am a...</option>
+      <option value="manager">Fund Manager</option>
+      <option value="allocator">Allocator</option>
+    </select>
+    <button type="submit" class="btn-large primary" style="white-space:nowrap" id="waitlistSubmit">Request access</button>
+  </form>
+  <p id="waitlistStatus" style="font-size:13px; margin-top:16px; min-height:18px; text-align:center;"></p>
+  <p style="font-size:12px; color:var(--muted2); margin-top:8px">No commitment required. Allocators are always free.</p>
 </div>
 
 <!-- FOOTER -->
@@ -1113,7 +1119,61 @@ const classLabels = {
 
 const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const fullMonthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+async function submitWaitlist(e) {
+  e.preventDefault();
+  const email = document.getElementById('waitlistEmail').value.trim();
+  const role = document.getElementById('waitlistRole').value || null;
+  const btn = document.getElementById('waitlistSubmit');
+  const status = document.getElementById('waitlistStatus');
 
+  if (!email) return false;
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  status.textContent = '';
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify({
+        email: email,
+        role_interest: role,
+        source: 'homepage',
+        user_agent: navigator.userAgent,
+      }),
+    });
+
+    if (response.ok) {
+      status.style.color = '#b8f06a';
+      status.textContent = '✓ You\'re on the list. We\'ll be in touch soon.';
+      document.getElementById('waitlistForm').reset();
+    } else {
+      const errorText = await response.text();
+      if (response.status === 409 || errorText.includes('duplicate') || errorText.includes('unique')) {
+        status.style.color = '#e8a84a';
+        status.textContent = 'You\'re already on the list. We\'ll be in touch soon.';
+      } else {
+        console.error('Waitlist error:', errorText);
+        status.style.color = '#e87060';
+        status.textContent = 'Something went wrong. Please email hello@altveno.com';
+      }
+    }
+  } catch (err) {
+    console.error('Waitlist network error:', err);
+    status.style.color = '#e87060';
+    status.textContent = 'Network error. Please try again or email hello@altveno.com';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Request access';
+  }
+  return false;
+}
 async function fetchJSON(url) {
   const res = await fetch(url, {
     headers: {
