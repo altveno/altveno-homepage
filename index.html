@@ -36,6 +36,7 @@
     overflow-x: hidden;
   }
 
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -51,8 +52,13 @@
   }
 
   .logo-mark {
-    width: 36px; height: 36px;
+    width: 36px; height: 36px; border-radius: 8px;
+    background: linear-gradient(135deg, #1a3a0a, #2d6012);
+    border: 1px solid rgba(184,240,106,0.3);
     display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px; color: var(--green);
+    letter-spacing: -0.5px;
   }
 
   .logo-text {
@@ -72,7 +78,9 @@
   }
   .nav-links a:hover { color: var(--text); }
 
-  .nav-cta { display: flex; gap: 10px; align-items: center; }
+  .nav-cta {
+    display: flex; gap: 10px; align-items: center;
+  }
 
   .btn-ghost {
     padding: 8px 18px; border-radius: 8px;
@@ -92,6 +100,7 @@
   }
   .btn-primary:hover { background: #c8ff7a; }
 
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column;
@@ -139,17 +148,15 @@
     letter-spacing: -1px;
   }
 
-  .hero h1 em { font-style: italic; color: var(--green); }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
 
   .hero-sub {
     font-size: 18px; color: var(--muted);
-    max-width: 600px; line-height: 1.7;
-    margin-bottom: 40px;
-  }
-
-  .asset-class-strip {
-    display: flex; gap: 8px; flex-wrap: wrap;
-    justify-content: center; margin-bottom: 48px;
+    max-width: 560px; line-height: 1.7;
+    margin-bottom: 48px;
   }
 
   .hero-actions {
@@ -166,7 +173,9 @@
     transition: all 0.2s;
   }
 
-  .btn-large.primary { background: var(--green); color: #0a0f0a; border: none; }
+  .btn-large.primary {
+    background: var(--green); color: #0a0f0a; border: none;
+  }
   .btn-large.primary:hover { background: #c8ff7a; transform: translateY(-1px); }
 
   .btn-large.secondary {
@@ -180,20 +189,27 @@
     flex-wrap: wrap; justify-content: center;
   }
 
-  .hero-stat { text-align: center; }
+  .hero-stat {
+    text-align: center;
+  }
 
   .hero-stat-number {
     font-family: 'Instrument Serif', serif;
     font-size: 32px; color: var(--text);
-    line-height: 1; margin-bottom: 4px;
+    line-height: 1;
+    margin-bottom: 4px;
   }
 
   .hero-stat-label {
-    font-size: 12px; color: var(--muted); letter-spacing: 0.5px;
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 0.5px;
   }
 
-  .hero-divider { width: 1px; height: 40px; background: var(--border2); }
+  .hero-divider {
+    width: 1px; height: 40px; background: var(--border2);
+  }
 
+  /* PLATFORM PREVIEW */
   .preview-section {
     padding: 0 48px 100px;
     display: flex; justify-content: center;
@@ -215,7 +231,9 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .preview-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
 
   .preview-inner {
     display: grid; grid-template-columns: 180px 1fr;
@@ -246,14 +264,21 @@
     background: currentColor; flex-shrink: 0;
   }
 
-  .preview-main { padding: 24px; overflow: hidden; }
+  .preview-main {
+    padding: 24px;
+    overflow: hidden;
+  }
 
   .preview-title {
     font-family: 'Instrument Serif', serif;
-    font-size: 20px; color: var(--text); margin-bottom: 4px;
+    font-size: 20px; color: var(--text);
+    margin-bottom: 4px;
   }
 
-  .preview-sub { font-size: 11px; color: var(--muted); margin-bottom: 20px; }
+  .preview-sub {
+    font-size: 11px; color: var(--muted);
+    margin-bottom: 20px;
+  }
 
   .preview-cards {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -266,9 +291,20 @@
     border-radius: 10px; padding: 14px;
   }
 
-  .preview-card-label { font-size: 10px; color: var(--muted); margin-bottom: 6px; }
-  .preview-card-value { font-family: 'Instrument Serif', serif; font-size: 22px; color: var(--text); }
-  .preview-card-change { font-size: 10px; color: var(--green); margin-top: 3px; }
+  .preview-card-label {
+    font-size: 10px; color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .preview-card-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px; color: var(--text);
+  }
+
+  .preview-card-change {
+    font-size: 10px; color: var(--green);
+    margin-top: 3px;
+  }
 
   .preview-chart-bars {
     display: flex; align-items: flex-end;
@@ -281,6 +317,7 @@
     transition: all 0.3s;
   }
 
+  /* SECTION STYLES */
   section {
     padding: 100px 48px;
     max-width: 1200px;
@@ -305,11 +342,13 @@
     max-width: 560px; line-height: 1.7;
   }
 
+  /* TWO COL */
   .two-col {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 80px; align-items: center;
   }
 
+  /* FEATURES GRID */
   .features-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 1px; background: var(--border);
@@ -332,10 +371,21 @@
     font-size: 18px; margin-bottom: 16px;
   }
 
-  .feature-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
-  .feature-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .feature-title {
+    font-size: 15px; font-weight: 600;
+    color: var(--text); margin-bottom: 8px;
+  }
 
-  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .feature-body {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* AUDIENCE SPLIT */
+  .audience-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
 
   .audience-card {
     border-radius: 16px;
@@ -362,23 +412,32 @@
   }
 
   .audience-card.managers .audience-tag {
-    background: rgba(184,240,106,0.1); color: var(--green);
+    background: rgba(184,240,106,0.1);
+    color: var(--green);
     border: 1px solid rgba(184,240,106,0.2);
   }
 
   .audience-card.allocators .audience-tag {
-    background: rgba(93,201,168,0.1); color: var(--teal);
+    background: rgba(93,201,168,0.1);
+    color: var(--teal);
     border: 1px solid rgba(93,201,168,0.2);
   }
 
   .audience-title {
     font-family: 'Instrument Serif', serif;
-    font-size: 26px; color: var(--text); margin-bottom: 8px;
+    font-size: 26px; color: var(--text);
+    margin-bottom: 8px;
   }
 
-  .audience-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.7; }
+  .audience-desc {
+    font-size: 14px; color: var(--muted);
+    margin-bottom: 28px; line-height: 1.7;
+  }
 
-  .audience-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .audience-features {
+    list-style: none; display: flex;
+    flex-direction: column; gap: 10px;
+  }
 
   .audience-features li {
     display: flex; align-items: flex-start; gap: 10px;
@@ -405,11 +464,18 @@
   .allocators .audience-cta { color: var(--teal); }
   .audience-cta:hover { gap: 12px; }
 
-  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+  /* PRICING */
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 48px;
+  }
 
   .pricing-card {
-    border-radius: 16px; border: 1px solid var(--border);
-    padding: 32px 28px; background: var(--bg2); position: relative;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    background: var(--bg2);
+    position: relative;
   }
 
   .pricing-card.featured {
@@ -421,7 +487,8 @@
     position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
     padding: 3px 14px; border-radius: 20px;
     background: var(--green); color: #0a0f0a;
-    font-size: 11px; font-weight: 600; white-space: nowrap;
+    font-size: 11px; font-weight: 600;
+    white-space: nowrap;
   }
 
   .pricing-tier {
@@ -431,35 +498,68 @@
 
   .pricing-price {
     font-family: 'Instrument Serif', serif;
-    font-size: 42px; color: var(--text); line-height: 1; margin-bottom: 4px;
+    font-size: 42px; color: var(--text);
+    line-height: 1; margin-bottom: 4px;
   }
 
-  .pricing-price span { font-size: 16px; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+  .pricing-price span {
+    font-size: 16px; color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+  }
 
-  .pricing-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; line-height: 1.6; min-height: 48px; }
+  .pricing-desc {
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 24px; line-height: 1.6;
+    min-height: 48px;
+  }
 
-  .pricing-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
+  .pricing-divider {
+    height: 1px; background: var(--border);
+    margin-bottom: 24px;
+  }
 
-  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .pricing-features {
+    list-style: none; display: flex;
+    flex-direction: column; gap: 10px;
+    margin-bottom: 28px;
+  }
 
-  .pricing-features li { display: flex; gap: 10px; font-size: 13px; color: var(--muted); align-items: flex-start; }
+  .pricing-features li {
+    display: flex; gap: 10px;
+    font-size: 13px; color: var(--muted);
+    align-items: flex-start;
+  }
 
-  .pricing-check { color: var(--green); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .pricing-check {
+    color: var(--green); font-size: 12px;
+    margin-top: 2px; flex-shrink: 0;
+  }
 
   .pricing-cta {
-    display: block; width: 100%; padding: 11px; border-radius: 8px;
-    text-align: center; font-size: 13px; font-weight: 600;
-    text-decoration: none; font-family: 'DM Sans', sans-serif;
+    display: block; width: 100%;
+    padding: 11px; border-radius: 8px;
+    text-align: center; font-size: 13px;
+    font-weight: 600; text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
     cursor: pointer; transition: all 0.2s;
-    border: 1px solid var(--border2); color: var(--text); background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--text); background: transparent;
   }
 
-  .pricing-card.featured .pricing-cta { background: var(--green); color: #0a0f0a; border-color: transparent; }
+  .pricing-card.featured .pricing-cta {
+    background: var(--green); color: #0a0f0a;
+    border-color: transparent;
+  }
+
   .pricing-cta:hover { opacity: 0.85; }
 
+  /* AI SECTION */
   .ai-section {
-    border-radius: 20px; background: var(--bg2); border: 1px solid var(--border);
-    padding: 64px 60px; position: relative; overflow: hidden;
+    border-radius: 20px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 64px 60px;
+    position: relative; overflow: hidden;
   }
 
   .ai-section::before {
@@ -473,22 +573,36 @@
   .ai-pill {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 4px 12px; border-radius: 20px;
-    background: rgba(93,201,168,0.1); border: 1px solid rgba(93,201,168,0.2);
+    background: rgba(93,201,168,0.1);
+    border: 1px solid rgba(93,201,168,0.2);
     font-size: 11px; color: var(--teal);
-    letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 20px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 20px;
   }
 
-  .globe-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 40px; }
+  /* GLOBAL SECTION */
+  .globe-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 12px; margin-top: 40px;
+  }
 
   .globe-item {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px 16px; text-align: center;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 16px;
+    text-align: center;
   }
 
   .globe-flag { font-size: 24px; margin-bottom: 8px; }
-  .globe-city { font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 2px; }
+
+  .globe-city {
+    font-size: 13px; color: var(--text);
+    font-weight: 500; margin-bottom: 2px;
+  }
+
   .globe-desc { font-size: 11px; color: var(--muted); }
 
+  /* WAITLIST */
   .waitlist-section {
     text-align: center; padding: 100px 48px;
     position: relative; overflow: hidden;
@@ -511,7 +625,8 @@
   .waitlist-input {
     flex: 1; min-width: 240px;
     padding: 12px 18px; border-radius: 10px;
-    background: var(--bg2); border: 1px solid var(--border2);
+    background: var(--bg2);
+    border: 1px solid var(--border2);
     color: var(--text); font-size: 14px;
     font-family: 'DM Sans', sans-serif;
     outline: none; transition: border-color 0.2s;
@@ -520,15 +635,21 @@
   .waitlist-input:focus { border-color: rgba(184,240,106,0.4); }
   .waitlist-input::placeholder { color: var(--muted2); }
 
+  /* FOOTER */
   footer {
-    border-top: 1px solid var(--border); padding: 48px;
+    border-top: 1px solid var(--border);
+    padding: 48px;
     display: flex; justify-content: space-between;
     align-items: center; flex-wrap: wrap; gap: 24px;
   }
 
-  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
 
-  .footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+  .footer-links {
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
 
   .footer-links a {
     font-size: 13px; color: var(--muted);
@@ -536,10 +657,17 @@
   }
   .footer-links a:hover { color: var(--text); }
 
-  .footer-copy { font-size: 12px; color: var(--muted2); }
+  .footer-copy {
+    font-size: 12px; color: var(--muted2);
+  }
 
-  .full-divider { height: 1px; background: var(--border); margin: 0 48px; }
+  /* DIVIDER LINE */
+  .full-divider {
+    height: 1px; background: var(--border);
+    margin: 0 48px;
+  }
 
+  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -548,10 +676,10 @@
   .hero-badge { animation: fadeUp 0.5s ease forwards; }
   .hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
   .hero-sub { animation: fadeUp 0.5s 0.2s ease both; }
-  .asset-class-strip { animation: fadeUp 0.5s 0.25s ease both; }
   .hero-actions { animation: fadeUp 0.5s 0.3s ease both; }
   .hero-stats { animation: fadeUp 0.5s 0.4s ease both; }
 
+  /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
@@ -573,12 +701,7 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 4 14 A 10 10 0 0 1 24 14" stroke="#5dc9a8" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 6 14 A 8 8 0 0 0 22 14" stroke="#b8f06a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="14" cy="14" r="2.5" fill="#b8f06a"/>
-      </svg>
-    </div>
+    <div class="logo-mark">A</div>
     <span class="logo-text">Altveno</span>
   </a>
   <ul class="nav-links">
@@ -599,18 +722,8 @@
     <div class="hero-badge-dot"></div>
     Now live — join the waitlist
   </div>
-  <h1>Where Alternative Investments <em>Connect</em></h1>
+  <h1>Where alternative investments <em>connect</em></h1>
   <p class="hero-sub">The modern platform connecting alternative investment managers with institutional allocators. Built for the world's most sophisticated investors.</p>
-  <!-- Asset class pills -->
-  <div class="asset-class-strip">
-    <div style="padding:6px 16px; border-radius:20px; border:1px solid rgba(93,201,168,0.25); background:rgba(93,201,168,0.06); font-size:12px; color:var(--teal)">Hedge Funds</div>
-    <div style="padding:6px 16px; border-radius:20px; border:1px solid rgba(232,168,74,0.25); background:rgba(232,168,74,0.06); font-size:12px; color:var(--amber)">Private Equity</div>
-    <div style="padding:6px 16px; border-radius:20px; border:1px solid rgba(184,240,106,0.25); background:rgba(184,240,106,0.06); font-size:12px; color:var(--green)">Venture Capital</div>
-    <div style="padding:6px 16px; border-radius:20px; border:1px solid rgba(232,112,96,0.25); background:rgba(232,112,96,0.06); font-size:12px; color:#e87060">Real Estate</div>
-    <div style="padding:6px 16px; border-radius:20px; border:1px solid rgba(111,168,220,0.25); background:rgba(111,168,220,0.06); font-size:12px; color:#6fa8dc">Credit</div>
-    <div style="padding:6px 16px; border-radius:20px; border:1px solid rgba(164,143,232,0.25); background:rgba(164,143,232,0.06); font-size:12px; color:#a48fe8">Infrastructure</div>
-  </div>
-
   <div class="hero-actions">
     <a href="#waitlist" class="btn-large primary">Request early access</a>
     <a href="#platform" class="btn-large secondary">See the platform</a>
@@ -628,7 +741,7 @@
     <div class="hero-divider"></div>
     <div class="hero-stat">
       <div class="hero-stat-number">AI</div>
-      <div class="hero-stat-label">POWERED PLATFORM</div>
+      <div class="hero-stat-label">POWERED DDQ</div>
     </div>
     <div class="hero-divider"></div>
     <div class="hero-stat">
@@ -637,6 +750,7 @@
     </div>
   </div>
 </div>
+
 <!-- PLATFORM PREVIEW -->
 <div class="preview-section" id="platform">
   <div class="preview-window">
@@ -659,8 +773,8 @@
         <div class="preview-nav-item"><div class="preview-nav-dot"></div>Manage Funds</div>
       </div>
       <div class="preview-main">
-        <div class="preview-title">Good morning, <em style="font-style:italic; color:var(--muted)">James</em></div>
-        <div class="preview-sub">Altveno Capital · London, United Kingdom</div>
+        <div class="preview-title">Good morning, <em style="font-style:italic; color:var(--muted)">Shiz</em></div>
+        <div class="preview-sub">EverestQuant Capital · London, United Kingdom</div>
         <div class="preview-cards">
           <div class="preview-card">
             <div class="preview-card-label">Total AUM</div>
@@ -704,43 +818,6 @@
 </div>
 
 <div class="full-divider"></div>
-<!-- LIVE MARKET DATA -->
-<div style="padding: 0 48px 100px; display:flex; justify-content:center;" id="platform">
-  <div style="width:100%; max-width:1100px;">
-
-    <div style="text-align:center; margin-bottom:40px">
-      <div style="display:inline-flex; align-items:center; gap:8px; padding:5px 14px; border-radius:20px; border:1px solid rgba(184,240,106,0.25); background:rgba(184,240,106,0.06); font-size:12px; color:var(--green); margin-bottom:16px;">
-        <div style="width:6px; height:6px; border-radius:50%; background:var(--green); animation:pulse 2s infinite;"></div>
-        Live market data — updated monthly
-      </div>
-      <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,42px); color:var(--text); margin-bottom:8px; letter-spacing:-0.5px;">Real performance data, anonymously aggregated</h2>
-      <p style="font-size:15px; color:var(--muted); max-width:500px; margin:0 auto;">Live returns across all alternative asset classes on the platform. Currently based on demo data — as managers join, this will reflect real anonymous aggregated fund performance.</p>    </div>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; background:var(--bg2); border:1px solid var(--border2); border-radius:16px; overflow:hidden; box-shadow:0 40px 120px rgba(0,0,0,0.6);">
-
-      <!-- Chart side -->
-      <div style="padding:28px; border-right:1px solid var(--border);">
-        <div style="font-family:'Instrument Serif',serif; font-size:18px; color:var(--text); margin-bottom:4px;">Cumulative Performance</div>
-        <div style="font-size:11px; color:var(--muted); margin-bottom:16px;">Indexed to 100 · Anonymous aggregated returns</div>
-        <div id="legend" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;"></div>
-        <div style="position:relative; height:220px; width:100%;">
-          <canvas id="perfChart"></canvas>
-        </div>
-        <div style="font-size:11px; color:var(--muted2); margin-top:12px;">All returns anonymous and aggregated · Updated monthly</div>
-      </div>
-
-      <!-- Table side -->
-      <div style="padding:28px;">
-        <div style="font-family:'Instrument Serif',serif; font-size:18px; color:var(--text); margin-bottom:4px;">Market Performance</div>
-        <div style="font-size:11px; color:var(--muted); margin-bottom:16px;" id="tableSubtitle">Loading...</div>
-        <div id="perfTable" style="font-size:13px;">
-          <div style="color:var(--muted); text-align:center; padding:40px;">Loading live data...</div>
-        </div>
-        <div style="font-size:11px; color:var(--muted2); margin-top:12px;">All returns anonymous and aggregated · Updated monthly</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- FOR MANAGERS + ALLOCATORS -->
 <section id="managers" style="max-width:1200px; margin:0 auto">
@@ -749,32 +826,6 @@
     <h2 class="section-title">Built for both sides of the table</h2>
     <p class="section-body" style="margin:0 auto">Whether you're raising capital or deploying it, Altveno gives you the tools to work faster, smarter, and more professionally.</p>
   </div>
-
-  <!-- Asset class sub-header -->
-  <div style="text-align:center; margin-bottom:40px">
-    <p style="font-size:14px; color:var(--muted); margin-bottom:16px">Covering all major alternative asset classes</p>
-    <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-      <div style="display:flex; align-items:center; gap:6px; padding:8px 16px; border-radius:10px; background:var(--bg2); border:1px solid var(--border); font-size:13px; color:var(--teal)">
-        <div style="width:8px; height:8px; border-radius:50%; background:var(--teal)"></div>Hedge Funds
-      </div>
-      <div style="display:flex; align-items:center; gap:6px; padding:8px 16px; border-radius:10px; background:var(--bg2); border:1px solid var(--border); font-size:13px; color:var(--amber)">
-        <div style="width:8px; height:8px; border-radius:50%; background:var(--amber)"></div>Private Equity
-      </div>
-      <div style="display:flex; align-items:center; gap:6px; padding:8px 16px; border-radius:10px; background:var(--bg2); border:1px solid var(--border); font-size:13px; color:var(--green)">
-        <div style="width:8px; height:8px; border-radius:50%; background:var(--green)"></div>Venture Capital
-      </div>
-      <div style="display:flex; align-items:center; gap:6px; padding:8px 16px; border-radius:10px; background:var(--bg2); border:1px solid var(--border); font-size:13px; color:#e87060">
-        <div style="width:8px; height:8px; border-radius:50%; background:#e87060"></div>Real Estate
-      </div>
-      <div style="display:flex; align-items:center; gap:6px; padding:8px 16px; border-radius:10px; background:var(--bg2); border:1px solid var(--border); font-size:13px; color:#6fa8dc">
-        <div style="width:8px; height:8px; border-radius:50%; background:#6fa8dc"></div>Credit
-      </div>
-      <div style="display:flex; align-items:center; gap:6px; padding:8px 16px; border-radius:10px; background:var(--bg2); border:1px solid var(--border); font-size:13px; color:#a48fe8">
-        <div style="width:8px; height:8px; border-radius:50%; background:#a48fe8"></div>Infrastructure
-      </div>
-    </div>
-  </div>
-
   <div class="audience-grid">
     <div class="audience-card managers">
       <div class="audience-tag">Fund Managers</div>
@@ -853,95 +904,72 @@
 
 <!-- AI SECTION -->
 <section style="max-width:1200px; margin:0 auto">
-  <div style="text-align:center; margin-bottom:48px">
-    <div class="ai-pill" style="margin:0 auto 16px">✦ Altveno AI</div>
-    <h2 class="section-title">Two AI tools. One platform.<br>Built for both sides.</h2>
-    <p class="section-body" style="margin:0 auto">Altveno AI isn't a single chatbot — it's two purpose-built intelligence tools, one for managers and one for allocators. Both powered by the same anonymous platform data.</p>
-  </div>
-
-  <!-- Side by side AI mockups -->
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:48px;">
-
-    <!-- Manager AI -->
-    <div style="background:var(--bg2); border:1px solid rgba(93,201,168,0.2); border-radius:16px; overflow:hidden;">
-      <div style="padding:20px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
-        <div style="width:28px; height:28px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--teal)">◎</div>
-        <div>
-          <div style="font-size:13px; font-weight:500; color:var(--text)">Altveno AI — For Managers</div>
-          <div style="font-size:11px; color:var(--muted)">Anonymous benchmarks · 43 funds · Min 3 data points</div>
-        </div>
-        <div style="margin-left:auto; font-size:10px; padding:2px 8px; border-radius:20px; background:rgba(93,201,168,0.1); color:var(--teal); border:1px solid rgba(93,201,168,0.2)">Managers</div>
-      </div>
-      <div style="padding:24px;">
-        <div style="text-align:center; margin-bottom:20px;">
-          <div style="font-family:'Instrument Serif',serif; font-size:20px; color:var(--text); margin-bottom:6px;">How does your fund compare?</div>
-          <div style="font-size:12px; color:var(--muted);">Get anonymous, aggregated benchmarks from funds on the platform.</div>
-        </div>
-        <!-- Sample questions -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px;">
-          <div style="padding:10px 12px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); font-size:11px; color:var(--muted)">How do my fees compare to peers?</div>
-          <div style="padding:10px 12px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); font-size:11px; color:var(--muted)">What is the average Sharpe ratio for hedge funds?</div>
-          <div style="padding:10px 12px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); font-size:11px; color:var(--muted)">How does my fund size compare to peers?</div>
-          <div style="padding:10px 12px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); font-size:11px; color:var(--muted)">How competitive is my management fee?</div>
-        </div>
-        <!-- Sample response -->
-        <div style="background:var(--bg3); border:1px solid rgba(93,201,168,0.15); border-radius:10px; padding:14px;">
-          <div style="font-size:11px; color:var(--teal); margin-bottom:8px;">✦ Sample response</div>
-          <div style="font-size:12px; color:var(--muted); line-height:1.7;">Your management fee of <span style="color:var(--text)">2.0%</span> is in line with the platform median of <span style="color:var(--text)">1.8%</span>. However, among quant equity funds your size, the median is <span style="color:var(--text)">1.5%</span> — you are in the <span style="color:#e8a84a)">75th percentile</span>. Consider whether your performance fee structure compensates for the higher base fee.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Allocator AI -->
-    <div style="background:var(--bg2); border:1px solid rgba(184,240,106,0.2); border-radius:16px; overflow:hidden;">
-      <div style="padding:20px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
-        <div style="width:28px; height:28px; border-radius:8px; background:rgba(184,240,106,0.1); border:1px solid rgba(184,240,106,0.2); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--green)">✦</div>
-        <div>
-          <div style="font-size:13px; font-weight:500; color:var(--text)">Altveno AI — For Allocators</div>
-          <div style="font-size:11px; color:var(--muted)">45 funds available · Natural language search</div>
-        </div>
-        <div style="margin-left:auto; font-size:10px; padding:2px 8px; border-radius:20px; background:rgba(184,240,106,0.1); color:var(--green); border:1px solid rgba(184,240,106,0.2)">Allocators</div>
-      </div>
-      <div style="padding:24px;">
-        <div style="text-align:center; margin-bottom:20px;">
-          <div style="font-family:'Instrument Serif',serif; font-size:20px; color:var(--text); margin-bottom:6px;">What are you looking for?</div>
-          <div style="font-size:12px; color:var(--muted);">Describe your investment criteria and find the best matching funds.</div>
-        </div>
-        <!-- Sample questions -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px;">
-          <div style="padding:10px 12px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); font-size:11px; color:var(--muted)">Find me a European hedge fund with low minimum subscription</div>
-          <div style="padding:10px 12px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); font-size:11px; color:var(--muted)">Which funds are open to SMAs?</div>
-          <div style="padding:10px 12px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); font-size:11px; color:var(--muted)">Show me funds with the lowest management fees</div>
-          <div style="padding:10px 12px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); font-size:11px; color:var(--muted)">What quantitative strategies are available?</div>
-        </div>
-        <!-- Sample response -->
-        <div style="background:var(--bg3); border:1px solid rgba(184,240,106,0.15); border-radius:10px; padding:14px;">
-          <div style="font-size:11px; color:var(--green); margin-bottom:8px;">✦ Sample response</div>
-          <div style="font-size:12px; color:var(--muted); line-height:1.7; margin-bottom:10px;">I found <span style="color:var(--green); font-weight:500">4 European hedge funds</span> with minimum subscriptions under $500k:</div>
-          <div style="display:flex; flex-direction:column; gap:6px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:7px 10px; background:var(--bg2); border-radius:6px; border:1px solid var(--border);">
-              <div style="font-size:11px; color:var(--text)">Meridian Capital · Long/Short Equity</div>
-              <div style="font-size:11px; color:var(--green)">Min $250k</div>
+  <div class="ai-section">
+    <div class="two-col">
+      <div>
+        <div class="ai-pill">✦ Altveno AI</div>
+        <h2 class="section-title">Intelligence built into every workflow</h2>
+        <p class="section-body" style="margin-bottom:28px">From AI-powered fund discovery for allocators to automated DDQ pre-fill for managers — artificial intelligence is embedded throughout the platform, not bolted on as an afterthought.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div style="display:flex; gap:14px; align-items:flex-start">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; color:var(--teal)">✦</div>
+            <div>
+              <div style="font-size:14px; font-weight:500; color:var(--text); margin-bottom:3px">DDQ pre-fill from your existing documents</div>
+              <div style="font-size:13px; color:var(--muted)">Upload a PDF or Word doc and we extract and map answers to our standardised format automatically.</div>
             </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:7px 10px; background:var(--bg2); border-radius:6px; border:1px solid var(--border);">
-              <div style="font-size:11px; color:var(--text)">Nordic Alpha · Global Macro</div>
-              <div style="font-size:11px; color:var(--green)">Min $100k</div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:flex-start">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; color:var(--teal)">✦</div>
+            <div>
+              <div style="font-size:14px; font-weight:500; color:var(--text); margin-bottom:3px">Natural language fund discovery</div>
+              <div style="font-size:13px; color:var(--muted)">Allocators describe what they're looking for in plain English and our AI surfaces the most relevant managers.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:flex-start">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; color:var(--teal)">✦</div>
+            <div>
+              <div style="font-size:14px; font-weight:500; color:var(--text); margin-bottom:3px">Market benchmarking and peer insights</div>
+              <div style="font-size:13px; color:var(--muted)">Ask questions about market performance, peer positioning, and fund terms in natural language.</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Bottom CTA -->
-  <div style="background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:40px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
-    <div>
-      <div style="font-family:'Instrument Serif',serif; font-size:24px; color:var(--text); margin-bottom:6px;">Intelligence that works for everyone</div>
-      <div style="font-size:14px; color:var(--muted); max-width:480px;">Both AI tools are powered by anonymous, aggregated platform data — giving managers market context and allocators instant fund discovery. No other platform offers this.</div>
-    </div>
-    <div style="display:flex; gap:12px; flex-wrap:wrap;">
-      <a href="https://app.altveno.com/signup" style="padding:11px 22px; border-radius:8px; background:var(--green); color:#0a0f0a; font-size:13px; font-weight:600; text-decoration:none; font-family:'DM Sans',sans-serif;">Get started free</a>
-      <a href="#waitlist" style="padding:11px 22px; border-radius:8px; background:transparent; color:var(--text); font-size:13px; border:1px solid var(--border2); text-decoration:none; font-family:'DM Sans',sans-serif;">Request access</a>
+      <div style="background:var(--bg); border:1px solid var(--border); border-radius:14px; padding:24px; font-size:13px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--border)">
+          <div style="width:28px; height:28px; border-radius:8px; background:rgba(93,201,168,0.1); border:1px solid rgba(93,201,168,0.2); display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--teal)">✦</div>
+          <span style="font-weight:500; color:var(--text)">Altveno AI</span>
+          <span style="margin-left:auto; font-size:10px; color:var(--muted)">Fund Discovery</span>
+        </div>
+        <div style="background:var(--bg2); border-radius:10px; padding:12px 14px; margin-bottom:12px; color:var(--muted)">
+          Show me global macro hedge funds with AUM between $200mm-$1bn, launched after 2018, with strong risk-adjusted returns
+        </div>
+        <div style="color:var(--text); line-height:1.7; margin-bottom:12px">
+          I found <span style="color:var(--green); font-weight:500">8 managers</span> matching your criteria across London, New York and Singapore...
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center">
+            <div>
+              <div style="font-size:12px; font-weight:500; color:var(--text)">Meridian Capital Partners</div>
+              <div style="font-size:11px; color:var(--muted)">Global Macro · $450mm AUM</div>
+            </div>
+            <div style="font-size:11px; color:var(--green)">+14.2% YTD</div>
+          </div>
+          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center">
+            <div>
+              <div style="font-size:12px; font-weight:500; color:var(--text)">Stonegate Alpha Fund</div>
+              <div style="font-size:11px; color:var(--muted)">Global Macro · $280mm AUM</div>
+            </div>
+            <div style="font-size:11px; color:var(--green)">+11.8% YTD</div>
+          </div>
+          <div style="background:var(--bg2); border:1px solid rgba(184,240,106,0.15); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center">
+            <div>
+              <div style="font-size:12px; font-weight:500; color:var(--text)">Nordic Alpha Management</div>
+              <div style="font-size:11px; color:var(--muted)">Global Macro · $620mm AUM</div>
+            </div>
+            <div style="font-size:11px; color:var(--green)">+16.5% YTD</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1004,7 +1032,7 @@
         <li><span class="pricing-check">✓</span>AI-powered fund matching</li>
         <li><span class="pricing-check">✓</span>DDQ library and Q&A</li>
         <li><span class="pricing-check">✓</span>Fund comparison tools</li>
-        <li><span class="pricing-check">✓</span>Pipeline management</li>
+        <li><span class="pricing-check">✓</span>Pipeline management</span></li>
         <li><span class="pricing-check">✓</span>Messaging and meetings</li>
       </ul>
       <a href="#waitlist" class="pricing-cta">Request access</a>
@@ -1050,29 +1078,17 @@
   <div class="section-label">Early access</div>
   <h2 class="section-title" style="max-width:600px; margin:0 auto 16px">Join the platform shaping the future of alternative investments</h2>
   <p style="font-size:16px; color:var(--muted); max-width:480px; margin:0 auto">Request early access. We're onboarding managers and allocators now across London, New York and beyond.</p>
-  <form class="waitlist-form" id="waitlistForm" onsubmit="return submitWaitlist(event)">
-    <input type="email" class="waitlist-input" id="waitlistEmail" placeholder="your@firm.com" required>
-    <select class="waitlist-input" id="waitlistRole" style="max-width:180px">
-      <option value="">I am a...</option>
-      <option value="manager">Fund Manager</option>
-      <option value="allocator">Allocator</option>
-    </select>
-    <button type="submit" class="btn-large primary" style="white-space:nowrap" id="waitlistSubmit">Request access</button>
-  </form>
-  <p id="waitlistStatus" style="font-size:13px; margin-top:16px; min-height:18px; text-align:center;"></p>
-  <p style="font-size:12px; color:var(--muted2); margin-top:8px">No commitment required. Allocators are always free.</p>
+  <div class="waitlist-form">
+    <input type="email" class="waitlist-input" placeholder="your@firm.com">
+    <a href="https://app.altveno.com/signup" class="btn-large primary" style="white-space:nowrap">Request access</a>
+  </div>
+  <p style="font-size:12px; color:var(--muted2); margin-top:16px">No commitment required. Allocators are always free.</p>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    <div class="logo-mark" style="display:flex; align-items:center; justify-content:center; overflow:visible;">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 4 14 A 10 10 0 0 1 24 14" stroke="#5dc9a8" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 6 14 A 8 8 0 0 0 22 14" stroke="#b8f06a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="14" cy="14" r="2.5" fill="#b8f06a"/>
-      </svg>
-    </div>
+    <div class="logo-mark">A</div>
     <span class="logo-text">Altveno</span>
     <span style="font-size:12px; color:var(--muted2); margin-left:16px">Where alternative investments connect</span>
   </div>
@@ -1094,300 +1110,6 @@
     });
   });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-<script>
-const SUPABASE_URL = 'https://vsoomqfayfmtbnulnugn.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZzb29tcWZheWZtdGJudWxudWduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNzA4NzYsImV4cCI6MjA5Mzc0Njg3Nn0.X6lTl6WgLKJMjjaUZ-jkSrsNM67IifZeqiwyun5lm70';
 
-const classColors = {
-  hedge_fund: '#5dc9a8',
-  pe: '#e8a84a',
-  vc: '#b8f06a',
-  real_estate: '#e87060',
-  credit: '#6fa8dc',
-  infrastructure: '#a48fe8',
-};
-
-const classLabels = {
-  hedge_fund: 'Hedge Fund',
-  pe: 'Private Equity',
-  vc: 'Venture Capital',
-  real_estate: 'Real Estate',
-  credit: 'Credit',
-  infrastructure: 'Infrastructure',
-};
-
-const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const fullMonthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-async function submitWaitlist(e) {
-  e.preventDefault();
-  const email = document.getElementById('waitlistEmail').value.trim();
-  const role = document.getElementById('waitlistRole').value || null;
-  const btn = document.getElementById('waitlistSubmit');
-  const status = document.getElementById('waitlistStatus');
-
-  if (!email) return false;
-
-  btn.disabled = true;
-  btn.textContent = 'Submitting...';
-  status.textContent = '';
-
-  try {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_KEY,
-        'Prefer': 'return=minimal',
-      },
-      body: JSON.stringify({
-        email: email,
-        role_interest: role,
-        source: 'homepage',
-        user_agent: navigator.userAgent,
-      }),
-    });
-
-    if (response.ok) {
-      status.style.color = '#b8f06a';
-      status.textContent = '✓ You\'re on the list. We\'ll be in touch soon.';
-      document.getElementById('waitlistForm').reset();
-    } else {
-      const errorText = await response.text();
-      if (response.status === 409 || errorText.includes('duplicate') || errorText.includes('unique')) {
-        status.style.color = '#e8a84a';
-        status.textContent = 'You\'re already on the list. We\'ll be in touch soon.';
-      } else {
-        console.error('Waitlist error:', errorText);
-        status.style.color = '#e87060';
-        status.textContent = 'Something went wrong. Please email hello@altveno.com';
-      }
-    }
-  } catch (err) {
-    console.error('Waitlist network error:', err);
-    status.style.color = '#e87060';
-    status.textContent = 'Network error. Please try again or email hello@altveno.com';
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Request access';
-  }
-  return false;
-}
-async function fetchJSON(url) {
-  const res = await fetch(url, {
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY,
-    }
-  });
-  return res.json();
-}
-
-async function loadPerformanceData() {
-  try {
-    // Fetch all open funds
-    const funds = await fetchJSON(`${SUPABASE_URL}/rest/v1/funds?select=id,asset_class,strategy&status=eq.open&limit=500`);
-
-    if (!funds || funds.length === 0) return;
-
-    // Fetch performance in pages without fund ID filter — then filter client side
-    let allPerf = [];
-    let page = 0;
-    const pageSize = 1000;
-    while (true) {
-      const data = await fetchJSON(
-        `${SUPABASE_URL}/rest/v1/fund_performance?select=fund_id,year,month,return_pct&order=year.asc,month.asc&limit=${pageSize}&offset=${page * pageSize}`
-      );
-      if (!data || data.length === 0) break;
-      allPerf = [...allPerf, ...data];
-      if (data.length < pageSize) break;
-      page++;
-    }
-
-    // Filter to only open funds
-    const fundIdSet = new Set(funds.map(f => f.id));
-    allPerf = allPerf.filter(p => fundIdSet.has(p.fund_id));
-
-    if (allPerf.length === 0) return;
-
-    // Group perf by fund
-    const perfByFund = {};
-    allPerf.forEach(p => {
-      if (!perfByFund[p.fund_id]) perfByFund[p.fund_id] = [];
-      perfByFund[p.fund_id].push(p);
-    });
-
-    // Find latest year/month
-    const latestYM = allPerf.reduce((max, p) => Math.max(max, p.year * 100 + p.month), 0);
-    const latestYear = Math.floor(latestYM / 100);
-    const latestMonth = latestYM % 100;
-
-    // Group funds by asset class
-    const byAssetClass = {};
-    funds.forEach(f => {
-      if (!byAssetClass[f.asset_class]) byAssetClass[f.asset_class] = [];
-      byAssetClass[f.asset_class].push(f.id);
-    });
-
-    // Group by strategy for table
-    const byStrategy = {};
-    funds.forEach(f => {
-      const key = `${f.asset_class}__${f.strategy}`;
-      if (!byStrategy[key]) byStrategy[key] = { asset_class: f.asset_class, strategy: f.strategy, fund_ids: [] };
-      byStrategy[key].fund_ids.push(f.id);
-    });
-
-    // Build table rows
-    const rows = [];
-    for (const [, group] of Object.entries(byStrategy)) {
-      const fundPerfs = group.fund_ids.map(id => perfByFund[id] || []);
-      const lastMonthReturns = fundPerfs
-        .map(perfs => perfs.find(p => p.year === latestYear && p.month === latestMonth)?.return_pct)
-        .filter(v => v !== undefined);
-      const ytdReturns = fundPerfs.map(perfs => {
-        const yp = perfs.filter(p => p.year === latestYear && p.month <= latestMonth);
-        if (!yp.length) return null;
-        return (yp.reduce((acc, p) => acc * (1 + p.return_pct / 100), 1) - 1) * 100;
-      }).filter(v => v !== null);
-
-      rows.push({
-        asset_class: group.asset_class,
-        strategy: group.strategy,
-        fund_count: group.fund_ids.length,
-        last_month: lastMonthReturns.length ? lastMonthReturns.reduce((a,b) => a+b,0) / lastMonthReturns.length : null,
-        ytd: ytdReturns.length ? ytdReturns.reduce((a,b) => a+b,0) / ytdReturns.length : null,
-      });
-    }
-    rows.sort((a, b) => a.asset_class.localeCompare(b.asset_class) || a.strategy.localeCompare(b.strategy));
-
-    // Update subtitle
-    const subtitle = `${fullMonthNames[latestMonth-1]} ${latestYear} + YTD by strategy`;
-    document.getElementById('tableSubtitle').textContent = subtitle;
-
-    // Render table
-    const monthLabel = `${monthNames[latestMonth-1]} ${latestYear}`.toUpperCase();
-    let tableHTML = `
-      <div style="overflow-y:auto; max-height:280px;">
-        <table style="width:100%; border-collapse:collapse;">
-          <thead>
-            <tr style="border-bottom:1px solid var(--border);">
-              <th style="text-align:left; padding:6px 8px; font-size:10px; color:var(--muted); font-weight:500; letter-spacing:0.5px;">STRATEGY</th>
-              <th style="text-align:right; padding:6px 8px; font-size:10px; color:var(--muted); font-weight:500; letter-spacing:0.5px;">${monthLabel}</th>
-              <th style="text-align:right; padding:6px 8px; font-size:10px; color:var(--muted); font-weight:500; letter-spacing:0.5px;">YTD ${latestYear}</th>
-            </tr>
-          </thead>
-          <tbody>
-    `;
-
-    rows.slice(0, 12).forEach(row => {
-      const color = classColors[row.asset_class] || '#7a7d76';
-      const fmt = v => v === null ? '—' : `${v > 0 ? '+' : ''}${v.toFixed(2)}%`;
-      const rc = v => v === null ? '#7a7d76' : v > 0 ? '#b8f06a' : '#e87060';
-      tableHTML += `
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:8px 8px;">
-            <div style="font-size:12px; color:#e8e9e4; margin-bottom:2px;">${row.strategy}</div>
-            <div style="font-size:10px; color:${color};">${classLabels[row.asset_class]} · ${row.fund_count} funds</div>
-          </td>
-          <td style="padding:8px 8px; text-align:right; font-size:13px; font-weight:500; color:${rc(row.last_month)};">${fmt(row.last_month)}</td>
-          <td style="padding:8px 8px; text-align:right; font-size:13px; font-weight:500; color:${rc(row.ytd)};">${fmt(row.ytd)}</td>
-        </tr>
-      `;
-    });
-
-    tableHTML += `</tbody></table></div>`;
-    document.getElementById('perfTable').innerHTML = tableHTML;
-
-    // Build chart data
-    const allMonths = [...new Set(allPerf.map(p => `${p.year}-${String(p.month).padStart(2,'0')}`))]
-      .sort()
-      .filter(ym => {
-        const [y] = ym.split('-').map(Number);
-        return y >= 2023;
-      });
-
-    const chartLabels = allMonths.map(ym => {
-      const [year, month] = ym.split('-').map(Number);
-      return `${monthNames[month-1]} ${year}`;
-    });
-
-    // Build cumulative lines per asset class
-    const datasets = [];
-    const legend = document.getElementById('legend');
-
-    for (const [ac, fundIds] of Object.entries(byAssetClass)) {
-      const runningIndex = { val: 100 };
-      const data = allMonths.map(ym => {
-        const [year, month] = ym.split('-').map(Number);
-        const returns = fundIds
-          .map(id => perfByFund[id]?.find(p => p.year === year && p.month === month)?.return_pct)
-          .filter(v => v !== undefined);
-        if (returns.length > 0) {
-          const avg = returns.reduce((a,b) => a+b,0) / returns.length;
-          runningIndex.val = runningIndex.val * (1 + avg / 100);
-        }
-        return parseFloat(runningIndex.val.toFixed(2));
-      });
-
-      datasets.push({
-        label: classLabels[ac],
-        data,
-        borderColor: classColors[ac],
-        backgroundColor: 'transparent',
-        borderWidth: 1.5,
-        pointRadius: 0,
-        tension: 0.3,
-      });
-
-      // Legend item
-      const pill = document.createElement('div');
-      pill.style.cssText = `display:flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:11px; cursor:pointer; border:1px solid ${classColors[ac]}60; background:${classColors[ac]}15; color:${classColors[ac]};`;
-      pill.innerHTML = `<div style="width:6px;height:6px;border-radius:50%;background:${classColors[ac]};"></div>${classLabels[ac]}`;
-      legend.appendChild(pill);
-    }
-
-    // Render chart
-    const ctx = document.getElementById('perfChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: { labels: chartLabels, datasets },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            backgroundColor: '#1a1d1a',
-            borderColor: 'rgba(255,255,255,0.1)',
-            borderWidth: 1,
-            titleColor: '#7a7d76',
-            bodyColor: '#e8e9e4',
-            padding: 10,
-          }
-        },
-        scales: {
-          x: {
-            ticks: { color: '#7a7d76', font: { size: 10 }, maxTicksLimit: 8 },
-            grid: { color: 'rgba(255,255,255,0.04)' },
-            border: { display: false },
-          },
-          y: {
-            ticks: { color: '#7a7d76', font: { size: 10 } },
-            grid: { color: 'rgba(255,255,255,0.04)' },
-            border: { display: false },
-          }
-        }
-      }
-    });
-
-  } catch(err) {
-    console.error('Failed to load performance data:', err);
-  }
-}
-
-loadPerformanceData();
-</script>
 </body>
 </html>
