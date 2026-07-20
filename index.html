@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Altveno — Where Alternative Investments Connect</title>
+<title>Altveno: The Operating System for Alternative Investments</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -37,6 +37,8 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
+
+img { max-width: 100%; height: auto; }
 
 /* ── NAV ── */
 nav {
@@ -223,7 +225,7 @@ nav {
 .live-badge { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px; border-radius: 2px; border: 1px solid rgba(201,168,76,0.3); background: rgba(201,168,76,0.08); font-size: 10px; color: var(--gold); margin-bottom: 16px; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; }
 
 /* ── PRODUCT GRID ── */
-.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
 .product-cell { background: var(--white); padding: 28px 24px; transition: background 0.15s; }
 .product-cell:hover { background: var(--surface); }
 .product-icon { width: 36px; height: 36px; border-radius: 3px; background: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
@@ -292,6 +294,57 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
 .footer-links a:hover { color: var(--text); }
 .footer-copy { font-size: 12px; color: var(--mutedLt); }
 
+/* ── HAMBURGER + MOBILE NAV OVERLAY ── */
+.hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 44px; height: 44px; padding: 10px;
+  background: transparent; border: none; cursor: pointer;
+}
+.hamburger span { display: block; height: 2px; width: 100%; background: var(--white); border-radius: 2px; }
+
+.mobile-nav {
+  display: none;
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--navy);
+  flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  color: var(--white); font-size: 20px; font-weight: 500;
+  text-decoration: none; text-align: center;
+  min-height: 48px; display: flex; align-items: center; justify-content: center;
+  width: 100%;
+}
+.mobile-nav a.mobile-nav-cta { color: var(--gold); }
+.mobile-nav-close {
+  position: absolute; top: 18px; right: 18px;
+  width: 44px; height: 44px; background: transparent; border: none;
+  color: var(--white); font-size: 30px; line-height: 1; cursor: pointer;
+}
+
+/* ── PRICING ── */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
+.pricing-card { border: 1px solid var(--border); border-radius: 4px; padding: 32px 28px; background: var(--white); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.pricing-card.featured { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+.pricing-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.pricing-card.standard::before { background: var(--navy); }
+.pricing-card.emerging::before { background: var(--gold); }
+.pricing-card.free::before { background: var(--teal); }
+.pricing-plan { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.pricing-price { font-family: 'Playfair Display', Georgia, serif; font-size: 34px; color: var(--navy); line-height: 1.1; margin-bottom: 4px; font-weight: 400; }
+.pricing-price span { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--muted); }
+.pricing-note { font-size: 12px; color: var(--muted); margin-bottom: 22px; line-height: 1.6; min-height: 34px; }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+.pricing-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: var(--textSec); }
+.pricing-features .check { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; margin-top: 1px; font-weight: 700; background: var(--navy); color: var(--white); }
+.pricing-card.free .check { background: var(--teal); }
+.pricing-card.emerging .check { background: var(--gold2); color: var(--white); }
+.pricing-cta { margin-top: auto; text-align: center; padding: 11px 18px; border-radius: 3px; font-size: 13px; font-weight: 700; text-decoration: none; font-family: 'Inter', sans-serif; }
+.pricing-card.standard .pricing-cta { background: var(--navy); color: var(--white); }
+.pricing-card.emerging .pricing-cta { background: var(--gold); color: var(--navy); }
+.pricing-card.free .pricing-cta { background: var(--teal); color: var(--white); }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .hero-badge { animation: fadeUp 0.5s ease forwards; }
 .hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
@@ -300,18 +353,85 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
 .hero-actions { animation: fadeUp 0.5s 0.3s ease both; }
 .hero-stats { animation: fadeUp 0.5s 0.4s ease both; }
 
-@media (max-width: 900px) {
+/* ── MOBILE + TABLET NAV (below desktop) ── */
+@media (max-width: 1023px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .hero { padding: 100px 24px 60px; }
-  .section { padding: 60px 24px; }
-  .products-grid, .features-grid { grid-template-columns: 1fr; }
-  .audience-grid { grid-template-columns: 1fr; }
+  .nav-cta { display: none; }
+  .hamburger { display: flex; }
+}
+
+/* ── TABLET: 768px to 1023px ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section { padding: 64px 32px; }
+  .products-grid, .features-grid { grid-template-columns: repeat(2, 1fr); }
   .globe-grid { grid-template-columns: repeat(3, 1fr); }
-  .preview-section, .live-data-wrap .grid-2 { display: none; }
+  .ai-duo { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .preview-inner { grid-template-columns: 140px 1fr; }
+}
+
+/* ── MOBILE: 767px and below ── */
+@media (max-width: 767px) {
+  nav { padding: 0 16px; }
+  .hero { padding: 96px 20px 48px; }
+  .hero h1 { font-size: 36px; letter-spacing: -0.5px; margin-bottom: 14px; }
+  .hero-sub { font-size: 16px; margin-bottom: 32px; }
+  .hero-badge { margin-bottom: 24px; }
+
+  .asset-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 36px; }
+  .asset-pill { text-align: center; }
+
+  .hero-actions { flex-direction: column; width: 100%; gap: 10px; margin-bottom: 48px; }
+  .hero-actions a { width: 100%; text-align: center; }
+  .btn-hero-primary, .btn-hero-secondary, .btn-primary, .btn-ghost {
+    min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 24px; width: 100%; }
+  .hero-divider { display: none; }
+  .hero-stat-number { font-size: 26px; }
+
+  .section { padding: 40px 20px; }
+  .section-title { font-size: 28px; }
+  .live-data-wrap { padding: 40px 20px; }
+  .live-data-wrap h2 { font-size: 24px; }
+  .waitlist-section { padding: 40px 20px; }
+  .waitlist-section h2 { font-size: 28px; }
+
+  /* products: 1 column below 480, 2 columns 480-767 */
+  .products-grid, .features-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* hide desktop dashboard preview */
+  .preview-section { display: none; }
+
+  /* live data: single column, table scrolls horizontally */
+  .live-data-wrap .grid-2 { grid-template-columns: 1fr; }
+  #perfTable { overflow-x: auto; }
+
+  /* audience + AI stack */
+  .audience-grid { grid-template-columns: 1fr; }
+  .audience-card { padding: 28px 22px; }
+  .ai-duo { grid-template-columns: 1fr; }
+
+  /* global cities: 2 columns */
+  .globe-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* pricing stacks full width */
+  .pricing-grid { grid-template-columns: 1fr; }
+
+  /* waitlist form stacks full width */
+  .waitlist-form { flex-direction: column; }
+  .waitlist-input { min-width: 0; width: 100%; max-width: 100% !important; }
+  .waitlist-form .btn-hero-primary { width: 100%; }
+
   footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
   .divider, .divider-navy { margin: 0 20px; }
-  .waitlist-section { padding: 60px 24px; }
+}
+
+/* products: single column on the smallest phones */
+@media (max-width: 479px) {
+  .products-grid, .features-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -337,16 +457,31 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
     <a href="https://app.altveno.com" class="btn-ghost">Sign in</a>
     <a href="#waitlist" class="btn-primary">Request access</a>
   </div>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+  <a href="#platform">Platform</a>
+  <a href="#products">Products</a>
+  <a href="#managers">For Managers</a>
+  <a href="#allocators">For Allocators</a>
+  <a href="#pricing">Pricing</a>
+  <a href="https://app.altveno.com">Sign in</a>
+  <a href="#waitlist" class="mobile-nav-cta">Request access</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-badge">
     <div class="hero-badge-dot"></div>
-    Now live — join the waitlist
+    Now live: join the waitlist
   </div>
-  <h1>Where Alternative<br>Investments <em>Connect</em></h1>
-  <p class="hero-sub">The institutional platform connecting alternative investment managers with allocators. Built for the world's most sophisticated investors.</p>
+  <h1>The Operating System for<br><em>Alternative Investments</em></h1>
+  <p class="hero-sub">Eight products connecting managers, allocators, service providers and talent. Built for prime brokers. Powered by AI.</p>
 
   <div class="asset-strip">
     <div class="asset-pill" style="border-color:rgba(13,110,138,0.4); background:rgba(13,110,138,0.08); color:#5DC9A8">Hedge Funds</div>
@@ -365,7 +500,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-number">8</div>
-      <div class="hero-stat-label">Products</div>
+      <div class="hero-stat-label">Products Live</div>
     </div>
     <div class="hero-divider"></div>
     <div class="hero-stat">
@@ -461,10 +596,10 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
     <div style="text-align:center; margin-bottom:40px">
       <div class="live-badge">
         <div style="width:5px; height:5px; border-radius:50%; background:var(--gold); animation:pulse 2s infinite;"></div>
-        Live market data — updated monthly
+        Live market data: updated monthly
       </div>
       <h2 style="font-family:'Playfair Display',Georgia,serif; font-size:clamp(26px,3vw,40px); color:var(--white); margin-bottom:8px; letter-spacing:-0.5px; font-weight:400;">Real performance data, anonymously aggregated</h2>
-      <p style="font-size:14px; color:rgba(255,255,255,0.45); max-width:480px; margin:0 auto; line-height:1.7;">Live returns across all alternative asset classes. Anonymous and aggregated — the proprietary dataset that powers our AI tools.</p>
+      <p style="font-size:14px; color:rgba(255,255,255,0.45); max-width:480px; margin:0 auto; line-height:1.7;">Live returns across all alternative asset classes. Anonymous and aggregated: the proprietary dataset that powers our AI tools.</p>
     </div>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); border-radius:4px; overflow:hidden;" class="grid-2">
@@ -493,7 +628,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
     <div style="text-align:center; margin-bottom:48px">
       <div class="section-label">The full platform suite</div>
       <h2 class="section-title">Eight products. One platform.<br>Built for the prime brokerage ecosystem.</h2>
-      <p class="section-body" style="margin:0 auto">Altveno is the operating system for the alternative investment industry — connecting managers, allocators, service providers, talent, and intelligence in one place.</p>
+      <p class="section-body" style="margin:0 auto">Altveno is the operating system for the alternative investment industry, connecting managers, allocators, service providers, talent, and intelligence in one place.</p>
     </div>
     <div class="products-grid">
 
@@ -503,7 +638,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 2-3 3-1.5-1.5M16 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
         </div>
         <div class="product-title">AltConnect</div>
-        <p class="product-body">Two-sided marketplace connecting alternative investment managers with institutional allocators. Bilateral connection flow, manager-controlled access, pipeline tracking and AI-powered fund discovery.</p>
+        <p class="product-body">Two-sided marketplace connecting managers with institutional allocators.</p>
       </div>
 
       <div class="product-cell">
@@ -512,7 +647,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m1.636-6.364.707.707M12 21v-1M7 12a5 5 0 1 1 10 0c0 1.887-1.009 3.54-2.5 4.395V18a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-1.605C8.009 15.54 7 13.887 7 12z"/></svg>
         </div>
         <div class="product-title">Altveno AI</div>
-        <p class="product-body">Two purpose-built AI tools — Market Intelligence for managers (anonymous peer benchmarking) and Fund Discovery for allocators (natural language search across the full manager universe).</p>
+        <p class="product-body">Market intelligence for managers and fund discovery for allocators.</p>
       </div>
 
       <div class="product-cell">
@@ -520,8 +655,17 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
         <div class="product-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/></svg>
         </div>
-        <div class="product-title">DDQ &amp; Data Room</div>
-        <p class="product-body">AI-powered DDQ with automatic pre-fill from existing documents. Secure nested data room with permissioned folder access, document access logs and full audit trail.</p>
+        <div class="product-title">DDQ and Data Room</div>
+        <p class="product-body">AI-powered due diligence with secure document management.</p>
+      </div>
+
+      <div class="product-cell">
+        <div class="product-tag live">Live</div>
+        <div class="product-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM9 16l2 2 4-4"/></svg>
+        </div>
+        <div class="product-title">EventConnect</div>
+        <p class="product-body">AI-optimised conference scheduling for prime brokers.</p>
       </div>
 
       <div class="product-cell">
@@ -530,7 +674,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
         </div>
         <div class="product-title">ServiceConnect</div>
-        <p class="product-body">Service provider marketplace for the alternatives ecosystem. Find and connect with fund lawyers, administrators, OMS/PMS providers, data vendors, insurance firms and accountants.</p>
+        <p class="product-body">Service provider marketplace for the alternatives ecosystem.</p>
       </div>
 
       <div class="product-cell">
@@ -539,7 +683,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-9 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-2 8a4 4 0 0 1 8 0H9zm8-8h2M17 15h2"/></svg>
         </div>
         <div class="product-title">TalentConnect</div>
-        <p class="product-body">Recruitment marketplace for the alternatives industry. AI-powered CV parsing, candidate matching, job postings, PB-flagging for hidden candidates, and privacy controls.</p>
+        <p class="product-body">Recruitment marketplace for the alternatives industry.</p>
       </div>
 
       <div class="product-cell">
@@ -548,32 +692,16 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
         <div class="product-title">PulseConnect</div>
-        <p class="product-body">Institutional survey platform for prime brokers. Build surveys with 7 question types, target specific client segments, collect responses, and view interactive results dashboards with demographic filtering.</p>
+        <p class="product-body">Institutional survey platform with interactive results dashboards.</p>
       </div>
 
       <div class="product-cell">
-        <div class="product-tag soon">Coming soon</div>
-        <div class="product-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM9 16l2 2 4-4"/></svg>
-        </div>
-        <div class="product-title">EventConnect</div>
-        <p class="product-body">Conference scheduling tool for prime brokers. List attending managers, let allocators submit meeting preferences, and generate optimised conference schedules automatically.</p>
-      </div>
-
-      <div class="product-cell">
-        <div class="product-tag soon">Coming soon</div>
+        <div class="product-tag live">Live</div>
         <div class="product-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
         </div>
         <div class="product-title">Intelligence Layer</div>
-        <p class="product-body">Client health scores, allocator matching engine, capital flows intelligence, fund terms benchmarking, and post-trade analytics for cap intro teams.</p>
-      </div>
-
-      <div class="product-cell" style="background:var(--surface);">
-        <div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:12px;">
-          <div style="font-size:13px; font-weight:600; color:var(--navy); margin-bottom:6px;">The complete PB platform</div>
-          <p style="font-size:12px; color:var(--muted); line-height:1.6; max-width:200px;">One platform replacing the entire prime broker client engagement stack.</p>
-        </div>
+        <p class="product-body">Client relationship intelligence and value reporting for prime brokers.</p>
       </div>
     </div>
   </div>
@@ -593,7 +721,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
       <div class="audience-card managers">
         <div class="audience-tag">Fund Managers</div>
         <h3 class="audience-title">Raise capital more efficiently</h3>
-        <p class="audience-desc">Everything you need to present your fund professionally, manage investor relationships, and streamline the due diligence process — in one place.</p>
+        <p class="audience-desc">Everything you need to present your fund professionally, manage investor relationships, and streamline the due diligence process, all in one place.</p>
         <ul class="audience-features">
           <li><div class="check">✓</div>Professional fund profile and firm page</li>
           <li><div class="check">✓</div>AI-powered DDQ with automatic pre-fill</li>
@@ -609,7 +737,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
       <div class="audience-card allocators" id="allocators">
         <div class="audience-tag">Allocators</div>
         <h3 class="audience-title">Discover and diligence smarter</h3>
-        <p class="audience-desc">Find, compare, and diligence alternative investment managers across every asset class — with all the tools you need from first introduction to investment decision.</p>
+        <p class="audience-desc">Find, compare, and diligence alternative investment managers across every asset class, with all the tools you need from first introduction to investment decision.</p>
         <ul class="audience-features">
           <li><div class="check">✓</div>Discover managers across 6+ asset classes globally</li>
           <li><div class="check">✓</div>AI-powered fund discovery and natural language search</li>
@@ -632,10 +760,10 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
   <div style="text-align:center; margin-bottom:44px">
     <div class="ai-pill" style="margin:0 auto 14px;">✦ Altveno AI</div>
     <h2 class="section-title">Two AI tools. One platform.<br>Built for both sides.</h2>
-    <p class="section-body" style="margin:0 auto">Purpose-built intelligence — market benchmarking for managers, natural language fund discovery for allocators. Both powered by anonymous platform data that compounds with every new participant. Now extended across ServiceConnect, TalentConnect and PulseConnect.</p>
+    <p class="section-body" style="margin:0 auto">Purpose-built intelligence for both sides. Market benchmarking for managers and natural language fund discovery for allocators. Both powered by anonymous platform data that grows stronger with every new participant. Now extended across ServiceConnect, TalentConnect and PulseConnect.</p>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
+  <div class="ai-duo" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
     <!-- Manager AI -->
     <div style="background:var(--white); border:1px solid var(--border); border-radius:4px; overflow:hidden; border-top:3px solid var(--navy);">
       <div style="padding:18px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
@@ -657,7 +785,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:3px; padding:14px; border-left:3px solid var(--navy);">
           <div style="font-size:10px; font-weight:700; color:var(--navy); margin-bottom:7px; letter-spacing:0.5px; text-transform:uppercase;">Sample response</div>
-          <div style="font-size:12px; color:var(--textSec); line-height:1.7;">Your management fee of <strong>2.0%</strong> is above the platform median of <strong>1.8%</strong>. Among quant equity funds your size, the median is <strong>1.5%</strong> — you sit in the 75th percentile. Your performance fee is in line with peers at 20%.</div>
+          <div style="font-size:12px; color:var(--textSec); line-height:1.7;">Your management fee of <strong>2.0%</strong> is above the platform median of <strong>1.8%</strong>. Among quant equity funds your size, the median is <strong>1.5%</strong>, placing you in the 75th percentile. Your performance fee is in line with peers at 20%.</div>
         </div>
       </div>
     </div>
@@ -683,7 +811,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:3px; padding:14px; border-left:3px solid var(--teal);">
           <div style="font-size:10px; font-weight:700; color:var(--teal); margin-bottom:7px; letter-spacing:0.5px; text-transform:uppercase;">Sample response</div>
-          <div style="font-size:12px; color:var(--textSec); line-height:1.7; margin-bottom:10px;">I found <strong>4 European hedge funds</strong> with minimum subscriptions under $500k — here are the top matches based on your criteria:</div>
+          <div style="font-size:12px; color:var(--textSec); line-height:1.7; margin-bottom:10px;">I found <strong>4 European hedge funds</strong> with minimum subscriptions under $500k. Here are the top matches based on your criteria:</div>
           <div style="display:flex; flex-direction:column; gap:5px;">
             <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; background:var(--white); border-radius:2px; border:1px solid var(--border); font-size:11px;"><span style="color:var(--text); font-weight:500;">Meridian Capital · Long/Short Equity</span><span style="color:var(--success); font-weight:700;">Min $250k</span></div>
             <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; background:var(--white); border-radius:2px; border:1px solid var(--border); font-size:11px;"><span style="color:var(--text); font-weight:500;">Nordic Alpha · Global Macro</span><span style="color:var(--success); font-weight:700;">Min $100k</span></div>
@@ -725,11 +853,64 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
 
 <div class="divider"></div>
 
+<!-- PRICING -->
+<div id="pricing">
+  <div class="section">
+    <div style="text-align:center; margin-bottom:8px">
+      <div class="section-label">Simple, transparent pricing</div>
+      <h2 class="section-title">Priced for managers. Free for allocators.</h2>
+      <p class="section-body" style="margin:0 auto">Full platform access on every manager plan. Allocators join free, forever.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="pricing-card standard">
+        <div class="pricing-plan">Standard Manager</div>
+        <div class="pricing-price">$5,000<span>/year</span></div>
+        <div class="pricing-note">$2,000/year per additional fund.</div>
+        <ul class="pricing-features">
+          <li><div class="check">✓</div>1 fund included</li>
+          <li><div class="check">✓</div>$2,000/year per additional fund</li>
+          <li><div class="check">✓</div>Full platform access</li>
+          <li><div class="check">✓</div>AI benchmarking and DDQ</li>
+        </ul>
+        <a href="#waitlist" class="pricing-cta">Request access</a>
+      </div>
+
+      <div class="pricing-card emerging featured">
+        <div class="pricing-plan">Emerging Manager</div>
+        <div class="pricing-price">$2,500<span>/year</span></div>
+        <div class="pricing-note">For firms sub-$100mm AUM in their last 2 years.</div>
+        <ul class="pricing-features">
+          <li><div class="check">✓</div>1 fund included</li>
+          <li><div class="check">✓</div>$1,000/year per additional fund</li>
+          <li><div class="check">✓</div>Full platform access</li>
+        </ul>
+        <a href="#waitlist" class="pricing-cta">Request access</a>
+      </div>
+
+      <div class="pricing-card free">
+        <div class="pricing-plan">Allocators</div>
+        <div class="pricing-price">Free<span> forever</span></div>
+        <div class="pricing-note">Always free for qualified allocators.</div>
+        <ul class="pricing-features">
+          <li><div class="check">✓</div>Full AltConnect access</li>
+          <li><div class="check">✓</div>AI fund discovery</li>
+          <li><div class="check">✓</div>DDQ library and comparison tools</li>
+          <li><div class="check">✓</div>PulseConnect surveys</li>
+        </ul>
+        <a href="#waitlist" class="pricing-cta">Get free access</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
 <!-- WAITLIST -->
 <div class="waitlist-section" id="waitlist">
   <div class="section-label" style="color:var(--gold);">Early access</div>
   <h2 style="font-family:'Playfair Display',Georgia,serif; font-size:clamp(28px,4vw,48px); color:var(--white); font-weight:400; max-width:600px; margin:0 auto 14px; letter-spacing:-0.5px; line-height:1.1;">Join the platform reshaping alternative investment management</h2>
-  <p style="font-size:15px; color:rgba(255,255,255,0.45); max-width:460px; margin:0 auto; line-height:1.7;">Request early access. We're onboarding managers, allocators, service providers and candidates now across London, New York, Singapore and Dubai.</p>
+  <p style="font-size:15px; color:rgba(255,255,255,0.45); max-width:460px; margin:0 auto; line-height:1.7;">Request early access. We are onboarding managers, allocators, service providers and candidates now across London, New York, Singapore and Dubai.</p>
   <form class="waitlist-form" id="waitlistForm" onsubmit="return submitWaitlist(event)">
     <input type="email" class="waitlist-input" id="waitlistEmail" placeholder="your@firm.com" required>
     <select class="waitlist-input" id="waitlistRole" style="max-width:170px;">
@@ -767,6 +948,20 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
 </footer>
 
 <script>
+// Mobile nav overlay (vanilla JS, no libraries)
+(function () {
+  var hamburger = document.getElementById('hamburgerBtn');
+  var overlay = document.getElementById('mobileNav');
+  var closeBtn = document.getElementById('mobileNavClose');
+  function openNav() { overlay.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; }
+  function closeNav() { overlay.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+  if (hamburger) hamburger.addEventListener('click', openNav);
+  if (closeBtn) closeBtn.addEventListener('click', closeNav);
+  if (overlay) overlay.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeNav); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
+})();
+
+// Smooth scroll for in-page anchors
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
@@ -865,7 +1060,7 @@ async function loadPerformanceData() {
     let tableHTML = `<div style="overflow-y:auto; max-height:260px;"><table style="width:100%; border-collapse:collapse;"><thead><tr style="background:rgba(255,255,255,0.05);"><th style="text-align:left; padding:7px 10px; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:0.8px; text-transform:uppercase;">STRATEGY</th><th style="text-align:right; padding:7px 10px; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:0.8px;">${monthLabel}</th><th style="text-align:right; padding:7px 10px; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:0.8px;">YTD ${latestYear}</th></tr></thead><tbody>`;
     rows.slice(0,12).forEach((row, i) => {
       const color = classColors[row.asset_class] || '#6B7280';
-      const fmt = v => v === null ? '—' : `${v>0?'+':''}${v.toFixed(2)}%`;
+      const fmt = v => v === null ? 'n/a' : `${v>0?'+':''}${v.toFixed(2)}%`;
       const rc = v => v === null ? 'rgba(255,255,255,0.25)' : v > 0 ? '#0A7C42' : '#C0222A';
       tableHTML += `<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:${i%2===0?'transparent':'rgba(255,255,255,0.02)'}"><td style="padding:8px 10px;"><div style="font-size:12px; color:rgba(255,255,255,0.85); margin-bottom:1px; font-weight:500;">${row.strategy}</div><div style="font-size:10px; color:${color}; font-weight:600;">${classLabels[row.asset_class]} · ${row.fund_count} funds</div></td><td style="padding:8px 10px; text-align:right; font-size:12px; font-weight:700; color:${rc(row.last_month)}; font-family:'Courier New',monospace;">${fmt(row.last_month)}</td><td style="padding:8px 10px; text-align:right; font-size:12px; font-weight:700; color:${rc(row.ytd)}; font-family:'Courier New',monospace;">${fmt(row.ytd)}</td></tr>`;
     });
