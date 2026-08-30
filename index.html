@@ -345,12 +345,40 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
 .pricing-card.emerging .pricing-cta { background: var(--gold); color: var(--navy); }
 .pricing-card.free .pricing-cta { background: var(--teal); color: var(--white); }
 
+/* ── ACCOUNT TYPE PILLS (hero) ── */
+/* The hero sits on navy, so these use the light-on-dark values that keep them
+   legible there. Gold hover, as specified. */
+.account-pills {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin: -44px 0 72px;
+}
+.account-pill {
+  padding: 6px 16px; border-radius: 20px;
+  font-size: 13px; font-family: 'Inter', sans-serif;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.72);
+  text-decoration: none; white-space: nowrap; transition: all 0.2s;
+}
+.account-pill:hover { border-color: var(--gold); color: var(--white); }
+
+/* ── APPLY LINKS (waitlist) ── */
+.apply-links { font-size: 12.5px; color: rgba(255,255,255,0.25); margin-top: 20px; line-height: 2; }
+.apply-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+.apply-links a:hover { color: var(--gold); }
+
+/* ── APPLY LINKS (footer) ── */
+.footer-apply { flex-basis: 100%; font-size: 12.5px; color: var(--mutedLt); }
+.footer-apply a { color: var(--navy); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+.footer-apply a:hover { color: var(--gold2); }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .hero-badge { animation: fadeUp 0.5s ease forwards; }
 .hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
 .hero-sub { animation: fadeUp 0.5s 0.2s ease both; }
 .asset-strip { animation: fadeUp 0.5s 0.25s ease both; }
 .hero-actions { animation: fadeUp 0.5s 0.3s ease both; }
+.account-pills { animation: fadeUp 0.5s 0.35s ease both; }
 .hero-stats { animation: fadeUp 0.5s 0.4s ease both; }
 
 /* ── MOBILE + TABLET NAV (below desktop) ── */
@@ -384,6 +412,11 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
 
   .hero-actions { flex-direction: column; width: 100%; gap: 10px; margin-bottom: 48px; }
   .hero-actions a { width: 100%; text-align: center; }
+
+  /* account pills wrap to two rows on mobile */
+  .account-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: -28px 0 48px; }
+  .account-pill { text-align: center; white-space: normal; }
+
   .btn-hero-primary, .btn-hero-secondary, .btn-primary, .btn-ghost {
     min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
   }
@@ -454,8 +487,8 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
     <li><a href="#allocators">For Allocators</a></li>
   </ul>
   <div class="nav-cta">
-    <a href="https://app.altveno.com" class="btn-ghost">Sign in</a>
-    <a href="#waitlist" class="btn-primary">Request access</a>
+    <a href="https://app.altveno.com" class="btn-ghost">Sign In</a>
+    <a href="https://app.altveno.com/apply" class="btn-primary">Apply for Access</a>
   </div>
   <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -469,8 +502,8 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
   <a href="#products">Products</a>
   <a href="#managers">For Managers</a>
   <a href="#allocators">For Allocators</a>
-  <a href="https://app.altveno.com">Sign in</a>
-  <a href="#waitlist" class="mobile-nav-cta">Request access</a>
+  <a href="https://app.altveno.com">Sign In</a>
+  <a href="https://app.altveno.com/apply" class="mobile-nav-cta">Apply for Access</a>
 </div>
 
 <!-- HERO -->
@@ -494,6 +527,13 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
   <div class="hero-actions">
     <a href="#waitlist" class="btn-hero-primary">Request early access</a>
     <a href="#platform" class="btn-hero-secondary">See the platform</a>
+  </div>
+
+  <div class="account-pills">
+    <a href="https://app.altveno.com/apply/manager" class="account-pill">Manager Access</a>
+    <a href="https://app.altveno.com/apply/allocator" class="account-pill">Allocator Access (Free)</a>
+    <a href="https://app.altveno.com/apply/provider" class="account-pill">Service Provider</a>
+    <a href="https://app.altveno.com/apply/candidate" class="account-pill">Talent Candidate (Free)</a>
   </div>
 
   <div class="hero-stats">
@@ -703,7 +743,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
           <li><div class="check">✓</div>Find service providers across legal, admin and technology</li>
           <li><div class="check">✓</div>Post jobs and hire talent from the alternatives industry</li>
         </ul>
-        <a href="#waitlist" class="audience-cta">Get started →</a>
+        <a href="https://app.altveno.com/apply/manager" class="audience-cta">Apply as a Manager →</a>
       </div>
       <div class="audience-card allocators" id="allocators">
         <div class="audience-tag">Allocators</div>
@@ -717,7 +757,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
           <li><div class="check">✓</div>Deal flow pipeline management</li>
           <li><div class="check">✓</div>Always free for qualified institutional allocators</li>
         </ul>
-        <a href="#waitlist" class="audience-cta">Get free access →</a>
+        <a href="https://app.altveno.com/apply/allocator" class="audience-cta">Apply for Free Allocator Access →</a>
       </div>
     </div>
   </div>
@@ -836,9 +876,15 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
       <option value="allocator">Allocator</option>
       <option value="service_provider">Service Provider</option>
     </select>
-    <button type="submit" class="btn-hero-primary" style="white-space:nowrap;" id="waitlistSubmit">Request access</button>
+    <button type="submit" class="btn-hero-primary" style="white-space:nowrap;" id="waitlistSubmit">Submit Application</button>
   </form>
   <p id="waitlistStatus" style="font-size:13px; margin-top:14px; min-height:18px; text-align:center;"></p>
+  <p class="apply-links">
+    <a href="https://app.altveno.com/apply/manager">Apply as a Manager</a> ·
+    <a href="https://app.altveno.com/apply/allocator">Apply as an Allocator</a> ·
+    <a href="https://app.altveno.com/apply/provider">Apply as a Service Provider</a> ·
+    <a href="https://app.altveno.com/apply/candidate">Apply as a Candidate</a>
+  </p>
   <p style="font-size:11px; color:rgba(255,255,255,0.2); margin-top:8px; letter-spacing:0.3px;">No commitment required. Allocators are always free.</p>
 </div>
 
@@ -861,6 +907,13 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
     <a href="#">Terms</a>
   </div>
   <div class="footer-copy">© 2026 Altveno Ltd. All rights reserved.</div>
+  <div class="footer-apply">
+    Apply for access:
+    <a href="https://app.altveno.com/apply/manager">Manager</a> ·
+    <a href="https://app.altveno.com/apply/allocator">Allocator</a> ·
+    <a href="https://app.altveno.com/apply/provider">Service Provider</a> ·
+    <a href="https://app.altveno.com/apply/candidate">Candidate</a>
+  </div>
 </footer>
 
 <script>
@@ -933,7 +986,7 @@ async function submitWaitlist(e) {
     status.style.color = '#C0222A';
     status.textContent = 'Network error. Please try again or email hello@altveno.com';
   } finally {
-    btn.disabled = false; btn.textContent = 'Request access';
+    btn.disabled = false; btn.textContent = 'Submit Application';
   }
   return false;
 }
