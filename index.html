@@ -188,6 +188,25 @@ nav.scrolled {
 }
 .data-panel-sub { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 0.3px; }
 .data-panel .chart-box { position: relative; height: 190px; width: 100%; }
+.chart-controls {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; margin-bottom: 12px;
+}
+.period-toggle { display: flex; gap: 4px; flex-shrink: 0; }
+/* This toggle sits on the navy data panel, so the light-background treatment
+   is inverted: a navy active state would disappear into the panel behind it. */
+.period-toggle button {
+  padding: 4px 12px; border-radius: 3px;
+  font-size: 11px; font-family: system-ui, sans-serif;
+  background: transparent; color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.2); cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.period-toggle button:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
+.period-toggle button.active {
+  background: var(--gold); color: var(--navy);
+  border-color: var(--gold); font-weight: 700;
+}
 .data-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0 14px; }
 .data-foot {
   font-size: 10px; color: rgba(255,255,255,0.28);
@@ -564,7 +583,14 @@ footer { background: var(--navy); padding: 56px 48px 0; }
         <div class="data-panel-sub" id="tableSubtitle">Loading...</div>
       </div>
 
-      <div id="legend"></div>
+      <div class="chart-controls">
+        <div id="legend"></div>
+        <div class="period-toggle" id="periodToggle">
+          <button type="button" data-years="3">3Y</button>
+          <button type="button" data-years="5">5Y</button>
+          <button type="button" data-years="10" class="active">10Y</button>
+        </div>
+      </div>
       <div class="chart-box"><canvas id="perfChart"></canvas></div>
 
       <div class="data-divider"></div>
@@ -574,11 +600,15 @@ footer { background: var(--navy); padding: 56px 48px 0; }
         </div>
       </div>
 
-      <div class="data-foot">All returns anonymous and aggregated &middot; Updated monthly</div>
+      <div class="data-foot">
+        Cumulative returns indexed to 100 at <span id="chartBaseMonth">the start of the platform record</span>.
+        Anonymous and aggregated platform data &middot; Updated monthly
+      </div>
       <!-- Revealed only once benchmark lines actually render. -->
       <div class="data-foot" id="benchmarkNote" style="display:none; margin-top:6px;">
-        Benchmark indices shown for reference only. S&amp;P 500 and US corporate bond
-        total return index (FRED). Past performance is not indicative of future results.
+        S&amp;P 500 and US corporate bond total return index shown for reference (FRED).
+        Benchmarks extend further back than the platform record. Past performance is
+        not indicative of future results.
       </div>
     </div>
 
@@ -993,24 +1023,36 @@ async function loadPerformanceData() {
     });
     tableHTML += `</tbody></table>`;
     document.getElementById('perfTable').innerHTML = tableHTML;
-    const allMonths = [...new Set(allPerf.map(p => `${p.year}-${String(p.month).padStart(2,'0')}`))]
-      .sort().filter(ym => parseInt(ym.split('-')[0]) >= 2023);
-    const chartLabels = allMonths.map(ym => { const [year, month] = ym.split('-').map(Number); return `${monthNames[month-1]} ${year}`; });
-    const datasets = [];
-    const legend = document.getElementById('legend');
+    // ── Series assembly ───────────────────────────────────────────────────
+    // Everything is stored as a raw month -> level map over the full ten-year
+    // window. The period buttons slice and rebase this in the browser, so
+    // switching 3Y/5Y/10Y costs no further requests.
+    const tenYearsAgo = new Date();
+    tenYearsAgo.setFullYear(tenYearsAgo.getFullYear() - 10);
+    const windowStart = tenYearsAgo.toISOString().slice(0, 7);
+
+    const platformMonths = [...new Set(allPerf.map(p => `${p.year}-${String(p.month).padStart(2,'0')}`))].sort();
+
+    // Cumulative index per asset class, compounding from the first month that
+    // class reported. Rebasing happens later, per selected window.
+    const series = [];
     for (const [ac, fundIds] of Object.entries(byAssetClass)) {
-      const runningIndex = { val: 100 };
-      const data = allMonths.map(ym => {
+      const levels = {};
+      let running = 100;
+      let started = false;
+      platformMonths.forEach(ym => {
         const [year, month] = ym.split('-').map(Number);
         const returns = fundIds.map(id => perfByFund[id]?.find(p => p.year === year && p.month === month)?.return_pct).filter(v => v !== undefined);
-        if (returns.length > 0) { const avg = returns.reduce((a,b)=>a+b,0)/returns.length; runningIndex.val = runningIndex.val*(1+avg/100); }
-        return parseFloat(runningIndex.val.toFixed(2));
+        if (returns.length > 0) {
+          const avg = returns.reduce((a,b)=>a+b,0)/returns.length;
+          if (started) running = running * (1 + avg / 100);
+          started = true;
+          levels[ym] = running;
+        } else if (started) {
+          levels[ym] = running;
+        }
       });
-      datasets.push({ label: classLabels[ac], data, borderColor: classColors[ac], backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.3 });
-      const pill = document.createElement('div');
-      pill.style.cssText = `display:flex; align-items:center; gap:5px; padding:2px 7px; border-radius:2px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; border:1px solid ${classColors[ac]}50; background:${classColors[ac]}15; color:${classColors[ac]};`;
-      pill.innerHTML = `<div style="width:4px;height:4px;border-radius:50%;background:${classColors[ac]};"></div>${classLabels[ac]}`;
-      legend.appendChild(pill);
+      series.push({ label: classLabels[ac], levels, colour: classColors[ac], dash: null });
     }
 
     // ── Public market benchmarks ──────────────────────────────────────────
@@ -1018,33 +1060,17 @@ async function loadPerformanceData() {
     // headers, so the browser cannot read fredgraph.csv directly. If the
     // benchmarks are unavailable the alternatives chart renders exactly as
     // before, with no benchmark lines drawn.
+    let benchmarkMonths = [];
     try {
-      const bm = await fetchBenchmarks(allMonths[0]);
-      const addBenchmark = (label, series, colour, dash) => {
-        // Rebased to 100 at the first month the series actually covers, so a
-        // series that starts mid-chart leaves a gap rather than a false level.
-        const firstMonth = allMonths.find(ym => series[ym] !== undefined);
-        if (!firstMonth) return;
-        const base = series[firstMonth];
-        let last = null;
-        const data = allMonths.map(ym => {
-          if (series[ym] !== undefined) last = (series[ym] / base) * 100;
-          else if (last === null) return null;   // before the series begins
-          return last === null ? null : parseFloat(last.toFixed(2));
-        });
-        datasets.push({
-          label, data, borderColor: colour, backgroundColor: 'transparent',
-          borderDash: dash, borderWidth: 1.5, pointRadius: 0, tension: 0.3, spanGaps: false,
-        });
-        const pill = document.createElement('div');
-        pill.style.cssText = `display:flex; align-items:center; gap:5px; padding:2px 7px; border-radius:2px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; border:1px solid ${colour}50; background:${colour}15; color:${colour};`;
-        pill.innerHTML = `<div style="width:10px;height:0;border-top:1.5px dashed ${colour};"></div>${label}`;
-        legend.appendChild(pill);
+      const bm = await fetchBenchmarks(`${windowStart}-01`);
+      const addBenchmark = (label, raw, colour, dash) => {
+        if (!raw || Object.keys(raw).length === 0) return;
+        series.push({ label, levels: raw, colour, dash });
+        benchmarkMonths = benchmarkMonths.concat(Object.keys(raw));
       };
-      addBenchmark('S&P 500', bm.sp500 || {}, '#94A3B8', [4, 4]);
-      addBenchmark('US Bonds', bm.bonds || {}, '#CBD5E1', [2, 4]);
-
-      if (datasets.some(d => d.borderDash)) {
+      addBenchmark('S&P 500', bm.sp500, '#94A3B8', [4, 4]);
+      addBenchmark('US Bonds', bm.bonds, '#CBD5E1', [2, 4]);
+      if (series.some(s => s.dash)) {
         const note = document.getElementById('benchmarkNote');
         if (note) note.style.display = 'block';
       }
@@ -1052,10 +1078,74 @@ async function loadPerformanceData() {
       console.warn('Benchmarks unavailable, chart renders without them:', err);
     }
 
+    // Full month axis: platform history plus whatever benchmark history exists.
+    const allMonthsFull = [...new Set([...platformMonths, ...benchmarkMonths])]
+      .filter(ym => ym >= windowStart).sort();
+
+    // Legend, built once from the assembled series.
+    const legend = document.getElementById('legend');
+    legend.innerHTML = '';
+    series.forEach(s => {
+      const pill = document.createElement('div');
+      pill.style.cssText = `display:flex; align-items:center; gap:5px; padding:2px 7px; border-radius:2px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; border:1px solid ${s.colour}50; background:${s.colour}15; color:${s.colour};`;
+      pill.innerHTML = s.dash
+        ? `<div style="width:10px;height:0;border-top:1.5px dashed ${s.colour};"></div>${s.label}`
+        : `<div style="width:4px;height:4px;border-radius:50%;background:${s.colour};"></div>${s.label}`;
+      legend.appendChild(pill);
+    });
+
+    // ── Render for a given window ─────────────────────────────────────────
     const ctx = document.getElementById('perfChart').getContext('2d');
-    new Chart(ctx, {
+    let chart = null;
+
+    function render(years) {
+      const cutoff = new Date();
+      cutoff.setFullYear(cutoff.getFullYear() - years);
+      const from = cutoff.toISOString().slice(0, 7);
+      const months = allMonthsFull.filter(ym => ym >= from);
+      if (months.length === 0) return;
+
+      // Common base: the first month in the window where platform data exists,
+      // so the alternatives and the benchmarks cross 100 on the same date.
+      // Rebasing everything at the window start instead would put the
+      // alternatives at 100 in 2016, a date the platform has no data for.
+      const baseMonth = months.find(ym => platformMonths.includes(ym)) || months[0];
+
+      const datasets = series.map(s => {
+        // A series without data at the shared base is rebased at its own first
+        // month in the window rather than being dropped.
+        const base = s.levels[baseMonth] !== undefined
+          ? s.levels[baseMonth]
+          : s.levels[months.find(ym => s.levels[ym] !== undefined)];
+        return {
+          label: s.label,
+          data: months.map(ym => s.levels[ym] === undefined || !base
+            ? null
+            : parseFloat(((s.levels[ym] / base) * 100).toFixed(2))),
+          borderColor: s.colour,
+          backgroundColor: 'transparent',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          tension: 0.3,
+          spanGaps: false,
+          ...(s.dash ? { borderDash: s.dash } : {}),
+        };
+      });
+
+      const labels = months.map(ym => { const [y, m] = ym.split('-').map(Number); return `${monthNames[m-1]} ${y}`; });
+      const [by, bmn] = baseMonth.split('-').map(Number);
+      const baseEl = document.getElementById('chartBaseMonth');
+      if (baseEl) baseEl.textContent = `${monthNames[bmn-1]} ${by}`;
+
+      if (chart) {
+        chart.data.labels = labels;
+        chart.data.datasets = datasets;
+        chart.update();
+        return;
+      }
+      chart = new Chart(ctx, {
       type: 'line',
-      data: { labels: chartLabels, datasets },
+      data: { labels, datasets },
       options: {
         responsive: true, maintainAspectRatio: false, animation: false,
         plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0A1628', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1, titleColor: 'rgba(255,255,255,0.4)', bodyColor: 'rgba(255,255,255,0.85)', padding: 10 } },
@@ -1064,7 +1154,22 @@ async function loadPerformanceData() {
           y: { ticks: { color: 'rgba(255,255,255,0.3)', font: { size: 9, family: 'Courier New' } }, grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false } }
         }
       }
-    });
+      });
+    }
+
+    // Period buttons slice the stored ten-year dataset, no further requests.
+    const toggle = document.getElementById('periodToggle');
+    if (toggle) {
+      toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render(parseInt(btn.dataset.years, 10));
+        });
+      });
+    }
+
+    render(10);
   } catch(err) { console.error('Failed to load performance data:', err); }
 }
 
