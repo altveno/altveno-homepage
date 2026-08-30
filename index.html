@@ -4,27 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Altveno: The Alternative Investment Platform for Managers and Allocators</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Altveno connects alternative investment managers with institutional allocators. Built for professionals who require precision, privacy and performance.">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --navy:    #0A1628;
-  --navy2:   #111E35;
-  --gold:    #C9A84C;
-  --gold2:   #A8873A;
-  --white:   #FFFFFF;
-  --surface: #F5F6F8;
-  --border:  #D0D5DD;
-  --borderLt:#E8EBF0;
-  --text:    #0A0A0A;
-  --textSec: #3D4552;
-  --muted:   #6B7280;
-  --mutedLt: #9CA3AF;
-  --success: #0A7C42;
-  --danger:  #C0222A;
-  --teal:    #0D6E8A;
+  --navy:     #0A1628;
+  --navy2:    #111E35;
+  --gold:     #C9A84C;
+  --gold2:    #A8873A;
+  --teal:     #5dc9a8;   /* accent on navy */
+  --tealDeep: #0D6E8A;   /* legible teal on white */
+  --white:    #FFFFFF;
+  --surface:  #F5F6F8;
+  --surface2: #F8F9FB;
+  --border:   #D0D5DD;
+  --borderLt: #E8EBF0;
+  --text:     #0A0A0A;
+  --textSec:  #3D4552;
+  --muted:    #6B7280;
+  --mutedLt:  #9CA3AF;
+  --success:  #0A7C42;
+  --danger:   #C0222A;
+
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans:  system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:  'Courier New', Courier, monospace;
+
+  --nav-h: 60px;
 }
 
 html { scroll-behavior: smooth; }
@@ -32,446 +39,462 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--white);
   color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--sans);
   font-size: 15px;
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; height: auto; }
 
-/* ── NAV ── */
+/* Shared type ------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold2);
+}
+.eyebrow-light { color: var(--gold); }
+
+.display {
+  font-family: var(--serif);
+  font-weight: 400; color: var(--navy);
+  line-height: 1.12; letter-spacing: -0.4px;
+}
+.display em { font-style: italic; }
+
+.lede {
+  font-size: 14px; color: var(--muted);
+  line-height: 1.75; max-width: 480px;
+}
+
+.rule { height: 1px; background: var(--borderLt); border: 0; }
+
+.mono { font-family: var(--mono); }
+
+/* ── NAV ─────────────────────────────────────────────────────────────────── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px; height: 60px;
-  background: rgba(10,22,40,0.97);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 48px; height: var(--nav-h);
+  background: var(--navy);
+  transition: background 0.2s ease;
+}
+nav.scrolled {
+  background: rgba(10, 22, 40, 0.88);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo-text { font-family: 'Playfair Display', Georgia, serif; font-size: 19px; color: var(--white); letter-spacing: -0.2px; }
+.logo-text { font-family: var(--serif); font-size: 19px; color: var(--white); letter-spacing: -0.2px; }
 
-.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-.nav-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+.nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.6); text-decoration: none;
+  font-size: 12px; letter-spacing: 0.5px; transition: color 0.2s ease;
+}
 .nav-links a:hover { color: var(--white); }
 
 .nav-cta { display: flex; gap: 8px; align-items: center; }
 
 .btn-ghost {
-  padding: 7px 16px; border-radius: 3px;
-  border: 1px solid rgba(255,255,255,0.2); background: transparent;
-  color: var(--white); font-size: 12.5px; cursor: pointer;
-  font-family: 'Inter', sans-serif; text-decoration: none; transition: all 0.2s;
+  padding: 10px 22px; border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.28); background: transparent;
+  color: var(--white); font-size: 12px; letter-spacing: 0.4px;
+  cursor: pointer; font-family: var(--sans);
+  text-decoration: none; transition: border-color 0.2s ease;
 }
-.btn-ghost:hover { border-color: rgba(255,255,255,0.4); }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.6); }
 
 .btn-primary {
-  padding: 7px 18px; border-radius: 3px;
+  padding: 10px 22px; border-radius: 2px;
   border: none; background: var(--gold);
-  color: var(--navy); font-size: 12.5px; font-weight: 700;
-  cursor: pointer; font-family: 'Inter', sans-serif;
-  text-decoration: none; transition: all 0.2s; letter-spacing: 0.2px;
+  color: var(--navy); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.4px; cursor: pointer; font-family: var(--sans);
+  text-decoration: none; transition: background 0.2s ease;
 }
 .btn-primary:hover { background: #D4B55A; }
 
-/* ── HERO ── */
+/* ── HERO ────────────────────────────────────────────────────────────────── */
 .hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 120px 48px 80px;
-  background: var(--navy);
-  position: relative; overflow: hidden;
-  text-align: center;
+  padding: calc(var(--nav-h) + 72px) 48px 64px;
+  background: var(--white);
 }
-
-.hero::before {
-  content: '';
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 900px; height: 500px;
-  background: radial-gradient(ellipse at center top, rgba(201,168,76,0.12) 0%, transparent 65%);
-  pointer-events: none;
+.hero-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 55fr 45fr;
+  gap: 56px; align-items: start;
 }
-
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 5px 14px; border-radius: 2px;
-  border: 1px solid rgba(201,168,76,0.3);
-  background: rgba(201,168,76,0.08);
-  font-size: 11px; color: var(--gold);
-  margin-bottom: 32px; letter-spacing: 1px;
-  font-weight: 600; text-transform: uppercase;
-}
-
-.hero-badge-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--gold); animation: pulse 2s infinite;
-}
-
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
 .hero h1 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(44px, 6vw, 80px);
-  line-height: 1.06; color: var(--white);
-  max-width: 920px; margin-bottom: 10px; letter-spacing: -1.5px;
-  font-weight: 400;
+  font-family: var(--serif); font-weight: 400;
+  /* 52px at full width, easing down so the two lines hold their shape in the
+     55% column rather than wrapping mid-phrase. */
+  font-size: clamp(38px, 3.6vw, 52px);
+  line-height: 1.1; letter-spacing: -1px;
+  color: var(--navy); margin: 14px 0 20px;
+}
+.hero h1 em { font-style: italic; }
+
+/* Access types as text links with hairline dividers, not pills. */
+.access-row {
+  display: flex; flex-wrap: wrap; align-items: center;
+  margin: 28px 0 32px;
+}
+.access-row a {
+  font-size: 12px; color: var(--muted); text-decoration: none;
+  padding: 2px 0; transition: color 0.2s ease;
+}
+.access-row a:hover { color: var(--navy); }
+.access-sep {
+  width: 1px; height: 12px; background: var(--border);
+  margin: 0 14px; flex-shrink: 0;
 }
 
-.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-lg-gold {
+  padding: 13px 30px; border-radius: 2px; border: none;
+  background: var(--gold); color: var(--navy);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.4px;
+  font-family: var(--sans); text-decoration: none;
+  transition: background 0.2s ease;
+}
+.btn-lg-gold:hover { background: #D4B55A; }
+.btn-lg-navy {
+  padding: 13px 28px; border-radius: 2px;
+  background: transparent; color: var(--navy);
+  border: 1px solid var(--border);
+  font-size: 13px; letter-spacing: 0.3px;
+  font-family: var(--sans); text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+.btn-lg-navy:hover { border-color: var(--navy); }
 
-.hero-sub {
-  font-size: 17px; color: rgba(255,255,255,0.55);
-  max-width: 560px; line-height: 1.75; margin-bottom: 44px;
-  font-weight: 400;
+/* Data panel: dark terminal card on the light hero. Keeping it navy means the
+   live chart and table render with the same contrast they were built for. */
+.data-panel {
+  background: var(--navy); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px; padding: 22px 22px 18px;
+}
+.data-panel-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px; margin-bottom: 16px;
+}
+.data-panel-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+}
+.data-panel-sub { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 0.3px; }
+.data-panel .chart-box { position: relative; height: 190px; width: 100%; }
+.data-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0 14px; }
+.data-foot {
+  font-size: 10px; color: rgba(255,255,255,0.28);
+  letter-spacing: 0.3px; margin-top: 12px;
+}
+#legend { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+
+/* ── STATS STRIP ─────────────────────────────────────────────────────────── */
+.stats-strip {
+  border-top: 1px solid var(--borderLt);
+  border-bottom: 1px solid var(--borderLt);
+  padding: 18px 48px;
+}
+.stats-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap;
+}
+.stat-fact {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted);
+  padding: 2px 0;
+}
+.stat-sep { width: 1px; height: 12px; background: var(--border); margin: 0 28px; }
+
+/* ── SECTIONS ────────────────────────────────────────────────────────────── */
+.section { padding: 84px 48px; max-width: 1240px; margin: 0 auto; }
+.section-head { margin-bottom: 40px; }
+.section-title { font-family: var(--serif); font-weight: 400; font-size: 38px; line-height: 1.15; letter-spacing: -0.5px; color: var(--navy); margin-top: 12px; }
+
+/* ── PRODUCTS (editorial list) ───────────────────────────────────────────── */
+.product-list { border-top: 1px solid var(--borderLt); }
+.product-row {
+  display: grid; grid-template-columns: 48px 1fr auto;
+  gap: 20px; align-items: center;
+  padding: 22px 16px 22px 0;
+  border-bottom: 1px solid var(--borderLt);
+  border-left: 2px solid transparent;
+  text-decoration: none;
+  transition: background 0.2s ease, border-left-color 0.2s ease, padding-left 0.2s ease;
+}
+.product-row:hover {
+  background: var(--surface2);
+  border-left-color: var(--gold);
+  padding-left: 16px;
+}
+.product-num { font-size: 11px; color: var(--mutedLt); font-family: var(--mono); letter-spacing: 0.5px; }
+.product-name { font-family: var(--serif); font-size: 18px; color: var(--navy); margin-bottom: 3px; }
+.product-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.badge-live {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--success);
+  white-space: nowrap;
 }
 
-.asset-strip {
-  display: flex; gap: 6px; flex-wrap: wrap;
-  justify-content: center; margin-bottom: 48px;
+/* ── AUDIENCE (two columns, hairline divider) ────────────────────────────── */
+.audience-grid {
+  display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px;
+  align-items: start;
+}
+.audience-divider { background: var(--borderLt); align-self: stretch; }
+.audience-title { font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1.2; color: var(--navy); margin: 12px 0 20px; }
+.audience-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.audience-list li {
+  border-left: 1px solid var(--gold);
+  padding: 3px 0 3px 14px;
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+}
+.audience-cta {
+  display: inline-block; margin-top: 26px;
+  font-size: 13px; color: var(--navy); font-weight: 600;
+  text-decoration: none; border-bottom: 1px solid var(--navy);
+  padding-bottom: 2px; transition: color 0.2s ease, border-color 0.2s ease;
+}
+.audience-cta:hover { color: var(--gold2); border-color: var(--gold2); }
+
+/* ── AI SECTION ──────────────────────────────────────────────────────────── */
+.ai-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ai-panel {
+  background: var(--navy); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 3px; padding: 26px 26px 24px;
+}
+.ai-panel-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--white);
+  padding-bottom: 14px; margin-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.term-line {
+  font-family: var(--mono); font-size: 12px; line-height: 1.9;
+  color: rgba(255,255,255,0.62);
+}
+.term-line .caret { color: var(--gold); margin-right: 8px; }
+.term-cursor {
+  display: inline-block; width: 7px; height: 13px;
+  background: var(--gold); vertical-align: -2px; margin-left: 3px;
+  animation: blink 1.1s step-end infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.term-response {
+  margin-top: 18px; padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px; line-height: 1.75; color: rgba(255,255,255,0.42);
+}
+.term-response strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+.ai-note {
+  margin-top: 26px; font-size: 12px; font-style: italic;
+  color: var(--muted); line-height: 1.7; max-width: 660px;
 }
 
-.asset-pill {
-  padding: 5px 13px; border-radius: 2px;
-  font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
-  border: 1px solid; text-transform: uppercase;
+/* ── GLOBAL BAND ─────────────────────────────────────────────────────────── */
+.global-band {
+  border-top: 1px solid var(--borderLt);
+  border-bottom: 1px solid var(--borderLt);
+  padding: 22px 48px; text-align: center;
+}
+.global-band span {
+  font-size: 12px; color: var(--muted); letter-spacing: 1px;
 }
 
-.hero-actions {
-  display: flex; gap: 10px; align-items: center;
-  flex-wrap: wrap; justify-content: center; margin-bottom: 72px;
+/* ── APPLY ───────────────────────────────────────────────────────────────── */
+.apply-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.role-card {
+  border: 1px solid var(--border); border-radius: 3px;
+  padding: 18px 18px 16px; background: var(--white);
+  cursor: pointer; text-align: left;
+  font-family: var(--sans);
+  transition: border-color 0.2s ease, background 0.2s ease;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.role-card:hover { border-color: var(--mutedLt); }
+.role-card.selected { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+.role-card-title { font-family: var(--serif); font-size: 16px; color: var(--navy); }
+.role-card-note {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--muted);
+}
+.role-card-link {
+  margin-top: 6px; font-size: 12px; color: var(--tealDeep);
+  text-decoration: none; font-weight: 600;
+}
+.role-card-link:hover { color: var(--gold2); }
+
+.apply-form { border: 1px solid var(--border); border-radius: 3px; padding: 28px 28px 26px; }
+.form-label {
+  display: block; font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+.form-input {
+  width: 100%; padding: 11px 13px; border-radius: 2px;
+  border: 1px solid var(--border); background: var(--white);
+  color: var(--text); font-size: 13px; font-family: var(--sans);
+  outline: none; margin-bottom: 16px;
+  transition: border-color 0.2s ease;
+}
+.form-input:focus { border-color: var(--navy); }
+.form-input::placeholder { color: var(--mutedLt); }
+.form-submit {
+  width: 100%; padding: 13px 24px; border-radius: 2px; border: none;
+  background: var(--navy); color: var(--white);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.4px;
+  font-family: var(--sans); cursor: pointer;
+  transition: background 0.2s ease;
+}
+.form-submit:hover { background: var(--navy2); }
+.form-note { font-size: 11.5px; color: var(--mutedLt); margin-top: 12px; line-height: 1.6; }
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────── */
+footer { background: var(--navy); padding: 56px 48px 0; }
+.footer-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+  padding-bottom: 40px;
+}
+.footer-tag { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 14px; max-width: 260px; }
+.footer-col-title {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block; font-size: 12px; color: rgba(255,255,255,0.5);
+  text-decoration: none; padding: 4px 0; transition: color 0.2s ease;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  max-width: 1240px; margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 0 28px;
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-size: 11.5px; color: rgba(255,255,255,0.32);
 }
 
-.btn-hero-primary {
-  padding: 13px 30px; border-radius: 3px;
-  font-size: 14px; font-weight: 700;
-  font-family: 'Inter', sans-serif; text-decoration: none; cursor: pointer;
-  background: var(--gold); color: var(--navy); border: none; transition: all 0.2s;
-  letter-spacing: 0.3px;
-}
-.btn-hero-primary:hover { background: #D4B55A; transform: translateY(-1px); }
-
-.btn-hero-secondary {
-  padding: 13px 28px; border-radius: 3px;
-  font-size: 14px; font-family: 'Inter', sans-serif; text-decoration: none; cursor: pointer;
-  background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.2); transition: all 0.2s;
-}
-.btn-hero-secondary:hover { border-color: rgba(255,255,255,0.4); }
-
-.hero-stats { display: flex; gap: 48px; align-items: center; flex-wrap: wrap; justify-content: center; }
-.hero-stat { text-align: center; }
-.hero-stat-number { font-family: 'Playfair Display', Georgia, serif; font-size: 30px; color: var(--white); line-height: 1; margin-bottom: 4px; }
-.hero-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 1.2px; font-weight: 600; text-transform: uppercase; }
-.hero-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.1); }
-
-/* ── PREVIEW ── */
-.preview-section { background: var(--navy); padding: 0 48px 80px; display: flex; justify-content: center; }
-
-.preview-window {
-  width: 100%; max-width: 1000px; border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.12); overflow: hidden;
-  background: #111E35; box-shadow: 0 40px 120px rgba(0,0,0,0.5);
-}
-
-.preview-bar {
-  background: #0A1628; padding: 10px 16px;
-  display: flex; align-items: center; gap: 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-.preview-dot { width: 10px; height: 10px; border-radius: 50%; }
-.preview-inner { display: grid; grid-template-columns: 180px 1fr; height: 400px; }
-
-.preview-sidebar {
-  background: #0A1628; border-right: 1px solid rgba(255,255,255,0.07); padding: 16px 12px;
-}
-
-.preview-nav-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 7px 10px; border-radius: 2px; font-size: 11px; color: rgba(255,255,255,0.4);
-  margin-bottom: 1px;
-}
-.preview-nav-item.active { background: rgba(201,168,76,0.12); color: var(--gold); }
-.preview-nav-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
-
-.preview-main { padding: 20px; }
-.preview-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--white); margin-bottom: 3px; }
-.preview-sub { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
-
-.preview-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
-.preview-card { background: #0A1628; border: 1px solid rgba(255,255,255,0.07); border-radius: 3px; padding: 12px; }
-.preview-card-label { font-size: 9px; color: rgba(255,255,255,0.35); margin-bottom: 5px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
-.preview-card-value { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); }
-.preview-card-change { font-size: 10px; color: var(--gold); margin-top: 2px; }
-
-.preview-chart-bars { display: flex; align-items: flex-end; gap: 4px; height: 70px; }
-.preview-bar-item { flex: 1; border-radius: 2px 2px 0 0; background: rgba(201,168,76,0.2); }
-
-/* ── DIVIDER ── */
-.divider { height: 1px; background: var(--border); margin: 0 48px; }
-.divider-navy { height: 1px; background: rgba(255,255,255,0.08); margin: 0 48px; }
-
-/* ── SECTIONS ── */
-.section { padding: 88px 48px; max-width: 1200px; margin: 0 auto; }
-.section-label { font-size: 10px; letter-spacing: 2px; color: var(--gold2); text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
-.section-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(30px, 3.5vw, 48px); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 14px; font-weight: 400; color: var(--text); }
-.section-body { font-size: 15px; color: var(--muted); max-width: 520px; line-height: 1.75; }
-
-/* ── LIVE DATA ── */
-.live-data-wrap { background: var(--navy); padding: 80px 48px; }
-.live-data-inner { max-width: 1100px; margin: 0 auto; }
-.live-badge { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px; border-radius: 2px; border: 1px solid rgba(201,168,76,0.3); background: rgba(201,168,76,0.08); font-size: 10px; color: var(--gold); margin-bottom: 16px; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; }
-
-/* ── PRODUCT GRID ── */
-.products-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-.product-cell { background: var(--white); padding: 28px 24px; transition: background 0.15s; }
-.product-cell:hover { background: var(--surface); }
-.product-icon { width: 36px; height: 36px; border-radius: 3px; background: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.product-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-.product-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
-.product-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; margin-bottom: 10px; }
-.product-tag.live { background: #F0FDF4; color: var(--success); border: 1px solid #BBF7D0; }
-.product-tag.soon { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
-
-/* ── AUDIENCE CARDS ── */
-.audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.audience-card { border-radius: 4px; border: 1px solid var(--border); padding: 36px 32px; background: var(--white); position: relative; overflow: hidden; }
-.audience-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-.audience-card.managers::before { background: var(--navy); }
-.audience-card.allocators::before { background: var(--teal); }
-
-.audience-tag { display: inline-block; padding: 3px 9px; border-radius: 2px; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 18px; }
-.audience-card.managers .audience-tag { background: var(--navy); color: var(--white); }
-.audience-card.allocators .audience-tag { background: var(--teal); color: var(--white); }
-
-.audience-title { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; color: var(--text); margin-bottom: 8px; font-weight: 400; }
-.audience-desc { font-size: 13.5px; color: var(--muted); margin-bottom: 24px; line-height: 1.7; }
-
-.audience-features { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-.audience-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: var(--textSec); }
-.check { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; margin-top: 1px; font-weight: 700; }
-.managers .check { background: var(--navy); color: var(--white); }
-.allocators .check { background: var(--teal); color: var(--white); }
-
-.audience-cta { margin-top: 28px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: gap 0.2s; letter-spacing: 0.2px; }
-.managers .audience-cta { color: var(--navy); }
-.allocators .audience-cta { color: var(--teal); }
-.audience-cta:hover { gap: 10px; }
-
-/* ── FEATURES ── */
-.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-.feature-cell { background: var(--white); padding: 28px 24px; transition: background 0.15s; }
-.feature-cell:hover { background: var(--surface); }
-.feature-icon { width: 36px; height: 36px; border-radius: 3px; background: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.feature-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-.feature-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
-
-/* ── AI SECTION ── */
-.ai-pill { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px; border-radius: 2px; background: rgba(13,110,138,0.08); border: 1px solid rgba(13,110,138,0.2); font-size: 10px; color: var(--teal); letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
-
-/* ── GLOBE ── */
-.globe-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 40px; }
-.globe-item { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 20px 16px; text-align: center; }
-.globe-flag { font-size: 24px; margin-bottom: 8px; }
-.globe-city { font-size: 13px; color: var(--navy); font-weight: 600; margin-bottom: 2px; }
-.globe-desc { font-size: 11px; color: var(--muted); }
-
-/* ── WAITLIST ── */
-.waitlist-section { text-align: center; padding: 88px 48px; background: var(--navy); position: relative; overflow: hidden; }
-.waitlist-section::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 700px; height: 300px; background: radial-gradient(ellipse at center bottom, rgba(201,168,76,0.1), transparent 65%); pointer-events: none; }
-.waitlist-form { display: flex; gap: 8px; max-width: 500px; margin: 28px auto 0; flex-wrap: wrap; justify-content: center; }
-.waitlist-input { flex: 1; min-width: 220px; padding: 11px 16px; border-radius: 3px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: var(--white); font-size: 13px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
-.waitlist-input:focus { border-color: rgba(201,168,76,0.5); }
-.waitlist-input::placeholder { color: rgba(255,255,255,0.25); }
-.waitlist-input option { background: var(--navy); color: var(--white); }
-
-/* ── FOOTER ── */
-footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; background: var(--white); }
-.footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
-.footer-links a { font-size: 12.5px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--text); }
-.footer-copy { font-size: 12px; color: var(--mutedLt); }
-
-/* ── HAMBURGER + MOBILE NAV OVERLAY ── */
+/* ── HAMBURGER + MOBILE NAV ──────────────────────────────────────────────── */
 .hamburger {
   display: none;
-  flex-direction: column; justify-content: center; gap: 5px;
-  width: 44px; height: 44px; padding: 10px;
+  flex-direction: column; justify-content: center; gap: 4px;
+  width: 44px; height: 44px;
   background: transparent; border: none; cursor: pointer;
+  align-items: flex-end;
 }
-.hamburger span { display: block; height: 2px; width: 100%; background: var(--white); border-radius: 2px; }
+.hamburger span { display: block; height: 2px; width: 18px; background: var(--white); }
 
 .mobile-nav {
   display: none;
   position: fixed; inset: 0; z-index: 200;
   background: var(--navy);
-  flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  padding: 24px;
 }
 .mobile-nav.open { display: flex; }
 .mobile-nav a {
-  color: var(--white); font-size: 20px; font-weight: 500;
+  color: var(--white); font-size: 20px;
   text-decoration: none; text-align: center;
-  min-height: 48px; display: flex; align-items: center; justify-content: center;
+  min-height: 56px; display: flex; align-items: center; justify-content: center;
   width: 100%;
 }
-.mobile-nav a.mobile-nav-cta { color: var(--gold); }
+.mobile-nav a.mobile-nav-cta {
+  background: var(--gold); color: var(--navy); font-weight: 700;
+  border-radius: 2px; margin-top: 20px; font-size: 15px;
+  letter-spacing: 0.5px; min-height: 52px; max-width: 320px;
+}
 .mobile-nav-close {
-  position: absolute; top: 18px; right: 18px;
+  position: absolute; top: 14px; right: 14px;
   width: 44px; height: 44px; background: transparent; border: none;
-  color: var(--white); font-size: 30px; line-height: 1; cursor: pointer;
+  color: var(--white); font-size: 28px; line-height: 1; cursor: pointer;
 }
 
-/* ── PRICING ── */
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
-.pricing-card { border: 1px solid var(--border); border-radius: 4px; padding: 32px 28px; background: var(--white); position: relative; overflow: hidden; display: flex; flex-direction: column; }
-.pricing-card.featured { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
-.pricing-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-.pricing-card.standard::before { background: var(--navy); }
-.pricing-card.emerging::before { background: var(--gold); }
-.pricing-card.free::before { background: var(--teal); }
-.pricing-plan { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-.pricing-price { font-family: 'Playfair Display', Georgia, serif; font-size: 34px; color: var(--navy); line-height: 1.1; margin-bottom: 4px; font-weight: 400; }
-.pricing-price span { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--muted); }
-.pricing-note { font-size: 12px; color: var(--muted); margin-bottom: 22px; line-height: 1.6; min-height: 34px; }
-.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
-.pricing-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: var(--textSec); }
-.pricing-features .check { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; margin-top: 1px; font-weight: 700; background: var(--navy); color: var(--white); }
-.pricing-card.free .check { background: var(--teal); }
-.pricing-card.emerging .check { background: var(--gold2); color: var(--white); }
-.pricing-cta { margin-top: auto; text-align: center; padding: 11px 18px; border-radius: 3px; font-size: 13px; font-weight: 700; text-decoration: none; font-family: 'Inter', sans-serif; }
-.pricing-card.standard .pricing-cta { background: var(--navy); color: var(--white); }
-.pricing-card.emerging .pricing-cta { background: var(--gold); color: var(--navy); }
-.pricing-card.free .pricing-cta { background: var(--teal); color: var(--white); }
-
-/* ── ACCOUNT TYPE PILLS (hero) ── */
-/* The hero sits on navy, so these use the light-on-dark values that keep them
-   legible there. Gold hover, as specified. */
-.account-pills {
-  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
-  margin: -44px 0 72px;
-}
-.account-pill {
-  padding: 6px 16px; border-radius: 20px;
-  font-size: 13px; font-family: 'Inter', sans-serif;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.72);
-  text-decoration: none; white-space: nowrap; transition: all 0.2s;
-}
-.account-pill:hover { border-color: var(--gold); color: var(--white); }
-
-/* ── APPLY LINKS (waitlist) ── */
-.apply-links { font-size: 12.5px; color: rgba(255,255,255,0.25); margin-top: 20px; line-height: 2; }
-.apply-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-.apply-links a:hover { color: var(--gold); }
-
-/* ── APPLY LINKS (footer) ── */
-.footer-apply { flex-basis: 100%; font-size: 12.5px; color: var(--mutedLt); }
-.footer-apply a { color: var(--navy); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-.footer-apply a:hover { color: var(--gold2); }
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.hero-badge { animation: fadeUp 0.5s ease forwards; }
-.hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
-.hero-sub { animation: fadeUp 0.5s 0.2s ease both; }
-.asset-strip { animation: fadeUp 0.5s 0.25s ease both; }
-.hero-actions { animation: fadeUp 0.5s 0.3s ease both; }
-.account-pills { animation: fadeUp 0.5s 0.35s ease both; }
-.hero-stats { animation: fadeUp 0.5s 0.4s ease both; }
-
-/* ── MOBILE + TABLET NAV (below desktop) ── */
+/* ── TABLET ──────────────────────────────────────────────────────────────── */
 @media (max-width: 1023px) {
   nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .nav-cta { display: none; }
+  .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
-}
 
-/* ── TABLET: 768px to 1023px ── */
-@media (min-width: 768px) and (max-width: 1023px) {
+  .hero { padding: calc(var(--nav-h) + 48px) 32px 48px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero h1 { font-size: 42px; }
+  .lede { max-width: none; }
+
   .section { padding: 64px 32px; }
-  .products-grid, .features-grid { grid-template-columns: repeat(2, 1fr); }
-  .globe-grid { grid-template-columns: repeat(3, 1fr); }
+  .audience-grid { grid-template-columns: 1fr; gap: 40px; }
+  .audience-divider { display: none; }
   .ai-duo { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
-  .preview-inner { grid-template-columns: 140px 1fr; }
+  .apply-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .stats-strip, .global-band { padding-left: 32px; padding-right: 32px; }
 }
 
-/* ── MOBILE: 767px and below ── */
+/* ── MOBILE ──────────────────────────────────────────────────────────────── */
 @media (max-width: 767px) {
+  :root { --nav-h: 56px; }
   nav { padding: 0 16px; }
-  .hero { padding: 96px 20px 48px; }
-  .hero h1 { font-size: 36px; letter-spacing: -0.5px; margin-bottom: 14px; }
-  .hero-sub { font-size: 16px; margin-bottom: 32px; }
-  .hero-badge { margin-bottom: 24px; }
 
-  .asset-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 36px; }
-  .asset-pill { text-align: center; }
+  .hero { padding: calc(var(--nav-h) + 36px) 20px 40px; }
+  .hero h1 { font-size: 36px; letter-spacing: -0.5px; margin: 12px 0 16px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { width: 100%; text-align: center; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
 
-  .hero-actions { flex-direction: column; width: 100%; gap: 10px; margin-bottom: 48px; }
-  .hero-actions a { width: 100%; text-align: center; }
+  /* Access links wrap to their own rows, dividers hidden. */
+  .access-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 0; margin: 24px 0 28px; }
+  .access-sep { display: none; }
 
-  /* account pills wrap to two rows on mobile */
-  .account-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: -28px 0 48px; }
-  .account-pill { text-align: center; white-space: normal; }
+  .data-panel { padding: 18px 16px 16px; }
+  .data-panel .chart-box { height: 200px; }
 
-  .btn-hero-primary, .btn-hero-secondary, .btn-primary, .btn-ghost {
-    min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
-  }
+  /* Stats become a 2x2 grid, dividers hidden. */
+  .stats-strip { padding: 18px 20px; }
+  .stats-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; }
+  .stat-sep { display: none; }
+  .stat-fact { text-align: center; }
 
-  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 24px; width: 100%; }
-  .hero-divider { display: none; }
-  .hero-stat-number { font-size: 26px; }
-
-  .section { padding: 40px 20px; }
+  .section { padding: 48px 20px; }
   .section-title { font-size: 28px; }
-  .live-data-wrap { padding: 40px 20px; }
-  .live-data-wrap h2 { font-size: 24px; }
-  .waitlist-section { padding: 40px 20px; }
-  .waitlist-section h2 { font-size: 28px; }
 
-  /* products: 1 column below 480, 2 columns 480-767 */
-  .products-grid, .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-row { grid-template-columns: 32px 1fr; gap: 12px; padding: 18px 0; }
+  .product-row .badge-live { grid-column: 2; margin-top: 4px; }
+  .product-row:hover { padding-left: 10px; }
 
-  /* hide desktop dashboard preview */
-  .preview-section { display: none; }
+  .audience-title { font-size: 22px; }
+  .ai-panel { padding: 22px 20px; }
+  .term-line { font-size: 11.5px; }
 
-  /* live data: single column, table scrolls horizontally */
-  .live-data-wrap .grid-2 { grid-template-columns: 1fr; }
-  #perfTable { overflow-x: auto; }
+  .global-band { padding: 20px; }
+  .global-band span { font-size: 11.5px; letter-spacing: 0.6px; line-height: 2; }
 
-  /* audience + AI stack */
-  .audience-grid { grid-template-columns: 1fr; }
-  .audience-card { padding: 28px 22px; }
-  .ai-duo { grid-template-columns: 1fr; }
+  .role-grid { grid-template-columns: 1fr 1fr; }
+  .apply-form { padding: 22px 20px; }
 
-  /* global cities: 2 columns */
-  .globe-grid { grid-template-columns: repeat(2, 1fr); }
-
-  /* pricing stacks full width */
-  .pricing-grid { grid-template-columns: 1fr; }
-
-  /* waitlist form stacks full width */
-  .waitlist-form { flex-direction: column; }
-  .waitlist-input { min-width: 0; width: 100%; max-width: 100% !important; }
-  .waitlist-form .btn-hero-primary { width: 100%; }
-
-  footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
-  .divider, .divider-navy { margin: 0 20px; }
+  footer { padding: 40px 20px 0; }
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .footer-tag { max-width: none; }
+  .footer-bottom { flex-direction: column; gap: 8px; padding-bottom: 24px; }
 }
 
-/* products: single column on the smallest phones */
-@media (max-width: 479px) {
-  .products-grid, .features-grid { grid-template-columns: 1fr; }
+@media (max-width: 419px) {
+  .role-grid { grid-template-columns: 1fr; }
+  .access-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="siteNav">
   <a href="/" class="nav-logo">
     <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
       <path d="M 4 14 A 10 10 0 0 1 24 14" stroke="#5DC9A8" stroke-width="2.2" stroke-linecap="round"/>
@@ -506,413 +529,300 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
   <a href="https://app.altveno.com/apply" class="mobile-nav-cta">Apply for Access</a>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <div class="hero-badge-dot"></div>
-    Now live: join the waitlist
-  </div>
-  <h1>The Alternative Investment Platform<br>Built for <em>Managers and Allocators</em></h1>
-  <p class="hero-sub">Connect with institutional investors, manage due diligence, benchmark your fund and grow your investor base. Purpose-built for alternative investment managers globally.</p>
+<!-- HERO: the data is the product, so it leads -->
+<section class="hero" id="platform">
+  <div class="hero-inner">
 
-  <div class="asset-strip">
-    <div class="asset-pill" style="border-color:rgba(13,110,138,0.4); background:rgba(13,110,138,0.08); color:#5DC9A8">Hedge Funds</div>
-    <div class="asset-pill" style="border-color:rgba(201,168,76,0.4); background:rgba(201,168,76,0.08); color:#C9A84C">Private Equity</div>
-    <div class="asset-pill" style="border-color:rgba(29,78,216,0.4); background:rgba(29,78,216,0.08); color:#93C5FD">Venture Capital</div>
-    <div class="asset-pill" style="border-color:rgba(185,28,28,0.4); background:rgba(185,28,28,0.08); color:#FCA5A5">Real Estate</div>
-    <div class="asset-pill" style="border-color:rgba(15,118,110,0.4); background:rgba(15,118,110,0.08); color:#5EEAD4">Credit</div>
-    <div class="asset-pill" style="border-color:rgba(109,40,217,0.4); background:rgba(109,40,217,0.08); color:#C4B5FD">Infrastructure</div>
-  </div>
+    <div>
+      <div class="eyebrow">Alternative Investment Platform</div>
+      <h1>Where institutional capital<br><em>meets</em> alternative managers.</h1>
+      <p class="lede">
+        Altveno connects alternative investment managers with institutional
+        allocators. Built for professionals who require precision, privacy
+        and performance.
+      </p>
 
-  <div class="hero-actions">
-    <a href="#waitlist" class="btn-hero-primary">Request early access</a>
-    <a href="#platform" class="btn-hero-secondary">See the platform</a>
-  </div>
-
-  <div class="account-pills">
-    <a href="https://app.altveno.com/apply/manager" class="account-pill">Manager Access</a>
-    <a href="https://app.altveno.com/apply/allocator" class="account-pill">Allocator Access (Free)</a>
-    <a href="https://app.altveno.com/apply/provider" class="account-pill">Service Provider</a>
-    <a href="https://app.altveno.com/apply/candidate" class="account-pill">Talent Candidate (Free)</a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-number">5</div>
-      <div class="hero-stat-label">Products Live</div>
-    </div>
-    <div class="hero-divider"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-number">6+</div>
-      <div class="hero-stat-label">Asset Classes</div>
-    </div>
-    <div class="hero-divider"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-number">AI</div>
-      <div class="hero-stat-label">Powered</div>
-    </div>
-    <div class="hero-divider"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-number">Free</div>
-      <div class="hero-stat-label">For Allocators</div>
-    </div>
-  </div>
-</div>
-
-<!-- PLATFORM PREVIEW -->
-<div class="preview-section" id="platform">
-  <div class="preview-window">
-    <div class="preview-bar">
-      <div class="preview-dot" style="background:#C0222A"></div>
-      <div class="preview-dot" style="background:#C9A84C"></div>
-      <div class="preview-dot" style="background:#0A7C42"></div>
-      <span style="font-size:10px; color:rgba(255,255,255,0.3); margin-left:10px; font-family:'Inter',sans-serif;">app.altveno.com/dashboard</span>
-    </div>
-    <div class="preview-inner">
-      <div class="preview-sidebar">
-        <div style="font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; padding:0 10px; font-weight:700;">Platform</div>
-        <div class="preview-nav-item active"><div class="preview-nav-dot"></div>Dashboard</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>AltConnect</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Altveno AI</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Pipeline</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Calendar</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Messages</div>
-        <div style="font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:1.5px; text-transform:uppercase; margin:14px 0 8px; padding:0 10px; font-weight:700;">Tools</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>DDQ Manager</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Data Room</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>ServiceConnect</div>
-        <div class="preview-nav-item"><div class="preview-nav-dot"></div>TalentConnect</div>
+      <div class="access-row">
+        <a href="https://app.altveno.com/apply/manager">Manager Access</a>
+        <span class="access-sep"></span>
+        <a href="https://app.altveno.com/apply/allocator">Allocator Access</a>
+        <span class="access-sep"></span>
+        <a href="https://app.altveno.com/apply/provider">Service Provider</a>
+        <span class="access-sep"></span>
+        <a href="https://app.altveno.com/apply/candidate">Candidate</a>
       </div>
-      <div class="preview-main">
-        <div class="preview-title">Good morning, <em style="font-style:italic; color:rgba(255,255,255,0.4)">James</em></div>
-        <div class="preview-sub">Altveno Capital · London, United Kingdom</div>
-        <div class="preview-cards">
-          <div class="preview-card">
-            <div class="preview-card-label">Total AUM</div>
-            <div class="preview-card-value">$240mm</div>
-            <div class="preview-card-change">As reported</div>
-          </div>
-          <div class="preview-card">
-            <div class="preview-card-label">Active Connections</div>
-            <div class="preview-card-value">12</div>
-            <div class="preview-card-change">↑ 3 this month</div>
-          </div>
-          <div class="preview-card">
-            <div class="preview-card-label">Meetings This Month</div>
-            <div class="preview-card-value">5</div>
-            <div class="preview-card-change">Confirmed</div>
-          </div>
-        </div>
-        <div style="background:#0A1628; border:1px solid rgba(255,255,255,0.07); border-radius:3px; padding:14px;">
-          <div style="font-size:10px; color:rgba(255,255,255,0.3); margin-bottom:10px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase;">Cumulative Performance · Indexed to 100</div>
-          <div class="preview-chart-bars">
-            <div class="preview-bar-item" style="height:40%"></div>
-            <div class="preview-bar-item" style="height:48%"></div>
-            <div class="preview-bar-item" style="height:44%"></div>
-            <div class="preview-bar-item" style="height:57%"></div>
-            <div class="preview-bar-item" style="height:54%"></div>
-            <div class="preview-bar-item" style="height:63%"></div>
-            <div class="preview-bar-item" style="height:68%"></div>
-            <div class="preview-bar-item" style="height:65%"></div>
-            <div class="preview-bar-item" style="height:74%"></div>
-            <div class="preview-bar-item" style="height:78%"></div>
-            <div class="preview-bar-item" style="height:75%"></div>
-            <div class="preview-bar-item" style="height:84%"></div>
-            <div class="preview-bar-item" style="height:81%"></div>
-            <div class="preview-bar-item" style="height:89%"></div>
-            <div class="preview-bar-item" style="height:100%; background:rgba(201,168,76,0.4)"></div>
-          </div>
+
+      <div class="hero-actions">
+        <a href="#apply" class="btn-lg-gold">Apply for Access</a>
+        <a href="https://app.altveno.com" class="btn-lg-navy">Sign In</a>
+      </div>
+    </div>
+
+    <div class="data-panel">
+      <div class="data-panel-head">
+        <div class="data-panel-label">Live Platform Data</div>
+        <div class="data-panel-sub" id="tableSubtitle">Loading...</div>
+      </div>
+
+      <div id="legend"></div>
+      <div class="chart-box"><canvas id="perfChart"></canvas></div>
+
+      <div class="data-divider"></div>
+      <div id="perfTable">
+        <div style="color:rgba(255,255,255,0.25); text-align:center; padding:28px 0; font-size:12px;">
+          Loading live data...
         </div>
       </div>
+
+      <div class="data-foot">All returns anonymous and aggregated &middot; Updated monthly</div>
     </div>
+
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-fact">5 Products</div>
+    <div class="stat-sep"></div>
+    <div class="stat-fact">6+ Asset Classes</div>
+    <div class="stat-sep"></div>
+    <div class="stat-fact">AI Powered</div>
+    <div class="stat-sep"></div>
+    <div class="stat-fact">Free for Allocators</div>
   </div>
 </div>
-
-<!-- LIVE MARKET DATA -->
-<div class="live-data-wrap">
-  <div class="live-data-inner">
-    <div style="text-align:center; margin-bottom:40px">
-      <div class="live-badge">
-        <div style="width:5px; height:5px; border-radius:50%; background:var(--gold); animation:pulse 2s infinite;"></div>
-        Live market data: updated monthly
-      </div>
-      <h2 style="font-family:'Playfair Display',Georgia,serif; font-size:clamp(26px,3vw,40px); color:var(--white); margin-bottom:8px; letter-spacing:-0.5px; font-weight:400;">Real performance data, anonymously aggregated</h2>
-      <p style="font-size:14px; color:rgba(255,255,255,0.45); max-width:480px; margin:0 auto; line-height:1.7;">Live returns across all alternative asset classes. Anonymous and aggregated: the proprietary dataset that powers our AI tools.</p>
-    </div>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); border-radius:4px; overflow:hidden;" class="grid-2">
-      <div style="padding:28px; background:#111E35;">
-        <div style="font-family:'Playfair Display',serif; font-size:17px; color:var(--white); margin-bottom:4px; font-weight:400;">Cumulative Performance</div>
-        <div style="font-size:11px; color:rgba(255,255,255,0.35); margin-bottom:16px; font-weight:500; letter-spacing:0.3px;">Indexed to 100 · Anonymous aggregated returns</div>
-        <div id="legend" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px;"></div>
-        <div style="position:relative; height:200px; width:100%;"><canvas id="perfChart"></canvas></div>
-        <div style="font-size:10px; color:rgba(255,255,255,0.2); margin-top:10px; letter-spacing:0.3px;">All returns anonymous and aggregated · Updated monthly</div>
-      </div>
-      <div style="padding:28px; background:#111E35;">
-        <div style="font-family:'Playfair Display',serif; font-size:17px; color:var(--white); margin-bottom:4px; font-weight:400;">Market Performance</div>
-        <div style="font-size:11px; color:rgba(255,255,255,0.35); margin-bottom:16px; font-weight:500; letter-spacing:0.3px;" id="tableSubtitle">Loading...</div>
-        <div id="perfTable"><div style="color:rgba(255,255,255,0.25); text-align:center; padding:40px; font-size:13px;">Loading live data...</div></div>
-        <div style="font-size:10px; color:rgba(255,255,255,0.2); margin-top:10px; letter-spacing:0.3px;">All returns anonymous and aggregated · Updated monthly</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
 
 <!-- PRODUCTS -->
-<div id="products">
-  <div class="section">
-    <div style="text-align:center; margin-bottom:48px">
-      <div class="section-label">The full platform suite</div>
-      <h2 class="section-title">Five products. One platform.<br>Built for alternative investments.</h2>
-      <p class="section-body" style="margin:0 auto">Altveno is the platform for the alternative investment industry, connecting managers, allocators, service providers and talent in one place.</p>
-    </div>
-    <div class="products-grid">
-
-      <div class="product-cell">
-        <div class="product-tag live">Live</div>
-        <div class="product-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 2-3 3-1.5-1.5M16 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
-        </div>
-        <div class="product-title">AltConnect</div>
-        <p class="product-body">Two-sided marketplace connecting alternative managers with institutional allocators globally.</p>
-      </div>
-
-      <div class="product-cell">
-        <div class="product-tag live">Live</div>
-        <div class="product-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m1.636-6.364.707.707M12 21v-1M7 12a5 5 0 1 1 10 0c0 1.887-1.009 3.54-2.5 4.395V18a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-1.605C8.009 15.54 7 13.887 7 12z"/></svg>
-        </div>
-        <div class="product-title">Altveno AI</div>
-        <p class="product-body">Anonymous peer benchmarking for managers and AI-powered fund discovery for allocators.</p>
-      </div>
-
-      <div class="product-cell">
-        <div class="product-tag live">Live</div>
-        <div class="product-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/></svg>
-        </div>
-        <div class="product-title">DDQ and Data Room</div>
-        <p class="product-body">AI-powered due diligence workflows with secure nested document management.</p>
-      </div>
-
-      <div class="product-cell">
-        <div class="product-tag live">Live</div>
-        <div class="product-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        </div>
-        <div class="product-title">ServiceConnect</div>
-        <p class="product-body">Find and connect with fund lawyers, administrators, technology providers and consultants.</p>
-      </div>
-
-      <div class="product-cell">
-        <div class="product-tag live">Live</div>
-        <div class="product-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-9 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-2 8a4 4 0 0 1 8 0H9zm8-8h2M17 15h2"/></svg>
-        </div>
-        <div class="product-title">TalentConnect</div>
-        <p class="product-body">Recruit and find talent across the alternatives industry.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- FOR MANAGERS + ALLOCATORS -->
-<div id="managers">
-  <div class="section">
-    <div style="text-align:center; margin-bottom:52px">
-      <div class="section-label">Who it's for</div>
-      <h2 class="section-title">Built for both sides of the table</h2>
-      <p class="section-body" style="margin:0 auto">Whether you're raising capital or deploying it, Altveno gives you the tools to work faster, smarter, and more professionally.</p>
-    </div>
-    <div class="audience-grid">
-      <div class="audience-card managers">
-        <div class="audience-tag">Fund Managers</div>
-        <h3 class="audience-title">Built for alternative investment managers</h3>
-        <p class="audience-desc">Everything you need to present your fund professionally, manage investor relationships, and streamline the due diligence process, all in one place.</p>
-        <ul class="audience-features">
-          <li><div class="check">✓</div>Professional fund profile visible to qualified allocators globally</li>
-          <li><div class="check">✓</div>AI-powered DDQ with automatic pre-fill from existing documents</li>
-          <li><div class="check">✓</div>Investor pipeline tracking from first meeting to investment</li>
-          <li><div class="check">✓</div>Anonymous peer benchmarking across fees, AUM and strategy</li>
-          <li><div class="check">✓</div>Performance reporting with risk analytics</li>
-          <li><div class="check">✓</div>Secure data room with per-allocator access controls</li>
-          <li><div class="check">✓</div>Find service providers across legal, admin and technology</li>
-          <li><div class="check">✓</div>Post jobs and hire talent from the alternatives industry</li>
-        </ul>
-        <a href="https://app.altveno.com/apply/manager" class="audience-cta">Apply as a Manager →</a>
-      </div>
-      <div class="audience-card allocators" id="allocators">
-        <div class="audience-tag">Allocators</div>
-        <h3 class="audience-title">Free forever for qualified allocators</h3>
-        <p class="audience-desc">Find, compare, and diligence alternative investment managers across every asset class, with all the tools you need from first introduction to investment decision.</p>
-        <ul class="audience-features">
-          <li><div class="check">✓</div>Discover alternative managers across 6 plus asset classes</li>
-          <li><div class="check">✓</div>AI-powered fund discovery using natural language search</li>
-          <li><div class="check">✓</div>DDQ library with direct Q and A with managers</li>
-          <li><div class="check">✓</div>Side-by-side fund comparison tools</li>
-          <li><div class="check">✓</div>Deal flow pipeline management</li>
-          <li><div class="check">✓</div>Always free for qualified institutional allocators</li>
-        </ul>
-        <a href="https://app.altveno.com/apply/allocator" class="audience-cta">Apply for Free Allocator Access →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- AI SECTION -->
-<div class="section">
-  <div style="text-align:center; margin-bottom:44px">
-    <div class="ai-pill" style="margin:0 auto 14px;">✦ Altveno AI</div>
-    <h2 class="section-title">Two AI tools. One platform.<br>Built for both sides.</h2>
-    <p class="section-body" style="margin:0 auto">Two AI tools, one for each side. Managers get anonymous peer benchmarking powered by live platform data. Allocators get natural language fund discovery across the entire manager universe. The dataset grows stronger with every new participant.</p>
+<section class="section" id="products">
+  <div class="section-head">
+    <div class="eyebrow">The Platform</div>
+    <h2 class="section-title">Five products. One ecosystem.</h2>
   </div>
 
-  <div class="ai-duo" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
-    <!-- Manager AI -->
-    <div style="background:var(--white); border:1px solid var(--border); border-radius:4px; overflow:hidden; border-top:3px solid var(--navy);">
-      <div style="padding:18px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
-        <div style="width:28px; height:28px; border-radius:3px; background:var(--navy); display:flex; align-items:center; justify-content:center;">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-        </div>
-        <div>
-          <div style="font-size:13px; font-weight:600; color:var(--navy);">Peer Benchmarking AI</div>
-          <div style="font-size:11px; color:var(--muted);">For managers · Anonymous benchmarks</div>
-        </div>
-        <div style="margin-left:auto; font-size:9px; padding:2px 7px; border-radius:2px; background:var(--navy); color:var(--white); font-weight:700; letter-spacing:0.5px; text-transform:uppercase;">Managers</div>
+  <div class="product-list">
+    <a class="product-row" href="https://app.altveno.com/apply">
+      <div class="product-num">01</div>
+      <div>
+        <div class="product-name">AltConnect</div>
+        <div class="product-desc">Two-sided marketplace connecting alternative managers with institutional allocators globally.</div>
       </div>
-      <div style="padding:20px;">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:16px;">
-          <div style="padding:9px 11px; border-radius:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted);">How do my fees compare to peers in my strategy?</div>
-          <div style="padding:9px 11px; border-radius:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted);">What AUM range is typical for quant funds?</div>
-          <div style="padding:9px 11px; border-radius:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted);">How competitive is my minimum subscription?</div>
-          <div style="padding:9px 11px; border-radius:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted);">How does my fund's structure compare to peers?</div>
-        </div>
-        <div style="background:var(--surface); border:1px solid var(--border); border-radius:3px; padding:14px; border-left:3px solid var(--navy);">
-          <div style="font-size:10px; font-weight:700; color:var(--navy); margin-bottom:7px; letter-spacing:0.5px; text-transform:uppercase;">Sample response</div>
-          <div style="font-size:12px; color:var(--textSec); line-height:1.7;">Your management fee of <strong>2.0%</strong> is above the platform median of <strong>1.8%</strong>. Among quant equity funds your size, the median is <strong>1.5%</strong>, placing you in the 75th percentile. Your performance fee is in line with peers at 20%.</div>
-        </div>
+      <div class="badge-live">Live</div>
+    </a>
+    <a class="product-row" href="https://app.altveno.com/apply">
+      <div class="product-num">02</div>
+      <div>
+        <div class="product-name">Altveno AI</div>
+        <div class="product-desc">Anonymous peer benchmarking for managers and natural language fund discovery for allocators.</div>
       </div>
-    </div>
-
-    <!-- Allocator AI -->
-    <div style="background:var(--white); border:1px solid var(--border); border-radius:4px; overflow:hidden; border-top:3px solid var(--teal);">
-      <div style="padding:18px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
-        <div style="width:28px; height:28px; border-radius:3px; background:var(--teal); display:flex; align-items:center; justify-content:center;">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        </div>
-        <div>
-          <div style="font-size:13px; font-weight:600; color:var(--navy);">Fund Discovery AI</div>
-          <div style="font-size:11px; color:var(--muted);">For allocators · Natural language search</div>
-        </div>
-        <div style="margin-left:auto; font-size:9px; padding:2px 7px; border-radius:2px; background:var(--teal); color:var(--white); font-weight:700; letter-spacing:0.5px; text-transform:uppercase;">Allocators</div>
+      <div class="badge-live">Live</div>
+    </a>
+    <a class="product-row" href="https://app.altveno.com/apply">
+      <div class="product-num">03</div>
+      <div>
+        <div class="product-name">DDQ and Data Room</div>
+        <div class="product-desc">AI-powered due diligence workflows with secure, per-allocator document access.</div>
       </div>
-      <div style="padding:20px;">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:16px;">
-          <div style="padding:9px 11px; border-radius:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted);">Find me a European hedge fund with low minimum</div>
-          <div style="padding:9px 11px; border-radius:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted);">Show me funds with the best risk-adjusted returns</div>
-          <div style="padding:9px 11px; border-radius:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted);">Which quant funds are open to SMAs?</div>
-          <div style="padding:9px 11px; border-radius:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted);">Compare credit funds by redemption terms</div>
-        </div>
-        <div style="background:var(--surface); border:1px solid var(--border); border-radius:3px; padding:14px; border-left:3px solid var(--teal);">
-          <div style="font-size:10px; font-weight:700; color:var(--teal); margin-bottom:7px; letter-spacing:0.5px; text-transform:uppercase;">Sample response</div>
-          <div style="font-size:12px; color:var(--textSec); line-height:1.7; margin-bottom:10px;">I found <strong>4 European hedge funds</strong> with minimum subscriptions under $500k. Here are the top matches based on your criteria:</div>
-          <div style="display:flex; flex-direction:column; gap:5px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; background:var(--white); border-radius:2px; border:1px solid var(--border); font-size:11px;"><span style="color:var(--text); font-weight:500;">Meridian Capital · Long/Short Equity</span><span style="color:var(--success); font-weight:700;">Min $250k</span></div>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; background:var(--white); border-radius:2px; border:1px solid var(--border); font-size:11px;"><span style="color:var(--text); font-weight:500;">Nordic Alpha · Global Macro</span><span style="color:var(--success); font-weight:700;">Min $100k</span></div>
-          </div>
-        </div>
+      <div class="badge-live">Live</div>
+    </a>
+    <a class="product-row" href="https://app.altveno.com/apply/provider">
+      <div class="product-num">04</div>
+      <div>
+        <div class="product-name">ServiceConnect</div>
+        <div class="product-desc">Fund lawyers, administrators, technology providers and consultants in one directory.</div>
       </div>
-    </div>
+      <div class="badge-live">Live</div>
+    </a>
+    <a class="product-row" href="https://app.altveno.com/apply/candidate">
+      <div class="product-num">05</div>
+      <div>
+        <div class="product-name">TalentConnect</div>
+        <div class="product-desc">Recruit and find talent across the alternative investment industry.</div>
+      </div>
+      <div class="badge-live">Live</div>
+    </a>
   </div>
+</section>
 
-  <div style="background:var(--navy); border-radius:4px; padding:36px 40px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+<!-- FOR MANAGERS / ALLOCATORS -->
+<section class="section" id="managers">
+  <div class="audience-grid">
+
     <div>
-      <div style="font-family:'Playfair Display',Georgia,serif; font-size:22px; color:var(--white); margin-bottom:6px; font-weight:400;">The data moat compounds over time</div>
-      <div style="font-size:13px; color:rgba(255,255,255,0.45); max-width:480px; line-height:1.7;">Every manager who joins makes the benchmarks more accurate. Every allocator makes discovery more precise. No competitor starting today can replicate years of anonymous platform data.</div>
+      <div class="eyebrow">For Managers</div>
+      <h3 class="audience-title">Built for managers raising institutional capital</h3>
+      <ul class="audience-list">
+        <li>Professional fund profile visible to qualified allocators globally</li>
+        <li>AI-powered DDQ with automatic pre-fill from existing documents</li>
+        <li>Investor pipeline tracking from first meeting to investment</li>
+        <li>Anonymous peer benchmarking across fees, AUM and strategy</li>
+        <li>Performance reporting with risk analytics</li>
+        <li>Secure data room with per-allocator access controls</li>
+        <li>Find service providers across legal, administration and technology</li>
+        <li>Post roles and hire from the alternatives industry</li>
+      </ul>
+      <a href="https://app.altveno.com/apply/manager" class="audience-cta">Apply as a Manager &rarr;</a>
     </div>
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <a href="https://app.altveno.com/signup" style="padding:10px 20px; border-radius:3px; background:var(--gold); color:var(--navy); font-size:13px; font-weight:700; text-decoration:none; font-family:'Inter',sans-serif;">Get started free</a>
-      <a href="#waitlist" style="padding:10px 20px; border-radius:3px; background:transparent; color:var(--white); font-size:13px; border:1px solid rgba(255,255,255,0.2); text-decoration:none; font-family:'Inter',sans-serif;">Request access</a>
+
+    <div class="audience-divider"></div>
+
+    <div id="allocators">
+      <div class="eyebrow">For Allocators</div>
+      <h3 class="audience-title">Free for qualified allocators</h3>
+      <ul class="audience-list">
+        <li>Discover alternative managers across six plus asset classes</li>
+        <li>AI-powered fund discovery using natural language search</li>
+        <li>DDQ library with direct questions and answers to managers</li>
+        <li>Side-by-side fund comparison</li>
+        <li>Deal flow pipeline management</li>
+        <li>Always free for qualified institutional allocators</li>
+      </ul>
+      <a href="https://app.altveno.com/apply/allocator" class="audience-cta">Apply as an Allocator &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- AI -->
+<section class="section">
+  <div class="section-head">
+    <div class="eyebrow">Altveno AI</div>
+    <h2 class="section-title">Two AI tools. Both powered by live platform data.</h2>
+  </div>
+
+  <div class="ai-duo">
+    <div class="ai-panel">
+      <div class="ai-panel-label">Market Intelligence</div>
+      <div class="term-line"><span class="caret">&gt;</span>How do my fees compare to peers in my strategy?</div>
+      <div class="term-line"><span class="caret">&gt;</span>What AUM range is typical for quant funds?</div>
+      <div class="term-line"><span class="caret">&gt;</span>How competitive is my minimum subscription?<span class="term-cursor"></span></div>
+      <div class="term-response">
+        Your management fee of <strong>2.0%</strong> sits above the platform median of
+        <strong>1.8%</strong>. Among quant equity funds of your size the median is
+        <strong>1.5%</strong>, placing you in the 75th percentile. Your performance fee is
+        in line with peers at 20%.
+      </div>
+    </div>
+
+    <div class="ai-panel">
+      <div class="ai-panel-label">Fund Discovery</div>
+      <div class="term-line"><span class="caret">&gt;</span>Find European hedge funds with a low minimum</div>
+      <div class="term-line"><span class="caret">&gt;</span>Show the best risk-adjusted returns</div>
+      <div class="term-line"><span class="caret">&gt;</span>Which quant funds are open to SMAs?<span class="term-cursor"></span></div>
+      <div class="term-response">
+        <strong>4 European hedge funds</strong> match, with minimum subscriptions under
+        $500k. Top matches: <strong>Meridian Capital</strong>, Long/Short Equity, minimum
+        $250k. <strong>Nordic Alpha</strong>, Global Macro, minimum $100k.
+      </div>
     </div>
   </div>
-</div>
 
-<div class="divider"></div>
-
-<!-- GLOBAL -->
-<div class="section">
-  <div style="text-align:center; margin-bottom:16px">
-    <div class="section-label">Global from day one</div>
-    <h2 class="section-title">The platform the industry has been waiting for</h2>
-    <p class="section-body" style="margin:0 auto">Built for managers and allocators across every major financial centre. One platform, one network, everywhere.</p>
-  </div>
-  <div class="globe-grid">
-    <div class="globe-item"><div class="globe-flag">🇬🇧</div><div class="globe-city">London</div><div class="globe-desc">HQ · European hub</div></div>
-    <div class="globe-item"><div class="globe-flag">🇺🇸</div><div class="globe-city">New York</div><div class="globe-desc">Largest HF market</div></div>
-    <div class="globe-item"><div class="globe-flag">🇸🇬</div><div class="globe-city">Singapore</div><div class="globe-desc">Asia-Pacific hub</div></div>
-    <div class="globe-item"><div class="globe-flag">🇦🇪</div><div class="globe-city">Dubai</div><div class="globe-desc">MENA capital</div></div>
-    <div class="globe-item"><div class="globe-flag">🇨🇭</div><div class="globe-city">Zurich</div><div class="globe-desc">Private wealth</div></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- WAITLIST -->
-<div class="waitlist-section" id="waitlist">
-  <div class="section-label" style="color:var(--gold);">Early access</div>
-  <h2 style="font-family:'Playfair Display',Georgia,serif; font-size:clamp(28px,4vw,48px); color:var(--white); font-weight:400; max-width:600px; margin:0 auto 14px; letter-spacing:-0.5px; line-height:1.1;">Join the platform built for alternative investments</h2>
-  <p style="font-size:15px; color:rgba(255,255,255,0.45); max-width:460px; margin:0 auto; line-height:1.7;">Request early access. We are onboarding alternative investment managers and allocators now across London, New York, Singapore and Dubai.</p>
-  <form class="waitlist-form" id="waitlistForm" onsubmit="return submitWaitlist(event)">
-    <input type="email" class="waitlist-input" id="waitlistEmail" placeholder="your@firm.com" required>
-    <select class="waitlist-input" id="waitlistRole" style="max-width:170px;">
-      <option value="">I am a...</option>
-      <option value="manager">Fund Manager</option>
-      <option value="allocator">Allocator</option>
-      <option value="service_provider">Service Provider</option>
-    </select>
-    <button type="submit" class="btn-hero-primary" style="white-space:nowrap;" id="waitlistSubmit">Submit Application</button>
-  </form>
-  <p id="waitlistStatus" style="font-size:13px; margin-top:14px; min-height:18px; text-align:center;"></p>
-  <p class="apply-links">
-    <a href="https://app.altveno.com/apply/manager">Apply as a Manager</a> ·
-    <a href="https://app.altveno.com/apply/allocator">Apply as an Allocator</a> ·
-    <a href="https://app.altveno.com/apply/provider">Apply as a Service Provider</a> ·
-    <a href="https://app.altveno.com/apply/candidate">Apply as a Candidate</a>
+  <p class="ai-note">
+    The anonymous benchmark dataset grows more valuable with every participant.
+    No competitor can replicate years of live data.
   </p>
-  <p style="font-size:11px; color:rgba(255,255,255,0.2); margin-top:8px; letter-spacing:0.3px;">No commitment required. Allocators are always free.</p>
+</section>
+
+<!-- GLOBAL BAND -->
+<div class="global-band">
+  <span>Available globally &middot; London &middot; New York &middot; Singapore &middot; Dubai &middot; Zurich</span>
 </div>
+
+<!-- APPLY -->
+<section class="section" id="apply">
+  <div class="section-head">
+    <div class="eyebrow">Get Started</div>
+    <h2 class="section-title">Apply for platform access.</h2>
+  </div>
+
+  <div class="apply-grid">
+
+    <div class="role-grid" id="roleGrid">
+      <button type="button" class="role-card selected" data-role="manager" data-label="Fund Manager">
+        <span class="role-card-title">Fund Manager</span>
+        <span class="role-card-note">From &pound;4,150 / year</span>
+        <a class="role-card-link" href="https://app.altveno.com/apply/manager">Apply directly &rarr;</a>
+      </button>
+      <button type="button" class="role-card" data-role="allocator" data-label="Allocator">
+        <span class="role-card-title">Allocator</span>
+        <span class="role-card-note">Always free</span>
+        <a class="role-card-link" href="https://app.altveno.com/apply/allocator">Apply directly &rarr;</a>
+      </button>
+      <button type="button" class="role-card" data-role="service_provider" data-label="Service Provider">
+        <span class="role-card-title">Service Provider</span>
+        <span class="role-card-note">From &pound;2,000 / year</span>
+        <a class="role-card-link" href="https://app.altveno.com/apply/provider">Apply directly &rarr;</a>
+      </button>
+      <button type="button" class="role-card" data-role="candidate" data-label="Candidate">
+        <span class="role-card-title">Candidate</span>
+        <span class="role-card-note">Free to join</span>
+        <a class="role-card-link" href="https://app.altveno.com/apply/candidate">Apply directly &rarr;</a>
+      </button>
+    </div>
+
+    <form class="apply-form" id="waitlistForm" onsubmit="return submitWaitlist(event)">
+      <label class="form-label" for="waitlistName">Full name</label>
+      <input type="text" class="form-input" id="waitlistName" placeholder="Jane Smith" autocomplete="name">
+
+      <label class="form-label" for="waitlistEmail">Work email</label>
+      <input type="email" class="form-input" id="waitlistEmail" placeholder="jane@yourfirm.com" required autocomplete="email">
+
+      <label class="form-label" for="waitlistRoleLabel">Applying as</label>
+      <input type="text" class="form-input" id="waitlistRoleLabel" value="Fund Manager" readonly aria-readonly="true">
+      <input type="hidden" id="waitlistRole" value="manager">
+
+      <button type="submit" class="form-submit" id="waitlistSubmit">Submit Application</button>
+      <p id="waitlistStatus" style="font-size:12.5px; margin-top:12px; min-height:18px;"></p>
+      <p class="form-note">Allocators and candidates are always free.</p>
+    </form>
+
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <div style="display:flex; align-items:center; gap:10px;">
-    <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-      <path d="M 4 14 A 10 10 0 0 1 24 14" stroke="#5DC9A8" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M 6 14 A 8 8 0 0 0 22 14" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
-      <circle cx="14" cy="14" r="2.2" fill="#C9A84C"/>
-    </svg>
-    <span style="font-family:'Playfair Display',Georgia,serif; font-size:16px; color:var(--navy);">Altveno</span>
-    <span style="font-size:12px; color:var(--mutedLt); margin-left:12px;">The alternative investment platform for managers and allocators</span>
+  <div class="footer-inner">
+    <div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+          <path d="M 4 14 A 10 10 0 0 1 24 14" stroke="#5DC9A8" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M 6 14 A 8 8 0 0 0 22 14" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="14" cy="14" r="2.2" fill="#C9A84C"/>
+        </svg>
+        <span style="font-family:Georgia,'Times New Roman',serif; font-size:17px; color:#FFFFFF;">Altveno</span>
+      </div>
+      <p class="footer-tag">The alternative investment platform for managers and allocators.</p>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Platform</div>
+      <a href="#platform">Live Data</a>
+      <a href="#products">Products</a>
+      <a href="#managers">For Managers</a>
+      <a href="#allocators">For Allocators</a>
+      <a href="https://app.altveno.com">Sign In</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Apply</div>
+      <a href="https://app.altveno.com/apply/manager">Manager</a>
+      <a href="https://app.altveno.com/apply/allocator">Allocator</a>
+      <a href="https://app.altveno.com/apply/provider">Service Provider</a>
+      <a href="https://app.altveno.com/apply/candidate">Candidate</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="mailto:hello@altveno.com">Contact</a>
+      <a href="#">About</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
   </div>
-  <div class="footer-links">
-    <a href="#platform">Platform</a>
-    <a href="#products">Products</a>
-    <a href="mailto:hello@altveno.com">Contact</a>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms</a>
-  </div>
-  <div class="footer-copy">© 2026 Altveno Ltd. All rights reserved.</div>
-  <div class="footer-apply">
-    Apply for access:
-    <a href="https://app.altveno.com/apply/manager">Manager</a> ·
-    <a href="https://app.altveno.com/apply/allocator">Allocator</a> ·
-    <a href="https://app.altveno.com/apply/provider">Service Provider</a> ·
-    <a href="https://app.altveno.com/apply/candidate">Candidate</a>
+
+  <div class="footer-bottom">
+    <div>&copy; 2026 Altveno Ltd. All rights reserved.</div>
+    <div>Regulated under applicable laws</div>
   </div>
 </footer>
 
@@ -928,6 +838,33 @@ footer { border-top: 1px solid var(--border); padding: 36px 48px; display: flex;
   if (closeBtn) closeBtn.addEventListener('click', closeNav);
   if (overlay) overlay.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeNav); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
+})();
+
+// Nav goes translucent once the page scrolls off the top.
+(function () {
+  var nav = document.getElementById('siteNav');
+  if (!nav) return;
+  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+// Role cards drive the hidden role field the waitlist submit already reads.
+(function () {
+  var grid = document.getElementById('roleGrid');
+  var roleInput = document.getElementById('waitlistRole');
+  var roleLabel = document.getElementById('waitlistRoleLabel');
+  if (!grid) return;
+  grid.querySelectorAll('.role-card').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      // The inner "Apply directly" link navigates instead of selecting.
+      if (e.target.closest('a')) return;
+      grid.querySelectorAll('.role-card').forEach(function (c) { c.classList.remove('selected'); });
+      card.classList.add('selected');
+      if (roleInput) roleInput.value = card.dataset.role;
+      if (roleLabel) roleLabel.value = card.dataset.label;
+    });
+  });
 })();
 
 // Smooth scroll for in-page anchors
@@ -956,6 +893,8 @@ async function fetchJSON(url) {
 
 async function submitWaitlist(e) {
   e.preventDefault();
+  const nameEl = document.getElementById('waitlistName');
+  const name = nameEl ? nameEl.value.trim() : '';
   const email = document.getElementById('waitlistEmail').value.trim();
   const role = document.getElementById('waitlistRole').value || null;
   const btn = document.getElementById('waitlistSubmit');
@@ -966,17 +905,17 @@ async function submitWaitlist(e) {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Prefer': 'return=minimal' },
-      body: JSON.stringify({ email, role_interest: role, source: 'homepage', user_agent: navigator.userAgent }),
+      body: JSON.stringify({ email, role_interest: role, source: 'homepage', message: name ? `Name: ${name}` : null, user_agent: navigator.userAgent }),
     });
     if (response.ok) {
       status.style.color = '#0A7C42';
-      status.textContent = '✓ You\'re on the list. We\'ll be in touch soon.';
+      status.textContent = '✓ Application received. We will be in touch shortly.';
       document.getElementById('waitlistForm').reset();
     } else {
       const errorText = await response.text();
       if (response.status === 409 || errorText.includes('duplicate') || errorText.includes('unique')) {
-        status.style.color = '#C9A84C';
-        status.textContent = 'You\'re already on the list. We\'ll be in touch soon.';
+        status.style.color = '#A8873A';
+        status.textContent = 'You are already registered. We will be in touch shortly.';
       } else {
         status.style.color = '#C0222A';
         status.textContent = 'Something went wrong. Please email hello@altveno.com';
@@ -1024,16 +963,17 @@ async function loadPerformanceData() {
       rows.push({ asset_class: group.asset_class, strategy: group.strategy, fund_count: group.fund_ids.length, last_month: lastMonthReturns.length ? lastMonthReturns.reduce((a,b)=>a+b,0)/lastMonthReturns.length : null, ytd: ytdReturns.length ? ytdReturns.reduce((a,b)=>a+b,0)/ytdReturns.length : null });
     }
     rows.sort((a,b) => a.asset_class.localeCompare(b.asset_class) || a.strategy.localeCompare(b.strategy));
-    document.getElementById('tableSubtitle').textContent = `${fullMonthNames[latestMonth-1]} ${latestYear} + YTD by strategy`;
+    document.getElementById('tableSubtitle').textContent = `${fullMonthNames[latestMonth-1]} ${latestYear} + YTD`;
     const monthLabel = `${monthNames[latestMonth-1]} ${latestYear}`.toUpperCase();
-    let tableHTML = `<div style="overflow-y:auto; max-height:260px;"><table style="width:100%; border-collapse:collapse;"><thead><tr style="background:rgba(255,255,255,0.05);"><th style="text-align:left; padding:7px 10px; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:0.8px; text-transform:uppercase;">STRATEGY</th><th style="text-align:right; padding:7px 10px; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:0.8px;">${monthLabel}</th><th style="text-align:right; padding:7px 10px; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:0.8px;">YTD ${latestYear}</th></tr></thead><tbody>`;
-    rows.slice(0,12).forEach((row, i) => {
+    let tableHTML = `<table style="width:100%; border-collapse:collapse;"><thead><tr><th style="text-align:left; padding:6px 8px 6px 0; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:1.5px; text-transform:uppercase;">Strategy</th><th style="text-align:right; padding:6px 8px; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:1.5px;">${monthLabel}</th><th style="text-align:right; padding:6px 0 6px 8px; font-size:9px; color:rgba(255,255,255,0.35); font-weight:700; letter-spacing:1.5px;">YTD ${latestYear}</th></tr></thead><tbody>`;
+    // Five rows only: the hero panel is a summary, the platform holds the rest.
+    rows.slice(0,5).forEach((row) => {
       const color = classColors[row.asset_class] || '#6B7280';
       const fmt = v => v === null ? 'n/a' : `${v>0?'+':''}${v.toFixed(2)}%`;
       const rc = v => v === null ? 'rgba(255,255,255,0.25)' : v > 0 ? '#0A7C42' : '#C0222A';
-      tableHTML += `<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:${i%2===0?'transparent':'rgba(255,255,255,0.02)'}"><td style="padding:8px 10px;"><div style="font-size:12px; color:rgba(255,255,255,0.85); margin-bottom:1px; font-weight:500;">${row.strategy}</div><div style="font-size:10px; color:${color}; font-weight:600;">${classLabels[row.asset_class]} · ${row.fund_count} funds</div></td><td style="padding:8px 10px; text-align:right; font-size:12px; font-weight:700; color:${rc(row.last_month)}; font-family:'Courier New',monospace;">${fmt(row.last_month)}</td><td style="padding:8px 10px; text-align:right; font-size:12px; font-weight:700; color:${rc(row.ytd)}; font-family:'Courier New',monospace;">${fmt(row.ytd)}</td></tr>`;
+      tableHTML += `<tr style="border-top:1px solid rgba(255,255,255,0.06);"><td style="padding:8px 8px 8px 0;"><div style="font-size:12px; color:rgba(255,255,255,0.85); margin-bottom:1px;">${row.strategy}</div><div style="font-size:9.5px; color:${color}; font-weight:700; letter-spacing:0.8px; text-transform:uppercase;">${classLabels[row.asset_class]} &middot; ${row.fund_count} funds</div></td><td style="padding:8px; text-align:right; font-size:12px; font-weight:700; color:${rc(row.last_month)}; font-family:'Courier New',monospace;">${fmt(row.last_month)}</td><td style="padding:8px 0 8px 8px; text-align:right; font-size:12px; font-weight:700; color:${rc(row.ytd)}; font-family:'Courier New',monospace;">${fmt(row.ytd)}</td></tr>`;
     });
-    tableHTML += `</tbody></table></div>`;
+    tableHTML += `</tbody></table>`;
     document.getElementById('perfTable').innerHTML = tableHTML;
     const allMonths = [...new Set(allPerf.map(p => `${p.year}-${String(p.month).padStart(2,'0')}`))]
       .sort().filter(ym => parseInt(ym.split('-')[0]) >= 2023);
@@ -1050,8 +990,8 @@ async function loadPerformanceData() {
       });
       datasets.push({ label: classLabels[ac], data, borderColor: classColors[ac], backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.3 });
       const pill = document.createElement('div');
-      pill.style.cssText = `display:flex; align-items:center; gap:4px; padding:2px 8px; border-radius:2px; font-size:10px; cursor:pointer; border:1px solid ${classColors[ac]}50; background:${classColors[ac]}15; color:${classColors[ac]}; font-weight:600; letter-spacing:0.3px;`;
-      pill.innerHTML = `<div style="width:5px;height:5px;border-radius:50%;background:${classColors[ac]};"></div>${classLabels[ac]}`;
+      pill.style.cssText = `display:flex; align-items:center; gap:5px; padding:2px 7px; border-radius:2px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; border:1px solid ${classColors[ac]}50; background:${classColors[ac]}15; color:${classColors[ac]};`;
+      pill.innerHTML = `<div style="width:4px;height:4px;border-radius:50%;background:${classColors[ac]};"></div>${classLabels[ac]}`;
       legend.appendChild(pill);
     }
     const ctx = document.getElementById('perfChart').getContext('2d');
@@ -1062,8 +1002,8 @@ async function loadPerformanceData() {
         responsive: true, maintainAspectRatio: false, animation: false,
         plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0A1628', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1, titleColor: 'rgba(255,255,255,0.4)', bodyColor: 'rgba(255,255,255,0.85)', padding: 10 } },
         scales: {
-          x: { ticks: { color: 'rgba(255,255,255,0.3)', font: { size: 9 }, maxTicksLimit: 7 }, grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false } },
-          y: { ticks: { color: 'rgba(255,255,255,0.3)', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false } }
+          x: { ticks: { color: 'rgba(255,255,255,0.3)', font: { size: 9, family: 'Courier New' }, maxTicksLimit: 6 }, grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false } },
+          y: { ticks: { color: 'rgba(255,255,255,0.3)', font: { size: 9, family: 'Courier New' } }, grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false } }
         }
       }
     });
