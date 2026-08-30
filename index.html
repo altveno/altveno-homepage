@@ -575,6 +575,11 @@ footer { background: var(--navy); padding: 56px 48px 0; }
       </div>
 
       <div class="data-foot">All returns anonymous and aggregated &middot; Updated monthly</div>
+      <!-- Revealed only once benchmark lines actually render. -->
+      <div class="data-foot" id="benchmarkNote" style="display:none; margin-top:6px;">
+        Benchmark indices shown for reference only. S&amp;P 500 and US corporate bond
+        total return index (FRED). Past performance is not indicative of future results.
+      </div>
     </div>
 
   </div>
@@ -891,6 +896,19 @@ async function fetchJSON(url) {
   return res.json();
 }
 
+// Public market benchmarks, proxied through the market-data Edge Function
+// because fredgraph.csv sends no CORS headers to a browser.
+async function fetchBenchmarks(firstMonth) {
+  const start = `${firstMonth || '2023-01'}-01`;
+  const res = await fetch(`${SUPABASE_URL}/functions/v1/market-data`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
+    body: JSON.stringify({ benchmarks: true, start }),
+  });
+  if (!res.ok) throw new Error(`Benchmark fetch failed: ${res.status}`);
+  return res.json();
+}
+
 async function submitWaitlist(e) {
   e.preventDefault();
   const nameEl = document.getElementById('waitlistName');
@@ -994,6 +1012,46 @@ async function loadPerformanceData() {
       pill.innerHTML = `<div style="width:4px;height:4px;border-radius:50%;background:${classColors[ac]};"></div>${classLabels[ac]}`;
       legend.appendChild(pill);
     }
+
+    // ── Public market benchmarks ──────────────────────────────────────────
+    // Fetched through the market-data Edge Function: FRED sends no CORS
+    // headers, so the browser cannot read fredgraph.csv directly. If the
+    // benchmarks are unavailable the alternatives chart renders exactly as
+    // before, with no benchmark lines drawn.
+    try {
+      const bm = await fetchBenchmarks(allMonths[0]);
+      const addBenchmark = (label, series, colour, dash) => {
+        // Rebased to 100 at the first month the series actually covers, so a
+        // series that starts mid-chart leaves a gap rather than a false level.
+        const firstMonth = allMonths.find(ym => series[ym] !== undefined);
+        if (!firstMonth) return;
+        const base = series[firstMonth];
+        let last = null;
+        const data = allMonths.map(ym => {
+          if (series[ym] !== undefined) last = (series[ym] / base) * 100;
+          else if (last === null) return null;   // before the series begins
+          return last === null ? null : parseFloat(last.toFixed(2));
+        });
+        datasets.push({
+          label, data, borderColor: colour, backgroundColor: 'transparent',
+          borderDash: dash, borderWidth: 1.5, pointRadius: 0, tension: 0.3, spanGaps: false,
+        });
+        const pill = document.createElement('div');
+        pill.style.cssText = `display:flex; align-items:center; gap:5px; padding:2px 7px; border-radius:2px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; border:1px solid ${colour}50; background:${colour}15; color:${colour};`;
+        pill.innerHTML = `<div style="width:10px;height:0;border-top:1.5px dashed ${colour};"></div>${label}`;
+        legend.appendChild(pill);
+      };
+      addBenchmark('S&P 500', bm.sp500 || {}, '#94A3B8', [4, 4]);
+      addBenchmark('US Bonds', bm.bonds || {}, '#CBD5E1', [2, 4]);
+
+      if (datasets.some(d => d.borderDash)) {
+        const note = document.getElementById('benchmarkNote');
+        if (note) note.style.display = 'block';
+      }
+    } catch (err) {
+      console.warn('Benchmarks unavailable, chart renders without them:', err);
+    }
+
     const ctx = document.getElementById('perfChart').getContext('2d');
     new Chart(ctx, {
       type: 'line',
